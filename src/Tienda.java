@@ -38,7 +38,7 @@ public class Tienda {
     if (this.paginaAct > 0)
       this.paginaAct--;
 
-    //System.out.print("\033[H\033[2J"); limpiar consola
+    System.out.print("\033[H\033[2J"); //limpiar consola
     System.out.flush();
     this.mostrarTienda();
   }
@@ -47,7 +47,7 @@ public class Tienda {
 
     if ((this.paginaAct + 1) * this.productosPorPagina < productos.size())
       this.paginaAct++;
-    //System.out.print("\033[H\033[2J");
+    System.out.print("\033[H\033[2J");
     System.out.flush();
     this.mostrarTienda();
   }
