@@ -3,7 +3,7 @@ public class Camiseta extends Producto {
   private String nombre;
   private int dorsal;
 
-  Camiseta(int id, double precio, boolean activo, int stock, int udsvendidas, String talla, String nombre, int dorsal) {
+  Camiseta(String id, double precio, boolean activo, int stock, int udsvendidas, String talla, String nombre, int dorsal) {
     super(id,precio, activo, stock, udsvendidas);
     this.talla = talla;
     this.nombre = nombre;

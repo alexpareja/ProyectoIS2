@@ -1,12 +1,12 @@
 
 public class Producto {
-  protected int id;
+  protected String id;
   protected double precio;
   protected boolean activo;
   protected int stock;
   protected int udsvendidas;
 
-  Producto(int id, double precio, boolean activo, int stock, int udsvendidas) {
+  Producto(String id, double precio, boolean activo, int stock, int udsvendidas) {
     this.id = id;
     this.precio = precio;
     this.activo = activo;
@@ -14,7 +14,7 @@ public class Producto {
     this.udsvendidas = udsvendidas;
   }
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 

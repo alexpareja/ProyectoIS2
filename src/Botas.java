@@ -4,7 +4,7 @@ public class Botas extends Producto {
   private String marca;
   private String color;
 
-  Botas(int id, double precio, boolean activo, int stock, int udsvendidas, int talla, String modelo, String marca, String color) {
+  Botas(String id, double precio, boolean activo, int stock, int udsvendidas, int talla, String modelo, String marca, String color) {
     super(id, precio, activo, stock, udsvendidas);
     this.talla = talla;
     this.modelo = modelo;

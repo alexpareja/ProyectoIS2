@@ -5,17 +5,18 @@ public class Main {
 
   public static void main(String[] args) {
     Inventario inventario = new Inventario();
-    Producto p1 = new Camiseta(1, 59.99, true, 10, 2, "XL", "Mbappe", 7);
-    Producto p2 = new Camiseta(1, 39.99, false, 200, 3, "L", "Benzema", 9);
-    Producto p3 = new Camiseta(1, 99.99, true, 0, 4, "M", "Griezmann", 8);
-    Producto p4 = new Camiseta(1, 399.99, true, 11, 5, "L", "Eraso", 17);
-    Producto p5 = new Camiseta(1, 149.99, true, 16, 6, "S", "Carrasco", 21);
-    Producto p6 = new Camiseta(1, 69.99, true, 21, 7, "XS", "Pedri", 16);
-    Producto p7 = new Camiseta(1, 29.99, true, 12, 8, "XXS", "Gavi", 30);
-    Producto p8 = new Camiseta(1, 19.99, true, 17, 9, "XL", "Pau Torres", 4);
-    Producto p9 = new Botas(2, 54.99, true, 8, 1, 42, "Predator", "Adidas", "Blanco");
-    Producto p10 = new Botas(2, 54.99, true, 8, 2, 43, "Predator", "Adidas", "Blanco");
-    Producto p11 = new Botas(2, 54.99, true, 8, 3, 44, "Predator", "Adidas", "Blanco");
+    Producto p1 = new Camiseta("camiseta", 59.99, true, 10, 2, "XL", "Mbappe", 7);
+    Producto p2 = new Camiseta("camiseta", 39.99, false, 200, 3, "L", "Benzema", 9);
+    Producto p3 = new Camiseta("camiseta", 99.99, true, 0, 4, "M", "Griezmann", 8);
+    Producto p4 = new Camiseta("camiseta", 399.99, true, 11, 5, "L", "Eraso", 17);
+    Producto p5 = new Camiseta("camiseta", 149.99, true, 16, 6, "S", "Carrasco", 21);
+    Producto p6 = new Camiseta("camiseta", 69.99, true, 21, 7, "XS", "Pedri", 16);
+    Producto p7 = new Camiseta("camiseta", 29.99, true, 12, 8, "XXS", "Gavi", 30);
+    Producto p8 = new Camiseta("camiseta", 19.99, true, 17, 9, "XL", "Pau Torres", 4);
+    Producto p9 = new Botas("botas", 54.99, true, 8, 1, 42, "Predator", "Adidas", "Blanco");
+    Producto p10 = new Botas("botas", 54.99, true, 8, 2, 43, "Predator", "Adidas", "Blanco");
+    Producto p11 = new Botas("botas", 54.99, true, 8, 3, 44, "Predator", "Adidas", "Blanco");
+    Producto p12 = new Guantes("guantes", 39.99, true, 10, 0, "M", "Tiro Pro", "Adidas", "Negro", 8);
 
     ArrayList<Producto> productos = new ArrayList<Producto>();
     productos.add(p1);
@@ -31,6 +32,7 @@ public class Main {
     inventario.add(productos);
     inventario.add(p10);
     inventario.add(p11);
+    inventario.add(p12);
 
     inventario.eliminar(p1, productos);
     inventario.reabastecer(p2, 3);
