@@ -8,7 +8,6 @@ public class Inventario{
   }
 
   public void eliminar(Producto prod, ArrayList<Producto> productos){
-    
     inventario.remove(inventario.indexOf(prod));
     productos.remove(productos.indexOf(prod));
   }
@@ -18,17 +17,17 @@ public class Inventario{
   }
 
   public void add(Producto prod){
-    inventario.add(prod);
+    if (!inventario.contains(prod))inventario.add(prod);
   }
-
+  
   public void add(ArrayList<Producto> prod){
-    for (Producto p: prod) inventario.add(p);
+    for (Producto p: prod) 
+      if (!inventario.contains(p))
+        inventario.add(p);
   }
 
   public void mostrarInventario(){
-	  System.out.println("Artículos en el inventario: ");
-    for(int i = 0; i < inventario.size(); i++){
+    for(int i = 0; i < inventario.size(); i++)
       System.out.println(inventario.get(i).mostrarEnInv());
-    }
   }
 }

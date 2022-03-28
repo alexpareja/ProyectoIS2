@@ -1,12 +1,11 @@
-
-public class Producto {
+public abstract class Producto {
   protected String id;
   protected double precio;
   protected boolean activo;
   protected int stock;
   protected int udsvendidas;
 
-  Producto(String id, double precio, boolean activo, int stock, int udsvendidas) {
+ public Producto(String id, double precio, boolean activo, int stock, int udsvendidas) {
     this.id = id;
     this.precio = precio;
     this.activo = activo;
@@ -34,19 +33,9 @@ public class Producto {
     this.stock = stock + n;
   }
 
-  public String mostrar() {
-    String s;
-      s = "Unidades en inventario: " + stock;
-      if(!activo)
-      s = s  +"\n" + "No esta a la venta";
-    
-    return s;
-  }
+  public abstract String mostrar();
 
-  public String mostrarEnInv() {
-    String s =  this.mostrar()+ "\nUnidades vendidas: " + udsvendidas;
-    
-       
-    return s;
-  }
+  public abstract String mostrarEnInv();
+
+  public abstract String mostrarEnCarrito();
 }

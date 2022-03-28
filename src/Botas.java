@@ -5,7 +5,7 @@ public class Botas extends Producto {
   private String color;
 
   Botas(String id, double precio, boolean activo, int stock, int udsvendidas, int talla, String modelo, String marca, String color) {
-    super(id, precio, activo, stock, udsvendidas);
+    super("Botas", precio, activo, stock, udsvendidas);
     this.talla = talla;
     this.modelo = modelo;
     this.marca = marca;
@@ -38,7 +38,30 @@ public class Botas extends Producto {
         "Talla:" + this.talla + "\n" +
         "Color: " + this.color + "\n" +
         "Precio: " + this.precio + "\n";
-    s = s + super.mostrar();
+    return s;
+  }
+
+  public String mostrarEnInv(){
+    String s = "Id:" + this.id + "\n" +
+        "Marca:" + this.marca + "\n" +
+        "Modelo: " + this.modelo + "\n" +
+        "Talla:" + this.talla + "\n" +
+        "Color: " + this.color + "\n" +
+        "Unidades totales: " + this.stock + "\n" +
+        "Precio: " + this.precio + "\n";
+    return s;
+  }
+
+  
+   public  String mostrarEnCarrito() {
+    String s;
+
+    s = "\nProducto: Botas\n" +
+        "Marca:" + this.marca + "\n" +
+        "Modelo: " + this.modelo + "\n" +
+        "Talla:" + this.talla + "\n" +
+        "Color: " + this.color + "\n" +
+        "Precio: " + this.precio + "\n";
     return s;
   }
 }

@@ -1,10 +1,14 @@
-public abstract class Camiseta extends Producto {
-  protected String talla;
-  protected String nombre;
-  protected int dorsal;
- 
-  public Camiseta(String id, double precio, boolean activo, int stock, int udsvendidas) {
-    super(id,precio, activo, stock, udsvendidas);
+public abstract class Conjunto extends Producto {
+  private String talla;
+  private String nombre;
+  private int dorsal;
+  
+
+  Conjunto(String id, double precio, boolean activo, int stock, int udsvendidas, String talla, String nombre, int dorsal) {
+    super("Conjunto", precio, activo, stock, udsvendidas);
+    this.talla = talla;
+    this.nombre = nombre;
+    this.dorsal = dorsal;
   }
 
   public String getTalla() {
@@ -22,18 +26,9 @@ public abstract class Camiseta extends Producto {
   public String mostrar() {
     String s;
 
-    s = "Id:" + this.id + "\n" +
+    s = "\nProducto: Conjunto\n" +
+        "Id:" + this.id + "\n" +
         "Nombre: " + this.nombre + "\n" +
-        "Dorsales:" + this.dorsal + "\n" +
-        "Talla: " + this.talla + "\n" +
-        "Precio: " + this.precio + "\n";
-    return s;
-  }
-
-  public String mostrarEnCarrito() {
-    String s;
-
-    s = "Nombre: " + this.nombre + "\n" +
         "Dorsales:" + this.dorsal + "\n" +
         "Talla: " + this.talla + "\n" +
         "Precio: " + this.precio + "\n";
@@ -46,6 +41,16 @@ public abstract class Camiseta extends Producto {
         "Dorsales:" + this.dorsal + "\n" +
         "Talla: " + this.talla + "\n" +
         "Unidades totales: " + this.stock + "\n" +
+        "Precio: " + this.precio + "\n";
+    return s;
+  }
+
+  public String mostrarEnCarrito() {
+    String s;
+    s = "\nProducto: Conjunto\n" +
+        "Nombre: " + this.nombre + "\n" +
+        "Dorsales:" + this.dorsal + "\n" +
+        "Talla: " + this.talla + "\n" +
         "Precio: " + this.precio + "\n";
     return s;
   }
