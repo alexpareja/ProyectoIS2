@@ -1,14 +1,11 @@
 public abstract class Conjunto extends Producto {
-  private String talla;
-  private String nombre;
-  private int dorsal;
+  protected String talla;
+  protected String nombre;
+  protected int dorsal;
   
 
-  Conjunto(String id, double precio, boolean activo, int stock, int udsvendidas, String talla, String nombre, int dorsal) {
+  Conjunto(String id, double precio, boolean activo, int stock, int udsvendidas) {
     super("Conjunto", precio, activo, stock, udsvendidas);
-    this.talla = talla;
-    this.nombre = nombre;
-    this.dorsal = dorsal;
   }
 
   public String getTalla() {
