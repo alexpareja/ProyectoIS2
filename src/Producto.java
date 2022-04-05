@@ -32,6 +32,11 @@ public abstract class Producto {
   public void setStock(int n){
     this.stock = stock + n;
   }
+  
+  public void setPrecio(double precio) {
+	  if (precio < 0) throw new IllegalArgumentException("Precio negativo");
+	  this.precio = precio;
+  }
 
   public abstract String mostrar();
 
