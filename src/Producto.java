@@ -31,7 +31,7 @@ public abstract class Producto {
     return stock;
   }
   
-  public int getReservador() {
+  public int getReservados() {
 	  return reservados;
   }
 
