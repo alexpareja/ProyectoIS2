@@ -31,16 +31,16 @@ public abstract class Producto {
     return stock;
   }
   
-  public int gerReservador() {
+  public int getReservador() {
 	  return reservados;
   }
 
   public void setReservados(int n){
-	    reservados+=n;
+	reservados = n;
   }
   
   public void setStock(int n){
-    this.stock = stock + n;
+    stock = n;
   }
   
   public void setPrecio(double precio) {

@@ -13,7 +13,7 @@ public class Inventario{
   }
 
   public void reabastecer(Producto prod, int n){
-    inventario.get(inventario.indexOf(prod)).setStock(n);
+    inventario.get(inventario.indexOf(prod)).setStock(prod.getStock()+n);
   }
 
   public void add(Producto prod){
@@ -34,7 +34,7 @@ public class Inventario{
   public void reservar(Producto prod) {
 	  if(!inventario.contains(prod))throw new IllegalArgumentException("No existe este producto en el inventario");
 	  if(prod.getStock()==0)throw new IllegalArgumentException("No quedan unidades de este producto");
-	  prod.setStock(-1);
-	  prod.setReservados(1);
+	  prod.setStock(prod.getStock()-1);
+	  prod.setReservados(prod.getReservador()+1);
   }
 }
