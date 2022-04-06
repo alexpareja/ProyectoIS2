@@ -1,8 +1,8 @@
 public class PantalonCorto extends Pantalon {
   public static final String id="PantCorto";
 
-  public PantalonCorto(double precio, boolean activo, int stock, int udsvendidas, String talla, int dorsal){
-    super(id, precio, activo, stock, udsvendidas, talla, dorsal);
+  public PantalonCorto(double precio, boolean activo, int stock, int udsvendidas, int reservados, String talla, int dorsal){
+    super(id, precio, activo, stock, udsvendidas, reservados, talla, dorsal);
     
     if (talla == "" || talla == null) throw new IllegalArgumentException("[ERROR] Pantalon: talla no puede ser vacio");
     else 

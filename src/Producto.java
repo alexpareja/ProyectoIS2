@@ -4,13 +4,15 @@ public abstract class Producto {
   protected boolean activo;
   protected int stock;
   protected int udsvendidas;
+  protected int reservados;
 
- public Producto(String id, double precio, boolean activo, int stock, int udsvendidas) {
+ public Producto(String id, double precio, boolean activo, int stock, int udsvendidas, int reservados) {
     this.id = id;
     this.precio = precio;
     this.activo = activo;
     this.stock = stock;
     this.udsvendidas = udsvendidas;
+    this.reservados = reservados;
   }
 
   public String getId() {
@@ -28,7 +30,15 @@ public abstract class Producto {
   public int getStock() {
     return stock;
   }
+  
+  public int gerReservador() {
+	  return reservados;
+  }
 
+  public void setReservados(int n){
+	    reservados+=n;
+  }
+  
   public void setStock(int n){
     this.stock = stock + n;
   }
@@ -37,7 +47,7 @@ public abstract class Producto {
 	  if (precio < 0) throw new IllegalArgumentException("Precio negativo");
 	  this.precio = precio;
   }
-
+  
   public abstract String mostrar();
 
   public abstract String mostrarEnInv();

@@ -4,8 +4,8 @@ public abstract class Conjunto extends Producto {
   protected int dorsal;
   
 
-  Conjunto(String id, double precio, boolean activo, int stock, int udsvendidas) {
-    super("Conjunto", precio, activo, stock, udsvendidas);
+  Conjunto(String id, double precio, boolean activo, int stock, int udsvendidas, int reservados) {
+    super("Conjunto", precio, activo, stock, udsvendidas, reservados);
   }
 
   public String getTalla() {

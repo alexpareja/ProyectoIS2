@@ -2,8 +2,8 @@ public abstract class Pantalon extends Producto {
   protected String talla;
   protected int dorsal;
 
-  public Pantalon(String id, double precio, boolean activo, int stock, int udsvendidas, String talla, int dorsal){
-    super(id, precio, activo, stock, udsvendidas);
+  public Pantalon(String id, double precio, boolean activo, int stock, int udsvendidas, int reservados, String talla, int dorsal){
+    super(id, precio, activo, stock, udsvendidas, reservados);
   }
 
   public String getTalla() {

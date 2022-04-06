@@ -30,4 +30,11 @@ public class Inventario{
     for(int i = 0; i < inventario.size(); i++)
       System.out.println(inventario.get(i).mostrarEnInv());
   }
+  
+  public void reservar(Producto prod) {
+	  if(!inventario.contains(prod))throw new IllegalArgumentException("No existe este producto en el inventario");
+	  if(prod.getStock()==0)throw new IllegalArgumentException("No quedan unidades de este producto");
+	  prod.setStock(-1);
+	  prod.setReservados(1);
+  }
 }

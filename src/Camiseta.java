@@ -3,8 +3,8 @@ public abstract class Camiseta extends Producto {
   protected String nombre;
   protected int dorsal;
  
-  public Camiseta(String id, double precio, boolean activo, int stock, int udsvendidas) {
-    super(id,precio, activo, stock, udsvendidas);
+  public Camiseta(String id, double precio, boolean activo, int stock, int udsvendidas, int reservados) {
+    super(id,precio, activo, stock, udsvendidas, reservados);
   }
 
   public String getTalla() {

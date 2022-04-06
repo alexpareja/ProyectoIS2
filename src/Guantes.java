@@ -5,8 +5,8 @@ public class Guantes extends Producto {
   private String color;
   private int adherencia;
  
-  Guantes(String id, double precio, boolean activo, int stock, int udsvendidas, String talla, String modelo, String marca, String color, int adherencia) {
-    super("Guantes", precio, activo, stock, udsvendidas);
+  Guantes(String id, double precio, boolean activo, int stock, int udsvendidas, int reservados, String talla, String modelo, String marca, String color, int adherencia) {
+    super("Guantes", precio, activo, stock, udsvendidas, reservados);
     this.talla = talla;
 	this.modelo = modelo;
   	this.marca = marca;
