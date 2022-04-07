@@ -25,11 +25,30 @@ public class Inventario{
       if (!inventario.contains(p))
         inventario.add(p);
   }
+  
+  public  ArrayList<Producto> getProductos(){
+	  ArrayList<Producto> a=new ArrayList<Producto>();
+	    for(int i=0;i<inventario.size();i++) {
+	    	if(inventario.get(i).getActivo()) {
+	    		a.add(inventario.get(i));
+	    	}
+	    }
+	    return a;
+}
+  
 
   public void mostrarInventario(){
     for(int i = 0; i < inventario.size(); i++)
       System.out.println(inventario.get(i).mostrarEnInv());
   }
+  
+ 
+  
+  public int getNumProductos() {
+	  return inventario.size();
+  }
+  
+  
   
   public void reservar(Producto prod) {
 	  if(!inventario.contains(prod))throw new IllegalArgumentException("No existe este producto en el inventario");

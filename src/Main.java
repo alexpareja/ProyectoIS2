@@ -61,7 +61,7 @@ public class Main {
     inventario.eliminar(p1, productos);
     inventario.reabastecer(p2, 3);
 
-    Tienda tienda =Tienda.crearTienda(productos, 3);
+    Tienda tienda =Tienda.crearTienda(3,inventario);
 
     tienda.mostrarTienda();
     char desp = 'T';
@@ -70,7 +70,7 @@ public class Main {
       "D para siguiente pagina\n"+
       "N para ver inventario\n"+
       "T para ver tienda\n"+
-      "A para añadir al carrito\n"+
+      "A para anadir al carrito\n"+
       "E para eliminar del carrito\n"+
       "C para ver carrito\n"+
       "S para salir";
@@ -91,7 +91,7 @@ public class Main {
         tienda.mostrarTienda();
       }
       else if (desp == 'A' || desp == 'a') {
-        System.out.println("Introduzca el producto a añadir");
+        System.out.println("Introduzca el producto a anadir");
         int productoCarrito = lectura.nextInt();
         if(productoCarrito>=1 && productoCarrito<=productos.size())
         {
