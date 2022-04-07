@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import src.TiendaObserver;
-
 public class Tienda {
  
   private Inventario inventario;
@@ -45,7 +43,7 @@ public class Tienda {
 		        + this.productosPorPagina; i++) {
 		      if (i < productosTienda.size()) {
 		      int pos = i + 1;
-		      System.out.println("Nº"+pos+productosTienda.get(i).mostrar());
+		      System.out.println("Nï¿½"+pos+productosTienda.get(i).mostrar());
 		      }
 		    }
 	  
