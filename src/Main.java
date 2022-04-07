@@ -70,7 +70,7 @@ public class Main {
       "D para siguiente pagina\n"+
       "N para ver inventario\n"+
       "T para ver tienda\n"+
-      "A para añadir al carrito\n"+
+      "A para aÃ±adir al carrito\n"+
       "E para eliminar del carrito\n"+
       "C para ver carrito\n"+
       "S para salir";
@@ -91,7 +91,7 @@ public class Main {
         tienda.mostrarTienda();
       }
       else if (desp == 'A' || desp == 'a') {
-        System.out.println("Introduzca el producto a añadir");
+        System.out.println("Introduzca el producto a aÃ±adir");
         int productoCarrito = lectura.nextInt();
         if(productoCarrito>=1 && productoCarrito<=productos.size())
         {

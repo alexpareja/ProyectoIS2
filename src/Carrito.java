@@ -8,7 +8,7 @@ public class Carrito {
     productos = new ArrayList<Producto>();
   }
   
-//añadir producto al carrito
+//aï¿½adir producto al carrito
   void anadirCarrito(Producto p) {
     productos.add(p);
   }
@@ -41,12 +41,12 @@ public class Carrito {
     { 
       for(int i = 0; i < productos.size(); i++) {
         int pos=i+1;      
-        System.out.println("Nº"+pos+productos.get(i).mostrarEnCarrito());
+        System.out.println("NÂº"+pos+productos.get(i).mostrarEnCarrito());
       }
     }
     else
     {
-       System.out.println("Carrito vacío");
+       System.out.println("Carrito vacÃ­o");
     }
   }
 }

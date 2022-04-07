@@ -25,32 +25,32 @@ public class Tienda {
     return tienda;
   }
   
-//mostrar p·gina de productos de la tienda
+//mostrar p√°gina de productos de la tienda
   public void mostrarTienda() {
     for (int i = this.paginaAct * this.productosPorPagina; i < this.paginaAct * this.productosPorPagina
         + this.productosPorPagina; i++) {
       if (i < productos.size()) {
       int pos = i + 1;
-      System.out.println("N∫"+pos+productos.get(i).mostrar());
+      System.out.println("N¬∫"+pos+productos.get(i).mostrar());
       }
     }
   }
-//desplaza p·gina a la izquierda
+//desplaza p√°gina a la izquierda
   public void desplazaIzq() {
 
     if (this.paginaAct > 0)
       this.paginaAct--;
 
-    System.out.print("\033[H\033[2J");// limpiar consola
+    //System.out.print("\033[H\033[2J");// limpiar consola
     System.out.flush();
     this.mostrarTienda();
   }
-//desplaza p·gina a la derecha
+//desplaza p√°gina a la derecha
   public void desplazaDer() {
 
     if ((this.paginaAct + 1) * this.productosPorPagina < productos.size())
       this.paginaAct++;
-    System.out.print("\033[H\033[2J");
+    //System.out.print("\033[H\033[2J");
     System.out.flush();
     this.mostrarTienda();
   }
