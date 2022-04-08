@@ -60,8 +60,8 @@ public class Main {
 
     inventario.eliminar(p1, productos);
     inventario.reabastecer(p2, 3);
-
-    Tienda tienda =Tienda.crearTienda(3,inventario);
+    Controller ctrl=new Controller(inventario);
+    Tienda tienda =Tienda.crearTienda(3,inventario,ctrl);
 
     tienda.mostrarTienda();
     char desp = 'T';

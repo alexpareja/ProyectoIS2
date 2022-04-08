@@ -2,9 +2,11 @@ import java.util.ArrayList;
 
 public class Inventario{
   protected ArrayList<Producto> inventario;
+  protected ArrayList<InventarioObserver> observers;
   
   Inventario(){
     this.inventario = new ArrayList<Producto>();
+    this.observers = new ArrayList<InventarioObserver>();
   }
 
   public void eliminar(Producto prod, ArrayList<Producto> productos){
@@ -56,4 +58,18 @@ public class Inventario{
 	  prod.setStock(prod.getStock()-1);
 	  prod.setReservados(prod.getReservados()+1);
   }
+
+  public void addObserver(InventarioObserver o) {
+	  if(!this.observers.contains(o)) {
+			this.observers.add(o);	
+			this.observers.get(this.observers.indexOf(o)).onRegistroTienda(this.getProductos());
+		}
+  }
+
+  public void actualizarTienda() {
+	  for(int i = 0; i < this.observers.size(); i++) {
+			this.observers.get(i).onActualizaTienda(this.getProductos());
+		}
+  }
+
 }

@@ -1,27 +1,28 @@
 import java.util.ArrayList;
 
-public class Tienda {
+public class Tienda implements InventarioObserver {
  
-  private Inventario inventario;
+  //private Inventario inventario;
   private int productosPorPagina;
   private int paginaAct;
   private static Tienda tienda; //Singleton
   protected ArrayList<Producto> productosTienda;
-  private ArrayList<TiendaObserver>tiendaObservers;
  
 
 //crear tienda con productos ya creados
-  private Tienda(int numProdPag, Inventario i) {
-	inventario=i;
+  private Tienda(int numProdPag, Inventario i, Controller ctrl) {
+	//inventario=i;
     this.productosPorPagina = numProdPag;
     this.paginaAct = 0;
-    this.productosTienda=inventario.getProductos();
-    this.tiendaObservers=new ArrayList<TiendaObserver>();
+    ctrl.addObserver(this);
+    //this.productosTienda=inventario.getProductos();
+    
+    
   }
 //creador Singleton
-  public static Tienda crearTienda(int numProdPag, Inventario i){
+  public static Tienda crearTienda(int numProdPag, Inventario i,Controller ctrl){
     if(tienda==null){
-      tienda=new Tienda(numProdPag,i);
+      tienda=new Tienda(numProdPag,i,ctrl);
     }
     else{
       System.out.print("Tienda ya creada");
@@ -31,8 +32,8 @@ public class Tienda {
   }
   
   //actualiza los cambios realizados en el inventario
-  public void actualizaTienda() {
-	  this.productosTienda=inventario.getProductos();
+  public void actualizaTienda(ArrayList<Producto> inventario) {
+	  this.productosTienda=inventario;
 	  
   }
   
@@ -43,7 +44,7 @@ public class Tienda {
 		        + this.productosPorPagina; i++) {
 		      if (i < productosTienda.size()) {
 		      int pos = i + 1;
-		      System.out.println("Nï¿½"+pos+productosTienda.get(i).mostrar());
+		      System.out.println("N"+pos+productosTienda.get(i).mostrar());
 		      }
 		    }
 	  
@@ -79,12 +80,17 @@ public class Tienda {
 	}*/
   }
   
-  public void addObserver(TiendaObserver o) {
-		if(!this.tiendaObservers.contains(o)) {
-			this.tiendaObservers.add(o);	
-		//	this.tiendaObservers.get(this.tiendaObservers.indexOf(o)).onRegister();
-		}
-	}
+  
+@Override
+public void onRegistroTienda(ArrayList<Producto> inventario) {
+	this.productosTienda=inventario;
+	this.mostrarTienda();	
+}//notifica de creación de tienda
+
+@Override
+public void onActualizaTienda(ArrayList<Producto> inventario) {
+	this.productosTienda=inventario;
+}//notifica de actualizacion de tienda
   
   
 }
