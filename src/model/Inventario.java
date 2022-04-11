@@ -1,10 +1,11 @@
+package model;
 import java.util.ArrayList;
 
 public class Inventario{
   protected ArrayList<Producto> inventario;
   protected ArrayList<InventarioObserver> observers;
   
-  Inventario(){
+  public Inventario(){
     this.inventario = new ArrayList<Producto>();
     this.observers = new ArrayList<InventarioObserver>();
   }

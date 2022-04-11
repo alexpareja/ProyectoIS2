@@ -1,4 +1,7 @@
+package model;
 import java.util.ArrayList;
+
+import controller.Controller;
 
 public class Tienda implements InventarioObserver {
  

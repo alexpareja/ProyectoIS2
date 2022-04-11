@@ -1,3 +1,4 @@
+package model;
 public class CamisetaVisitante extends Camiseta {
  public static final String id="CamVisitante";
 

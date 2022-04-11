@@ -1,3 +1,4 @@
+package model;
 public abstract class Pantalon extends Producto {
   protected String talla;
   protected int dorsal;

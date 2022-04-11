@@ -1,3 +1,4 @@
+package model;
 public abstract class Conjunto extends Producto {
   protected String talla;
   protected String nombre;

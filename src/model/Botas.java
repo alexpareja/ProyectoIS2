@@ -1,10 +1,11 @@
+package model;
 public class Botas extends Producto {
   private int talla;
   private String modelo;
   private String marca;
   private String color;
 
-  Botas(String id, double precio, boolean activo, int stock, int udsvendidas, int reservados, int talla, String modelo, String marca, String color) {
+  public Botas(String id, double precio, boolean activo, int stock, int udsvendidas, int reservados, int talla, String modelo, String marca, String color) {
     super("Botas", precio, activo, stock, udsvendidas, reservados);
     this.talla = talla;
     this.modelo = modelo;

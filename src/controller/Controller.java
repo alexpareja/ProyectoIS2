@@ -1,3 +1,7 @@
+package controller;
+
+import model.Inventario;
+import model.InventarioObserver;
 
 public class Controller {
 

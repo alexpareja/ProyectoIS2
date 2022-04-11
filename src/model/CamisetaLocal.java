@@ -1,3 +1,4 @@
+package model;
 public class CamisetaLocal extends Camiseta {
  public static final String id="CamLocal";
 

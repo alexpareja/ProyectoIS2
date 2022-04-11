@@ -1,3 +1,4 @@
+package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,12 +10,12 @@ public class Carrito {
   }
   
 //anadir producto al carrito
-  void anadirCarrito(Producto p) {
+  public void anadirCarrito(Producto p) {
     productos.add(p);
   }
   
 //eliminar producto del carrito
-  void eliminarCarrito(int productoCarrito) {
+  public void eliminarCarrito(int productoCarrito) {
     if(!this.carritoVacio())
      {
         if(productoCarrito>=1 && productoCarrito<=productos.size())
@@ -36,7 +37,7 @@ public class Carrito {
       
   return productos.isEmpty();
   }
-  void mostrarCarrito() {
+  public void mostrarCarrito() {
     if(!productos.isEmpty())
     { 
       for(int i = 0; i < productos.size(); i++) {
