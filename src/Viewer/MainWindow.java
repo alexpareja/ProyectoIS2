@@ -1,14 +1,17 @@
 package Viewer;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Controller;
+import controller.Controller;
 
 public class MainWindow extends JFrame{
 	Controller _ctrl;
 	public MainWindow(Controller ctrl) {
-		super("Physics Simulator");
+		super("");
 		_ctrl = ctrl;
 		initGUI();
 	}
@@ -19,7 +22,7 @@ public class MainWindow extends JFrame{
 		
 		ControlPanel controlP = new ControlPanel(_ctrl);
 		mainPanel.add(controlP, BorderLayout.PAGE_START);
-		
+		/*
 		StatusBar barraEstado = new StatusBar(_ctrl);
 		mainPanel.add(barraEstado, BorderLayout.PAGE_END);
 		
@@ -38,11 +41,12 @@ public class MainWindow extends JFrame{
 		
 		Viewer viewer = new Viewer(_ctrl);
 		centerPanel.add(viewer);
-		
-		viewer.setPreferredSize(new Dimension(500, 500));
+		*/
+
 			
 		this.setPreferredSize(new Dimension(900, 700));
 		this.pack();
 		this.setVisible(true);
+		
 	}
 }

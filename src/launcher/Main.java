@@ -2,6 +2,7 @@ package launcher;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Viewer.MainWindow;
 import controller.Controller;
 import model.Botas;
 import model.CamisetaLocal;
@@ -75,6 +76,8 @@ public class Main {
     inventario.reabastecer(p2, 3);
     Controller ctrl=new Controller(inventario);
     Tienda tienda =Tienda.crearTienda(3,inventario,ctrl);
+    
+    MainWindow ventana = new MainWindow(ctrl);
 
     tienda.mostrarTienda();
     char desp = 'T';
