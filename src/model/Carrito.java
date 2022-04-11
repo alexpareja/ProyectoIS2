@@ -33,10 +33,15 @@ public class Carrito {
               }
   }
   
-  public boolean carritoVacio(){
+  public ArrayList<Producto> getProductos() {
+	return productos;
+}
+
+public boolean carritoVacio(){
       
   return productos.isEmpty();
   }
+  
   public void mostrarCarrito() {
     if(!productos.isEmpty())
     { 

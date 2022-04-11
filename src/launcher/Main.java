@@ -74,7 +74,7 @@ public class Main {
 
     inventario.eliminar(p1, productos);
     inventario.reabastecer(p2, 3);
-    Controller ctrl=new Controller(inventario);
+    Controller ctrl=new Controller(inventario, carrito);
     Tienda tienda =Tienda.crearTienda(3,inventario,ctrl);
     
     MainWindow ventana = new MainWindow(ctrl);

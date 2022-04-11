@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -80,13 +81,13 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				JTextField id = new JTextField("");
 				JTextField contra = new JPasswordField("");
 				
-				JPanel panelDatos = new JPanel(new GridLayout(3,1));
+				JPanel panelDatos = new JPanel(new GridLayout(2,2));
 				
 				panelDatos.add(infoId);
 				panelDatos.add(id);
 				panelDatos.add(infoContra);
 				panelDatos.add(contra);
-				id.setSize(100, 5);
+				
 				
 				panelUsuario.add(panelDatos, BorderLayout.CENTER);
 
@@ -126,9 +127,71 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 		//2
 		Bcarrito.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){ 
-			
+				JDialog carrito = new JDialog();
+				JPanel panelCarrito = new JPanel();
+				panelCarrito.setLayout(new BorderLayout());
+				
+				JLabel info = new JLabel("Este es su carrito: ", SwingConstants.CENTER);
+				panelCarrito.add(info, BorderLayout.PAGE_START);
+				
+				JPanel panelDatos = new JPanel(); 
+				
+				BoxLayout datos= new BoxLayout(panelDatos, BoxLayout.PAGE_AXIS);
+				panelDatos.setLayout(datos);
+				
+				JScrollPane panelScrollDatos = new JScrollPane(panelDatos, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				
+				double suma = 0;
+				
+				for(int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
+					JLabel l = new JLabel(_ctrl.getC().getProductos().get(i).mostrarEnCarrito());
+					panelDatos.add(l);
+					suma = suma + _ctrl.getC().getProductos().get(i).getPrecio();
+				}
 				
 				
+				
+				
+				panelCarrito.add(panelScrollDatos, BorderLayout.CENTER);
+
+				
+				
+				JPanel abajo = new JPanel();
+				abajo.setLayout(new GridLayout(2,2));
+				
+				JLabel total = new JLabel("Total: ");
+				JLabel numtotal = new JLabel(String.valueOf(suma));
+				
+				abajo.add(total);
+				abajo.add(numtotal);
+				
+				JButton cancel = new JButton("Salir");
+				
+				cancel.addActionListener(new ActionListener(){  
+					public void actionPerformed(ActionEvent e){
+						carrito.setVisible(false);
+					}
+					});
+				
+				abajo.add(cancel);
+				
+				JButton aceptar = new JButton("Comprar");
+				
+				aceptar.addActionListener(new ActionListener(){  
+					public void actionPerformed(ActionEvent e){		
+						carrito.setVisible(false);
+					}
+					});
+				abajo.add(aceptar);
+				
+				panelCarrito.add(abajo, BorderLayout.PAGE_END);
+				
+				carrito.add(panelCarrito);
+				//carrito.setResizable(false);
+				carrito.setSize(new Dimension(300, 150));
+				carrito.setVisible(true);
+		
 			}
 			});
 		
