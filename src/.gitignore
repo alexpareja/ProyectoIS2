@@ -15,3 +15,5 @@
 /Producto.class
 /Tienda.class
 /TiendaObserver.class
+/Controller.class
+/InventarioObserver.class

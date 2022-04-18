@@ -75,8 +75,8 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				JLabel info = new JLabel("Identificate como usuario", SwingConstants.CENTER);
 				
 				
-				JLabel infoId = new JLabel("Usuario: ");
-				JLabel infoContra = new JLabel("Contraseña: ");
+				JLabel infoId = new JLabel("User: ");
+				JLabel infoContra = new JLabel("Password: ");
 				
 				JTextField id = new JTextField("");
 				JTextField contra = new JPasswordField("");
