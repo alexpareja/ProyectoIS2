@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF=8"?>
+<!DOCTYPE inventario [
+<!ELEMENT inventario (camiseta*,botas*,pantalones*,conjunto*,guantes*)>
+    <!ELEMENT camiseta (nombre,dorsal,talla,precio,publicado,stock,udsVendidas,udsReservadas)>
+     <!ATTLIST camiseta id (CamLocal | CamVisitante) #REQUIRED>
+        <!ELEMENT nombre (#PCDATA)>
+        <!ELEMENT dorsal (#PCDATA)>
+        <!ELEMENT talla (#PCDATA)>
+        <!ELEMENT precio (#PCDATA)>
+        <!ELEMENT publicado (#PCDATA)>
+        <!ELEMENT stock (#PCDATA)>
+        <!ELEMENT udsVendidas (#PCDATA)>
+		<!ELEMENT udsReservadas (#PCDATA)>
+     <!ELEMENT pantalon (dorsal,talla,precio,publicado,stock,udsVendidas,udsReservadas)>
+     <!ATTLIST pantalon id (PantCorto | PantChandal) #REQUIRED>
+     <!ELEMENT botas (modelo,marca,color,talla,precio,publicado,stock,udsVendidas,udsReservadas)>
+      <!ATTLIST botas id CDATA #FIXED "Botas">
+     <!ELEMENT modelo (#PCDATA)>
+     <!ELEMENT marca (#PCDATA)>
+     <!ELEMENT color (#PCDATA)>
+     <!ELEMENT conjunto (dorsal,talla,precio,publicado,stock,udsVendidas,udsReservadas)>
+     <!ATTLIST conjunto id (ConLocal | ConVisitante) #REQUIRED>
+     <!ELEMENT guantes (modelo,marca,color,adherencia,talla,precio,publicado,stock,udsVendidas,udsReservadas)>
+     <!ATTLIST botas id CDATA #FIXED "Guantes">
+]>
+<inventario>
+    <camiseta id="CamLocal">
+        <nombre>Messi</nombre>
+        <dorsal>10</dorsal>
+     <talla>L</talla>
+     <precio>100</precio>
+     <publicado>1</publicado>
+     <stock>23</stock>
+     <udsVendidas>20</udsVendidas>
+	 <udsReservadas>20</udsReservadas>
+    </camiseta>
+    <camiseta id="CamVisitante">
+        <nombre>Messi</nombre>
+        <dorsal>10</dorsal>
+     <talla>L</talla>
+     <precio>80</precio>
+     <publicado>1</publicado>
+     <stock>23</stock>
+     <udsVendidas>12</udsVendidas>
+	 <udsReservadas>0</udsReservadas>
+    </camiseta>
+     <botas id="Botas">
+        <modelo>Mercurial</modelo>
+        <marca>Nike</marca>
+        <color>Azul</color>
+     <talla>45</talla>
+     <precio>150</precio>
+     <publicado>0</publicado>
+     <stock>34</stock>
+     <udsVendidas>0</udsVendidas>
+	 <udsReservadas>15</udsReservadas>
+    </botas>
+</inventario>

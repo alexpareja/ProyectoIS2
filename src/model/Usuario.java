@@ -2,17 +2,17 @@ package model;
 
 public class Usuario {
     private String usuario;
-    private String contraseña;
+    private String contrasena;
     private String nombre;
-    private boolean dueño;
+    private boolean dueno;
     private String correo;
     private Carrito carrito;
 
-    public Usuario(String usuario, String contraseña, String nombre, boolean dueño, String correo, Carrito carrito){
+    public Usuario(String usuario, String contrasena, String nombre, boolean dueno, String correo, Carrito carrito){
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.nombre = nombre;
-        this.dueño = dueño;
+        this.dueno = dueno;
         this.correo = correo;
         this.carrito = carrito;
     }
