@@ -21,6 +21,20 @@ public class Inventario{
     }
   }
 
+  public Producto buscarProducto(String id){
+    int n = 0;
+    Producto p = null;
+    while(p == null && n < inventario.size()){
+      if(id.equals(inventario.get(n).getId())){
+        p = inventario.get(n);
+      }
+      else{
+        n++;
+      }
+    }
+    return p;
+  }
+
   public void add(Producto prod){
     if (!inventario.contains(prod))inventario.add(prod);
   }
