@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF=8"?>
+<!DOCTYPE ventas [
+<!ELEMENT ventas (importe,numProductosVendidos,productos)>
+    <!ELEMENT importe (#PCDATA)>
+    <!ELEMENT numProductosVendidos (#PCDATA)>
+    <!ELEMENT productos (producto*)>
+    <!ATTLIST producto tipo (ConLocal | ConVisitante | Botas | CamLocal | CamVisitante | Guantes | PantCorto | PantChandal) #REQUIRED>
+    <!ELEMENT producto (importe,numProductosVendidos)>
+]>
+<ventas>
+    <importe>1235</importe>
+    <numProductosVendidos>2</numProductosVendidos>
+<productos>
+    <producto id="CamVisitante">
+        <importe>1000</importe>
+        <numProductosVendidos>10</numProductosVendidos>
+    </producto>
+     <producto id="Botas">
+        <importe>235</importe>
+        <numProductosVendidos>1</numProductosVendidos>
+    </producto>
+</productos>
+</ventas>
