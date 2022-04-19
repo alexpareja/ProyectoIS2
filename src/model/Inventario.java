@@ -16,7 +16,9 @@ public class Inventario{
   }
 
   public void reabastecer(Producto prod, int n){
-    inventario.get(inventario.indexOf(prod)).setStock(prod.getStock()+n);
+    if(inventario.indexOf(prod) != -1){
+      inventario.get(inventario.indexOf(prod)).setStock(prod.getStock()+n);
+    }
   }
 
   public void add(Producto prod){
