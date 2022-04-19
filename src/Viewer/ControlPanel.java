@@ -3,6 +3,7 @@ package Viewer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -194,15 +195,9 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 		
 			}
 			});
-		
-		
-		
-		
-		
-	
-       
+
+		this.add(Bcarrito);	
 		this.add(Busuario);
-		this.add(Bcarrito);
 	}
 
 	/*private void run_sim(int n) {
