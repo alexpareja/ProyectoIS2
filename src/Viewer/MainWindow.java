@@ -22,10 +22,10 @@ public class MainWindow extends JFrame{
 		
 		ControlPanel controlP = new ControlPanel(_ctrl);
 		mainPanel.add(controlP, BorderLayout.PAGE_START);
-		/*
-		StatusBar barraEstado = new StatusBar(_ctrl);
-		mainPanel.add(barraEstado, BorderLayout.PAGE_END);
 		
+		BarraInferior barraInf = new BarraInferior(_ctrl);
+		mainPanel.add(barraInf, BorderLayout.PAGE_END);
+		/*
 		JPanel centerPanel = new JPanel();
 		
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));	
