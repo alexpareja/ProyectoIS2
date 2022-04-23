@@ -2,6 +2,7 @@ package Viewer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,6 +38,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
@@ -55,6 +58,7 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 	}
 	
 	private void initGUI() {
+
 		
 		ImageIcon iUsuario = new ImageIcon("resources/icons/user.png");
 		ImageIcon iCarrito = new ImageIcon("resources/icons/carro.png");
@@ -195,7 +199,7 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 		
 			}
 			});
-
+		
 		this.add(Bcarrito);	
 		this.add(Busuario);
 	}

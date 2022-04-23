@@ -1,6 +1,7 @@
 package Viewer;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 import controller.Controller;
 import model.InventarioObserver;
@@ -22,13 +24,13 @@ public class BarraInferior extends JPanel implements InventarioObserver {
 	private Controller _ctrl;
 	
 	BarraInferior(Controller ctrl) {
+		
 		initGUI();
 		ctrl.addObserver(this);
+		_ctrl = ctrl;
 	}
 	private void initGUI() {
 		this.setLayout( new BorderLayout());
-		//this.setBorder( BorderFactory.createBevelBorder( 1 ));
-		
 		izq.setText("<-");
 		dcha.setText("->");
 		izq.addActionListener(new ActionListener(){  

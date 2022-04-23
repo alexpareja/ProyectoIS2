@@ -3,6 +3,7 @@ package Viewer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -25,13 +26,13 @@ public class MainWindow extends JFrame{
 		
 		BarraInferior barraInf = new BarraInferior(_ctrl);
 		mainPanel.add(barraInf, BorderLayout.PAGE_END);
+		
+		PantallaTienda tienda = new PantallaTienda(_ctrl);
+		
+		//tienda.setLayout(new BoxLayout(tienda, BoxLayout.LINE_AXIS));	
+		
+		mainPanel.add(tienda, BorderLayout.CENTER);
 		/*
-		JPanel centerPanel = new JPanel();
-		
-		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));	
-		
-		mainPanel.add(centerPanel, BorderLayout.CENTER);
-		
 		BodiesTable tablaCuerpos = new BodiesTable(_ctrl);
 		masCercanoTable mCT = new masCercanoTable(_ctrl);
 		

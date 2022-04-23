@@ -1,6 +1,10 @@
 package model;
+
+import javax.swing.ImageIcon;
+
 public abstract class Producto {
   protected String id;
+  protected ImageIcon foto;
   protected double precio;
   protected boolean activo;
   protected int stock;
@@ -14,6 +18,7 @@ public abstract class Producto {
     this.stock = stock;
     this.udsvendidas = udsvendidas;
     this.reservados = reservados;
+    this.foto = new ImageIcon("resources/icons/camisetaLocal.ico");
   }
 
   public String getId() {
@@ -44,7 +49,11 @@ public abstract class Producto {
     stock = n;
   }
   
-  public void setPrecio(double precio) {
+  public ImageIcon getFoto() {
+	return foto;
+}
+
+public void setPrecio(double precio) {
 	  if (precio < 0) throw new IllegalArgumentException("Precio negativo");
 	  this.precio = precio;
   }

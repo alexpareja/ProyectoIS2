@@ -7,6 +7,9 @@ import model.InventarioObserver;
 public class Controller {
 
 	private Inventario i;
+
+
+
 	private Carrito c;
 	
 	public Controller(Inventario inv, Carrito carr) {
@@ -26,6 +29,10 @@ public class Controller {
 
 	public Carrito getC() {
 		return c;
+	}
+	
+	public Inventario getI() {
+		return i;
 	}
 	
 }
