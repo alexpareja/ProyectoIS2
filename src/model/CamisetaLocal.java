@@ -1,4 +1,7 @@
 package model;
+
+import javax.swing.ImageIcon;
+
 public class CamisetaLocal extends Camiseta {
  public static final String id="CamLocal";
 
@@ -7,6 +10,7 @@ public class CamisetaLocal extends Camiseta {
     this.talla = talla;
     this.nombre = nombre;
     this.dorsal = dorsal;
+    this.foto= new ImageIcon( "resources/icons/cami1.png");
   }
 
   public  String mostrar() {

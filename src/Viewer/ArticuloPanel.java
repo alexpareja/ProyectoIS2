@@ -26,8 +26,7 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 	
 	private Producto _prod;
 	private Controller _ctrl;
-	
-	private ImageIcon foto;
+
 	
 	
 	ArticuloPanel(Controller ctrl, Producto prod) {
@@ -36,7 +35,7 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		initGUI();
 		_ctrl = ctrl;
 		_ctrl.addObserver(this);
-		foto = _prod.getFoto();
+
 }
 	
 	private void initGUI() {
@@ -46,13 +45,25 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 
 		String precio = Double.toString(_prod.getPrecio());
 		JLabel titulo = new JLabel(_prod.getId());
-		JPanel imagen = new JPanel();
 		JLabel precioL = new JLabel(precio);
+		
+	
+		JLabel imagen = new JLabel(" ");
+		imagen.setIcon(_prod.getFoto());
+		imagen.setVisible(true);
+		
+		
+		//se dibuja la imagen que tenemos en el paquete Images //dentro de un panel
+		 
+		
 		
 		titulo.setAlignmentX(CENTER_ALIGNMENT);
 		precioL.setAlignmentX(CENTER_ALIGNMENT);
+		imagen.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(titulo);
 		this.add(precioL);
+		this.add(imagen);
+	
 		
 		JButton comprar = new JButton("Anadir a carrito");
 		
