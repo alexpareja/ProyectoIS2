@@ -18,7 +18,6 @@ public abstract class Producto {
     this.stock = stock;
     this.udsvendidas = udsvendidas;
     this.reservados = reservados;
-    this.foto = new ImageIcon("resources/icons/camisetaLocal.ico");
   }
 
   public String getId() {

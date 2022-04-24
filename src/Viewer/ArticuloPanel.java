@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -30,7 +31,6 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 	
 	
 	ArticuloPanel(Controller ctrl, Producto prod) {
-		this.setSize(200, 200);
 		_prod = prod;
 		initGUI();
 		_ctrl = ctrl;
@@ -40,29 +40,44 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 	
 	private void initGUI() {
 
-		//this.setToolTipText("Comprar");
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 		String precio = Double.toString(_prod.getPrecio());
 		JLabel titulo = new JLabel(_prod.getId());
-		JLabel precioL = new JLabel(precio);
+		JLabel precioL = new JLabel(precio + " euros");
 		
 	
 		JLabel imagen = new JLabel(" ");
 		imagen.setIcon(_prod.getFoto());
 		imagen.setVisible(true);
 		
-		
-		//se dibuja la imagen que tenemos en el paquete Images //dentro de un panel
-		 
-		
-		
 		titulo.setAlignmentX(CENTER_ALIGNMENT);
 		precioL.setAlignmentX(CENTER_ALIGNMENT);
 		imagen.setAlignmentX(CENTER_ALIGNMENT);
+		
 		this.add(titulo);
-		this.add(precioL);
 		this.add(imagen);
+		
+		JComboBox<String> tll = new JComboBox<String>();
+		String[] tallas= {"XS" ,"S", "M", "L", "XL"}; //Hacer tallas disponibles en cada articulo
+		for(int i = 0; i < tallas.length; i++) {
+			tll.addItem(tallas[i]);
+		}
+		
+		JComboBox<String> nombr = new JComboBox<String>();
+		String[] nombres= {"Alaba" ,"Marcelo", "CR7", "Benzema", "Ansu Fati"}; //Hacer nombres disponibles en cada articulo
+		for(int i = 0; i < nombres.length; i++) {
+			nombr.addItem(nombres[i]);
+		}
+		
+		JPanel opt = new JPanel(new GridLayout(1, 2));
+		
+		opt.add(tll);
+		opt.add(nombr);
+		
+		this.add(opt);
+		this.add(precioL);
+		
 	
 		
 		JButton comprar = new JButton("Anadir a carrito");
@@ -73,7 +88,8 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		
 		comprar.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){		
-				//anadir a carrito (observer)
+				
+				_ctrl.getC().anadirCarrito(_prod);
 			}
 			});
 		comprar.setAlignmentX(CENTER_ALIGNMENT);

@@ -194,7 +194,7 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				
 				carrito.add(panelCarrito);
 				//carrito.setResizable(false);
-				carrito.setSize(new Dimension(300, 150));
+				carrito.setSize(new Dimension(400, 400));
 				carrito.setVisible(true);
 		
 			}

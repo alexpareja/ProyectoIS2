@@ -1,31 +1,33 @@
 package model;
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.Controller;
 
-public class Tienda implements InventarioObserver {
+public class Tienda {
  
   //private Inventario inventario;
   private int productosPorPagina;
   private int paginaAct;
   private static Tienda tienda; //Singleton
   protected ArrayList<Producto> productosTienda;
+  private List<InventarioObserver> io;
+  
  
 
 //crear tienda con productos ya creados
-  private Tienda(int numProdPag, Inventario i, Controller ctrl) {
+  private Tienda(int numProdPag, Inventario i) {
 	//inventario=i;
     this.productosPorPagina = numProdPag;
     this.paginaAct = 0;
-    ctrl.addObserver(this);
-    //this.productosTienda=inventario.getProductos();
-    
+    this.productosTienda=i.getProductos();
+    this.io = new ArrayList<InventarioObserver>();
     
   }
 //creador Singleton
-  public static Tienda crearTienda(int numProdPag, Inventario i,Controller ctrl){
+  public static Tienda crearTienda(int numProdPag, Inventario i){
     if(tienda==null){
-      tienda=new Tienda(numProdPag,i,ctrl);
+      tienda=new Tienda(numProdPag,i);
     }
     else{
       System.out.print("Tienda ya creada");
@@ -62,7 +64,9 @@ public class Tienda implements InventarioObserver {
     if (this.paginaAct > 0)
       this.paginaAct--;
    
-  
+    for(int j = 0; j < io.size(); j++) {
+		io.get(j).onActualizaTienda(productosTienda);
+	}
     this.mostrarTienda();
     
     /*  for(int j = 0; j < this.listaObserver.size(); j++) {
@@ -75,6 +79,10 @@ public class Tienda implements InventarioObserver {
 
     if ((this.paginaAct + 1) * this.productosPorPagina < productosTienda.size())
       this.paginaAct++;
+    
+    for(int j = 0; j < io.size(); j++) {
+		io.get(j).onActualizaTienda(productosTienda);
+	}
   
     this.mostrarTienda();
     //notifica a los observadores que se desplaza
@@ -83,17 +91,20 @@ public class Tienda implements InventarioObserver {
 	}*/
   }
   
+  public void addObserver(InventarioObserver o) {
+	  if(!this.io.contains(o)) {
+			this.io.add(o);	
+			this.io.get(this.io.indexOf(o)).onRegistroTienda(this.getProductosTienda());
+		}
+  }
   
-@Override
-public void onRegistroTienda(ArrayList<Producto> inventario) {
-	this.productosTienda=inventario;
-	this.mostrarTienda();	
-}//notifica de creación de tienda
+public int getPaginaAct() {
+	return paginaAct;
+}
 
-@Override
-public void onActualizaTienda(ArrayList<Producto> inventario) {
-	this.productosTienda=inventario;
-}//notifica de actualizacion de tienda
-  
-  
+
+public ArrayList<Producto> getProductosTienda() {
+	return productosTienda;
+}
+ 
 }

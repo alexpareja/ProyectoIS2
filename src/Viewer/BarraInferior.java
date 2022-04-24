@@ -35,13 +35,14 @@ public class BarraInferior extends JPanel implements InventarioObserver {
 		dcha.setText("->");
 		izq.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){		
-				//_ctrl.getT().desplazaIzq();
+				_ctrl.getT().desplazaIzq();
+				
 			}
 			});
 		
 		dcha.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){		
-				//_ctrl
+				_ctrl.getT().desplazaDer();
 			}
 			});
 		

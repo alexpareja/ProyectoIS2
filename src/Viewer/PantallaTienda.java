@@ -39,41 +39,49 @@ public class PantallaTienda extends JPanel implements InventarioObserver {
 		}
 		
 		private void initGUI() {
+			ArticuloPanel 	p1, p2, p3, p4, p5, p6;
 			
 		this.setLayout(new GridLayout(2,3));
-			
-		ArticuloPanel Bprod1 = new ArticuloPanel(_ctrl, _ctrl.getI().getProductos().get(0));
-		ArticuloPanel Bprod2 = new ArticuloPanel(_ctrl,  _ctrl.getI().getProductos().get(1));
-		ArticuloPanel Bprod3 = new ArticuloPanel(_ctrl,  _ctrl.getI().getProductos().get(2));
-		ArticuloPanel Bprod4 = new ArticuloPanel(_ctrl, _ctrl.getI().getProductos().get(3));
-		ArticuloPanel Bprod5 = new ArticuloPanel(_ctrl,  _ctrl.getI().getProductos().get(4));
-		ArticuloPanel Bprod6 = new ArticuloPanel(_ctrl,  _ctrl.getI().getProductos().get(5));
-
-		this.add(Bprod1);
-		this.add(Bprod2);	
-
-		this.add(Bprod3);
-		this.add(Bprod4);
-		this.add(Bprod5);	
-
-		this.add(Bprod6);
+		int i = (_ctrl.getT().getPaginaAct()) * 6;
+		if(i < _ctrl.getT().getProductosTienda().size() - 6) {
+		 	p1 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i));
+			p2 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+1)); 
+			p3 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+2));
+		    p4 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+3)); 
+			p5 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+4));
+			p6 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+5));
+		}
+		else {
+			p1 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
+			p2 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0)); 
+			p3 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
+		    p4 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0)); 
+			p5 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
+			p6 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
+		}
+		ArticuloPanel[] paneles = {p1,p2,p3,p4,p5,p6};	
 		
+		
+				
+		for(int j = 0; j < paneles.length; j++) {
 			
-	
+			this.add(paneles[j]);
+		}
 		
 		}
 
 
 		@Override
 		public void onRegistroTienda(ArrayList<Producto> inventario) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void onActualizaTienda(ArrayList<Producto> inventario) {
-			// TODO Auto-generated method stub
-			
+			this.removeAll();
+			this.updateUI();
+			initGUI();	
 		}
 
 }
