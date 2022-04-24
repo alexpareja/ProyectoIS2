@@ -5,6 +5,8 @@ import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +37,8 @@ public class DAOXMLInventario implements IDAOInventario{
 	
 	public DAOXMLInventario() {
 		try {
-		file=new File("inventario.xml");
+		file=new File("BaseDatos/inventario.xml");
+		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	     dBuilder = factory.newDocumentBuilder();
 		}
@@ -51,7 +54,7 @@ public class DAOXMLInventario implements IDAOInventario{
 		  Document doc = dBuilder.newDocument();
 	      Element raiz = doc.createElement("inventario");
 	      doc.appendChild(raiz);
-	      
+	     
 	      ArrayList<Producto> array=inv.getInventario();
 	      for(int i=0;i<array.size();i++) {
 	    	  
@@ -68,6 +71,7 @@ public class DAOXMLInventario implements IDAOInventario{
 	      catch (TransformerException tfe) {
 	          tfe.printStackTrace();
 	      }
+	  
 	}
 
 	@Override
@@ -75,14 +79,18 @@ public class DAOXMLInventario implements IDAOInventario{
 		
 		ArrayList<Producto> a=new ArrayList<Producto>();
 		try {
+			
 		 	Document doc = dBuilder.parse(file);
-	        doc.getDocumentElement().normalize();
-	        NodeList nList = doc.getChildNodes();//lista productos
-	        
+		 	Element raiz= doc.getDocumentElement();
+	        NodeList nList = raiz.getChildNodes();//lista productos
+	       
 	        for (int i = 0; i < nList.getLength(); i++) {
-	            Element e =(Element) nList.item(i);//producto
+	        	
+	            Node nodo= nList.item(i);//producto
+	            Element e=(Element) nodo;
 	            Producto p=null;
-	            
+	          
+	         
             	double precio=Double.parseDouble(e.getElementsByTagName("precio").item(0).getTextContent());
             	boolean publicado=false;
             	if(e.getElementsByTagName("publicado").item(0).getTextContent().equals("1")) {

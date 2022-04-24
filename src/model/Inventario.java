@@ -39,6 +39,10 @@ public class Inventario{
     }
     return p;
   }
+  
+  public Producto buscarProductoPosicion(int pos){
+	    return inventario.get(pos);
+	  }
 
   public void add(Producto prod){
     if (!inventario.contains(prod))inventario.add(prod);
@@ -50,7 +54,7 @@ public class Inventario{
         inventario.add(p);
   }
   
-  public  ArrayList<Producto> getProductos(){
+  public ArrayList<Producto> getProductos(){
 	  ArrayList<Producto> a=new ArrayList<Producto>();
 	    for(int i=0;i<inventario.size();i++) {
 	    	if(inventario.get(i).getActivo()) {
@@ -73,7 +77,7 @@ public class Inventario{
   }
   
   public void cargar() {
-	 inventario=dao.cargarInventario().getInventario();
+	 this.add(dao.cargarInventario().getInventario());
 	 for(int i = 0; i < this.observers.size(); i++) {
 			this.observers.get(i).onActualizaTienda(this.getProductos());
 		}
