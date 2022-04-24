@@ -9,4 +9,7 @@ public class DTOInventario {
 	public DTOInventario(ArrayList<Producto> i) {
 		this.inventario=i;
 	}
+	public ArrayList<Producto> getInventario(){
+		return inventario;
+	}
 }

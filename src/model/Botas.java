@@ -1,4 +1,8 @@
 package model;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 public class Botas extends Producto {
   private int talla;
   private String modelo;
@@ -65,4 +69,49 @@ public class Botas extends Producto {
         "Precio: " + this.precio + "\n";
     return s;
   }
+   
+   public Element convierteXML(Document doc) {
+		 Element e= doc.createElement("botas");
+		 
+		 Element mod=doc.createElement("modelo");
+		 mod.setTextContent(this.modelo);
+		 e.appendChild(mod);
+		 
+		 Element mar=doc.createElement("marca");
+		 mar.setTextContent(this.marca);
+		 e.appendChild(mar);
+		 
+		 Element col=doc.createElement("color");
+		 col.setTextContent(this.color);
+		 e.appendChild(col);
+		 
+		 Element tal=doc.createElement("talla");
+		 tal.setTextContent(String.valueOf(this.talla));
+		 e.appendChild(tal);
+		 
+		 Element prec=doc.createElement("precio");
+		 prec.setTextContent(String.valueOf(this.precio));
+		 e.appendChild(prec);
+		 
+		 Element pub=doc.createElement("publicado");
+		 String act;
+		 if(activo) {act="1";}
+		 else {act="0";}
+		 pub.setTextContent(act);
+		 e.appendChild(pub);
+		 
+		 Element sto=doc.createElement("stock");
+		 sto.setTextContent(String.valueOf(this.stock));
+		 e.appendChild(sto);
+		 
+		 Element udsVen=doc.createElement("udsVendidas");
+		 udsVen.setTextContent(String.valueOf(this.udsvendidas));
+		 e.appendChild(udsVen);
+		 
+		 Element udsRes=doc.createElement("udsReservadas");
+		 udsRes.setTextContent(String.valueOf(this.reservados));
+		 e.appendChild(udsRes);
+		 
+		  return e;
+	  }
 }

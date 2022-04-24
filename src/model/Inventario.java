@@ -1,13 +1,18 @@
 package model;
 import java.util.ArrayList;
 
+import BBDD.DAOXMLInventario;
+import BBDD.DTOInventario;
+
 public class Inventario{
   protected ArrayList<Producto> inventario;
   protected ArrayList<InventarioObserver> observers;
+  protected DAOXMLInventario dao;
   
   public Inventario(){
     this.inventario = new ArrayList<Producto>();
     this.observers = new ArrayList<InventarioObserver>();
+    this.dao=new DAOXMLInventario();
   }
 
   public void eliminar(Producto prod, ArrayList<Producto> productos){
@@ -67,7 +72,18 @@ public class Inventario{
 	  return inventario.size();
   }
   
+  public void cargar() {
+	 inventario=dao.cargarInventario().getInventario();
+	 for(int i = 0; i < this.observers.size(); i++) {
+			this.observers.get(i).onActualizaTienda(this.getProductos());
+		}
+  }
   
+  public void guardar() {
+	  DTOInventario dto=new DTOInventario(inventario);
+		 dao.guardarInventario(dto);
+		 
+	  }
   
   public void reservar(Producto prod) {
 	  if(!inventario.contains(prod))throw new IllegalArgumentException("No existe este producto en el inventario");

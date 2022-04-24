@@ -1,4 +1,8 @@
 package model;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 public class PantalonCorto extends Pantalon {
   public static final String id="PantCorto";
 
@@ -30,5 +34,12 @@ public class PantalonCorto extends Pantalon {
        super.mostrarEnCarrito();
       
     return s;
+  }
+  
+  public Element convierteXML(Document doc) {
+	     
+  	Element e=super.convierteXML(doc);
+  	e.setAttribute("id", "PantCorto");
+  	return e;
   }
 }
