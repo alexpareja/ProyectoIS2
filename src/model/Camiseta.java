@@ -38,10 +38,10 @@ public abstract class Camiseta extends Producto {
   public String mostrarEnCarrito() {
     String s;
 
-    s = "Nombre: " + this.nombre + "\n" +
-        "Dorsales:" + this.dorsal + "\n" +
-        "Talla: " + this.talla + "\n" +
-        "Precio: " + this.precio + "\n";
+    s = "Nombre:	 " + this.nombre + 
+        "Dorsales:		" + this.dorsal + 
+        "Talla: 	" + this.talla + 
+        "Precio:	 " + this.precio;
     return s;
   }
 

@@ -20,7 +20,7 @@ public class CamisetaLocal extends Camiseta {
   public  String mostrar() {
     String s;
 
-    s = "\nProducto: Camiseta Local\n" +
+    s = "Camiseta Local		" +
        super.mostrar();
     return s;
   }

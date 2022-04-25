@@ -149,25 +149,59 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				
 				double suma = 0;
 				
+				String titColumna[]  = {"Producto", "Detalles", "Precio", "Cancelar"};
+				
+				DefaultTableModel modelo = new DefaultTableModel();
+				modelo.setColumnIdentifiers(titColumna);
+				
+				JTable tabla = new JTable(modelo); 
+				
+				tabla.setShowHorizontalLines( false );
+			    tabla.setRowSelectionAllowed( false );
+			    tabla.setColumnSelectionAllowed( false );
+				
+			    tabla.setSelectionForeground( Color.white );
+			    tabla.setSelectionBackground( Color.red );
+			    
+			    for(int j = 0; j < modelo.getRowCount(); j++) {
+					modelo.removeRow(j);
+					
+				}
+			    
+			    for(int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
+			    	String nombre = _ctrl.getC().getProductos().get(i).getId();
+			    	String detalles = "1234";
+			    	double precio = Math.round((_ctrl.getC().getProductos().get(i).getPrecio())*100.0)/100.0;
+			
+					String fila[] = {nombre, detalles, Double.toString(precio), "Borrar"};
+					modelo.addRow(fila);
+					suma = suma + _ctrl.getC().getProductos().get(i).getPrecio();
+					
+				}
+				
+			    panelDatos. add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
+				
+				
+			/*	
+				
 				for(int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
 					JLabel l = new JLabel(_ctrl.getC().getProductos().get(i).mostrarEnCarrito());
 					panelDatos.add(l);
-					suma = suma + _ctrl.getC().getProductos().get(i).getPrecio();
+					
 				}
 				
 				
-				
+				*/
 				
 				panelCarrito.add(panelScrollDatos, BorderLayout.CENTER);
 
-				
-				
+			
 				JPanel abajo = new JPanel();
 				abajo.setLayout(new GridLayout(2,2));
-				
 				JLabel total = new JLabel("Total: ");
 				JLabel numtotal = new JLabel(String.valueOf(suma));
-				
+
 				abajo.add(total);
 				abajo.add(numtotal);
 				
@@ -194,7 +228,7 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				
 				carrito.add(panelCarrito);
 				//carrito.setResizable(false);
-				carrito.setSize(new Dimension(400, 400));
+				carrito.setSize(new Dimension(600, 400));
 				carrito.setVisible(true);
 		
 			}
@@ -236,7 +270,5 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 }
