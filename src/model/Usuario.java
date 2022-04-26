@@ -17,6 +17,30 @@ public class Usuario {
         this.carrito = carrito;
     }
     
+    public String getUsuario() {
+    	return usuario;
+    }
+    
+    public String getContrasena() {
+    	return contrasena;
+    }
+    
+    public String getNombre() {
+    	return nombre;
+    }
+    
+    public boolean esDueno() {
+    	return dueno;
+    }
+    
+    public String getCorreo() {
+    	return correo;
+    }
+    
+    public void getCarrito(){
+        this.carrito.mostrarCarrito();
+    }
+    
     public void anadirCarrito (Producto p){
         this.carrito.anadirCarrito(p);
     }
@@ -29,7 +53,5 @@ public class Usuario {
         return this.carrito.carritoVacio();
     }
 
-    public void mostrarCarrito(){
-        this.carrito.mostrarCarrito();
-    }
+    
 }
