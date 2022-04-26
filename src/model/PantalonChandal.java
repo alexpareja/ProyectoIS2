@@ -1,7 +1,6 @@
 package model;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+
 
 public class PantalonChandal extends Pantalon {
   public static final String id="PantChandal";
@@ -29,12 +28,5 @@ public class PantalonChandal extends Pantalon {
        super.mostrarEnCarrito();
       
     return s;
-  }
-  
-  public Element convierteXML(Document doc) {
-	     
-  	Element e=super.convierteXML(doc);
-  	e.setAttribute("id", "PantChandal");
-  	return e;
   }
 }

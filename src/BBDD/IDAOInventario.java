@@ -1,9 +1,9 @@
 package BBDD;
 
-
+import java.util.ArrayList;
 
 public interface IDAOInventario {
 
-	public void guardarInventario(DTOInventario i);
-	public DTOInventario cargarInventario();
+	public void guardarInventario(ArrayList<DTOInventario> i);
+	public ArrayList<DTOInventario> cargarInventario();
 }

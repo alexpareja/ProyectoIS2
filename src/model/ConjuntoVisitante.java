@@ -1,7 +1,6 @@
 package model;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+
 
 public class ConjuntoVisitante extends Conjunto {
  public static final String id="ConVisit";
@@ -27,11 +26,4 @@ public class ConjuntoVisitante extends Conjunto {
     return s;
   }
     
-    public Element convierteXML(Document doc) {
-	     
-    	Element e=super.convierteXML(doc);
-    	e.setAttribute("id", "ConVisitante");
-    	return e;
-    }
-
 }

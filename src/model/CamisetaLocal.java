@@ -3,8 +3,7 @@ package model;
 import javax.swing.ImageIcon;
 
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+
 
 public class CamisetaLocal extends Camiseta {
  public static final String id="CamLocal";
@@ -31,13 +30,5 @@ public class CamisetaLocal extends Camiseta {
        super.mostrarEnCarrito();
     return s;
   }
-    
-    
-    public Element convierteXML(Document doc) {
-    	     
-    	Element e=super.convierteXML(doc);
-    	e.setAttribute("id", "CamLocal");
-    	return e;
-    }
 
 }

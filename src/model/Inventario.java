@@ -12,7 +12,6 @@ public class Inventario{
   public Inventario(){
     this.inventario = new ArrayList<Producto>();
     this.observers = new ArrayList<InventarioObserver>();
-    this.dao=new DAOXMLInventario();
   }
 
   public void eliminar(Producto prod, ArrayList<Producto> productos){
@@ -77,19 +76,87 @@ public class Inventario{
   }
   
   public void cargar() {
-	 this.add(dao.cargarInventario().getInventario());
+	 this.dao=new DAOXMLInventario();
+	 ArrayList<DTOInventario> a =dao.cargarInventario();
+	 for(int i=0;i<a.size();i++) {
+		 
+		 switch(a.get(i).getId()) {
+		 
+		 case "CamLocal":
+		 inventario.add(new CamisetaLocal(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+		 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
+		 
+		 break;
+		 
+		 case "CamVisitante":
+			 inventario.add(new CamisetaVisitante(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
+		 
+		 break;
+		 
+		 case "ConVisitante":
+			 inventario.add(new ConjuntoVisitante(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
+		 
+		 break;
+		 
+		 case "ConLocal":
+			 inventario.add(new ConjuntoLocal(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
+		 
+		 break;
+		 
+		 case "PantChandal":
+			 inventario.add(new PantalonChandal(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getDorsal()));
+		 
+		 break;
+		 
+		 case "PantCorto":
+			 inventario.add(new PantalonCorto(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getDorsal()));
+		 
+		 break;
+		 
+		 case "Guantes":
+			 inventario.add(new Guantes(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getModelo(),
+			 a.get(i).getMarca(),a.get(i).getColor(),a.get(i).getAdherencia()));
+		 
+		 break;
+		 
+		 case "Botas":
+			 inventario.add(new Botas(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
+			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTallaZ(),a.get(i).getModelo(),
+			 a.get(i).getMarca(),a.get(i).getColor()));
+		 
+		 break;
+		 }
+		 
+	 } 
+	 
 	 for(int i = 0; i < this.observers.size(); i++) {
 			this.observers.get(i).onActualizaTienda(this.getProductos());
 		}
   }
   
   public void guardar() {
-	  DTOInventario dto=new DTOInventario(inventario);
-		 dao.guardarInventario(dto);
+	  this.dao=new DAOXMLInventario();
+	  ArrayList<DTOInventario> a=this.crearDTOs();
+	  dao.guardarInventario(a);
 		 
 	  }
   
-  public void reservar(Producto prod) {
+  private ArrayList<DTOInventario> crearDTOs() {
+	 ArrayList<DTOInventario> a=new ArrayList<DTOInventario>();
+	 
+	 for(int i=0;i<inventario.size();i++) {
+		 a.add(inventario.get(i).convierteDTO());
+	 } 
+	 return a;
+}
+
+public void reservar(Producto prod) {
 	  if(!inventario.contains(prod))throw new IllegalArgumentException("No existe este producto en el inventario");
 	  if(prod.getStock()==0)throw new IllegalArgumentException("No quedan unidades de este producto");
 	  prod.setStock(prod.getStock()-1);

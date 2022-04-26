@@ -2,8 +2,7 @@ package model;
 
 import javax.swing.ImageIcon;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import BBDD.DTOInventario;
 
 public abstract class Producto {
   protected String id;
@@ -65,6 +64,8 @@ public void setPrecio(double precio) {
   public abstract String mostrarEnInv();
 
   public abstract String mostrarEnCarrito();
+
+protected abstract DTOInventario convierteDTO();
   
-  public abstract Element convierteXML(Document doc);
+ 
 }

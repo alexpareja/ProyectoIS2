@@ -1,7 +1,6 @@
 package model;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import BBDD.DTOInventario;
 
 public abstract class Camiseta extends Producto {
   protected String talla;
@@ -49,45 +48,8 @@ public abstract class Camiseta extends Producto {
     return s;
   }
   
-  public Element convierteXML(Document doc) {
-	 Element e= doc.createElement("camiseta");
-	 
-	 Element nom=doc.createElement("nombre");
-	 nom.setTextContent(this.nombre);
-	 e.appendChild(nom);
-	 
-	 Element dor=doc.createElement("dorsal");
-	 dor.setTextContent(String.valueOf(this.dorsal));
-	 e.appendChild(dor);
-	 
-	 Element tal=doc.createElement("talla");
-	 tal.setTextContent(this.talla);
-	 e.appendChild(tal);
-	 
-	 Element prec=doc.createElement("precio");
-	 prec.setTextContent(String.valueOf(this.precio));
-	 e.appendChild(prec);
-	 
-	 Element pub=doc.createElement("publicado");
-	 String act;
-	 if(activo) {act="1";}
-	 else {act="0";}
-	 pub.setTextContent(act);
-	 e.appendChild(pub);
-	 
-	 Element sto=doc.createElement("stock");
-	 sto.setTextContent(String.valueOf(this.stock));
-	 e.appendChild(sto);
-	 
-	 Element udsVen=doc.createElement("udsVendidas");
-	 udsVen.setTextContent(String.valueOf(this.udsvendidas));
-	 e.appendChild(udsVen);
-	 
-	 Element udsRes=doc.createElement("udsReservadas");
-	 udsRes.setTextContent(String.valueOf(this.reservados));
-	 e.appendChild(udsRes);
-	 
-	  return e;
-  }
+  protected DTOInventario convierteDTO() {
+		return new DTOInventario(id,precio,activo,stock,udsvendidas,reservados,talla,nombre,dorsal);
+	}
   
 }

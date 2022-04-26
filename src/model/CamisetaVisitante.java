@@ -2,9 +2,6 @@ package model;
 
 import javax.swing.ImageIcon;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 public class CamisetaVisitante extends Camiseta {
  public static final String id="CamVisitante";
 
@@ -30,10 +27,5 @@ public class CamisetaVisitante extends Camiseta {
     return s;
   }
   
-    public Element convierteXML(Document doc) {
-	     
-    	Element e=super.convierteXML(doc);
-    	e.setAttribute("id", "CamVisitante");
-    	return e;
-    }
+   
 }

@@ -1,8 +1,5 @@
 package model;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 public class ConjuntoLocal extends Conjunto {
  public static final String id="ConLocal";
 
@@ -28,11 +25,5 @@ public class ConjuntoLocal extends Conjunto {
     return s;
   }
     
-    public Element convierteXML(Document doc) {
-	     
-    	Element e=super.convierteXML(doc);
-    	e.setAttribute("id", "ConLocal");
-    	return e;
-    }
 
 }
