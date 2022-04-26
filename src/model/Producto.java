@@ -60,7 +60,7 @@ public void setPrecio(double precio) {
 	  this.precio = precio;
   }
   
-  public abstract String mostrar();
+  public abstract String[] mostrar();
 
   public abstract String mostrarEnInv();
 

@@ -19,13 +19,8 @@ public abstract class Pantalon extends Producto {
     return dorsal;
   }
 
-  public String mostrar() {
-    String s;
-
-    s = "Id:" + this.id + "\n" +
-        "Dorsales:" + this.dorsal + "\n" +
-        "Talla: " + this.talla + "\n" +
-        "Precio: " + this.precio + "\n";
+  public String[] mostrar() {
+	String s[] = { "Dorsal:" + this.dorsal, "Talla: " + this.talla, "Precio: " + this.precio};
     return s;
   }
 

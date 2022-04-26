@@ -58,6 +58,16 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		this.add(titulo);
 		this.add(imagen);
 		
+		String[] info = _prod.mostrar();
+		JPanel panelInfo = new JPanel(new GridLayout(0,2));
+		for(int i = 0; i < info.length;i++) {
+				JLabel a = new JLabel (info[i]);
+				a.setHorizontalAlignment(JLabel.CENTER);
+				panelInfo.add(a);	
+		}
+		this.add(panelInfo);
+		
+		/*
 		JComboBox<String> tll = new JComboBox<String>();
 		String[] tallas= {"XS" ,"S", "M", "L", "XL"}; //Hacer tallas disponibles en cada articulo
 		for(int i = 0; i < tallas.length; i++) {
@@ -70,13 +80,15 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 			nombr.addItem(nombres[i]);
 		}
 		
+		
 		JPanel opt = new JPanel(new GridLayout(1, 2));
 		
 		opt.add(tll);
 		opt.add(nombr);
 		
+		
 		this.add(opt);
-		this.add(precioL);
+		*/
 		
 	
 		

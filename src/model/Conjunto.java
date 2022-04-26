@@ -25,15 +25,9 @@ public abstract class Conjunto extends Producto {
     return dorsal;
   }
 
-  public String mostrar() {
-    String s;
+  public String[] mostrar() {
+	String s[] = {"Nombre: " + this.nombre, "Dorsal:" + this.dorsal, "Talla: " + this.talla, "Precio: " + this.precio};
 
-    s = "\nProducto: Conjunto\n" +
-        "Id:" + this.id + "\n" +
-        "Nombre: " + this.nombre + "\n" +
-        "Dorsales:" + this.dorsal + "\n" +
-        "Talla: " + this.talla + "\n" +
-        "Precio: " + this.precio + "\n";
     return s;
   }
 

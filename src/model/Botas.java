@@ -33,16 +33,8 @@ public class Botas extends Producto {
     return color;
   }
 
-  public String mostrar() {
-    String s;
-
-    s = "\nProducto: Botas\n" +
-        "Id:" + this.id + "\n" +
-        "Marca:" + this.marca + "\n" +
-        "Modelo: " + this.modelo + "\n" +
-        "Talla:" + this.talla + "\n" +
-        "Color: " + this.color + "\n" +
-        "Precio: " + this.precio + "\n";
+  public String[] mostrar() {
+	String s[] = {"Marca: " + this.marca, "Modelo:" + this.modelo, "Talla: " + this.talla, "Color: " + this.color, "Precio: " + this.precio};
     return s;
   }
 

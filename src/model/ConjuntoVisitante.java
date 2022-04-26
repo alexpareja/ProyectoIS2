@@ -13,13 +13,11 @@ public class ConjuntoVisitante extends Conjunto {
     this.dorsal = dorsal;
   }
 
-  public  String mostrar() {
-    String s;
-
-    s = "\nProducto: Conjunto Local\n" +
-       super.mostrar();
-    return s;
-  }
+ public  String[] mostrar() {
+	    String s[]	= super.mostrar();
+	    
+	    return s;
+	  }
 
     public  String mostrarEnCarrito() {
     String s;

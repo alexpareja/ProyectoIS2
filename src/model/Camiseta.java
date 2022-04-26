@@ -24,14 +24,8 @@ public abstract class Camiseta extends Producto {
     return dorsal;
   }
 
-  public String mostrar() {
-    String s;
-
-    s = "Id:" + this.id + "\n" +
-        "Nombre: " + this.nombre + "\n" +
-        "Dorsales:" + this.dorsal + "\n" +
-        "Talla: " + this.talla + "\n" +
-        "Precio: " + this.precio + "\n";
+  public String[] mostrar() {
+    String s[] = {"Nombre: " + this.nombre, "Dorsales:" + this.dorsal, "Talla: " + this.talla, "Precio: " + this.precio};
     return s;
   }
 

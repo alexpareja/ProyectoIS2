@@ -18,14 +18,11 @@ public class PantalonCorto extends Pantalon {
       this.dorsal = dorsal;
   }
 
-  public  String mostrar() {
-    String s;
-
-    s = "\nProducto: Pantalon corto\n" +
-         super.mostrar();
-    
-    return s;
-  }
+  public  String[] mostrar() {
+	    String s[]	= super.mostrar();
+	    
+	    return s;
+	  }
 
   public  String mostrarEnCarrito() {
     String s;

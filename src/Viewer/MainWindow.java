@@ -44,7 +44,7 @@ public class MainWindow extends JFrame{
 		centerPanel.add(viewer);
 		*/
 
-			
+		this.setTitle("Tienda de articulos de futbol");
 		this.setPreferredSize(new Dimension(900, 700));
 		this.pack();
 		this.setVisible(true);

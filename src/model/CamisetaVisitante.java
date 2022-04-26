@@ -16,13 +16,11 @@ public class CamisetaVisitante extends Camiseta {
     this.foto= new ImageIcon( "resources/icons/camivisit.png");
   }
 
-  public  String mostrar() {
-    String s;
-
-    s = "\nProducto: Camiseta Visitante\n" +
-       super.mostrar();
-    return s;
-  }
+ public  String[] mostrar() {
+	    String s[]	= super.mostrar();
+	    
+	    return s;
+	  }
 
     public  String mostrarEnCarrito() {
     String s;

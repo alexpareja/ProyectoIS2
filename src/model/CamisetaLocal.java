@@ -17,11 +17,10 @@ public class CamisetaLocal extends Camiseta {
     this.foto= new ImageIcon( "resources/icons/cami1.png");
   }
 
-  public  String mostrar() {
-    String s;
-
-    s = "Camiseta Local		" +
-       super.mostrar();
+  public  String[] mostrar() {
+    super.mostrar()[0] = "Camiseta Local"; 
+    String s[]	= super.mostrar();
+    
     return s;
   }
 

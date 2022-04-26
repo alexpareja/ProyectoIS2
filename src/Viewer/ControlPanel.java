@@ -115,6 +115,7 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				aceptar.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){		
 						usuario.setVisible(false);
+						//se llama a la funcion que inicie sesion
 					}
 					});
 				abajo.add(aceptar, BorderLayout.EAST);
@@ -233,9 +234,29 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 		
 			}
 			});
-		
+	
 		this.add(Bcarrito);	
 		this.add(Busuario);
+		
+		JPanel infoUsu = new JPanel(new GridLayout(3,2));
+		
+		JLabel usuario1 = new JLabel("Usuario activo:    ");
+		infoUsu.add(usuario1);
+		JLabel usuario2 = new JLabel("Pepito Flores");
+		infoUsu.add(usuario2);
+		
+		JLabel rol1 = new JLabel("Rol:    ");
+		infoUsu.add(rol1);
+		JLabel rol2 = new JLabel("Adminstrador");
+		infoUsu.add(rol2);
+		
+		JLabel efectivo1 = new JLabel("Dinero disponible:    ");
+		infoUsu.add(efectivo1);
+		JLabel efectivo2 = new JLabel("30 pavos");
+		infoUsu.add(efectivo2);
+		
+		
+		this.add(infoUsu);
 	}
 
 	/*private void run_sim(int n) {

@@ -39,16 +39,10 @@ public class Guantes extends Producto {
 	return adherencia;
   }
 
-  public String mostrar() {
-	    String s;
-	    s = "\nProducto: Guantes\n" +
-	        "Id:" + this.id + "\n" +
-	        "Talla: " + this.talla + "\n" +
-	        "Precio: " + this.precio + "\n" +
-	        "Modelo: " + this.modelo + "\n" +
-	        "Marca: " + this.marca + "\n" +
-	        "Color: " + this.color + "\n" +
-	        "Adherencia: " + this.adherencia + "\n";
+  public String[] mostrar() {
+		String s[] = { "Talla: " + this.talla, "Modelo: " + this.modelo, "Marca: " + this.marca,
+				"Color: " + this.color, "Adherencia: " + this.adherencia, "Precio: " + this.precio};
+
 	    return s;
 	  }
   
