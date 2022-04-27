@@ -65,6 +65,11 @@ public class BarraInferior extends JPanel implements InventarioObserver {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void onCambiarPrecio(ArrayList<Producto> inventario) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
 
