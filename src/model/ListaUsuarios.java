@@ -2,22 +2,23 @@ package model;
 
 import java.util.ArrayList;
 
+import BBDD.DAOXMLUsuarios;
+
 public class ListaUsuarios {
 	private ArrayList<Usuario> lista;
-	private static Tienda tienda;
+	private DAOXMLUsuarios dao;
 	
-	public ListaUsuarios(Tienda tienda) {
-		this.tienda = tienda;
+	
+	public ListaUsuarios() {
 		lista = new ArrayList<Usuario>();
+		this.dao=new DAOXMLUsuarios();
 	}
 	
 	public void anadirUsuario(Usuario s) {
 		lista.add(s);
+		
 	}
 	
-	public void eliminarUsuario(Usuario s) {
-		lista.remove(s);
-	}
 	
 	public boolean buscarUsuario(String usuario) {
 		for (Usuario s : lista)
