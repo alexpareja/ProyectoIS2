@@ -38,13 +38,16 @@ public abstract class Camiseta extends Producto {
     return s;
   }
 
-  public String mostrarEnInv(){
-    String s = "Id:" + this.id + "\n" +
-        "Nombre: " + this.nombre + "\n" +
-        "Dorsales:" + this.dorsal + "\n" +
-        "Talla: " + this.talla + "\n" +
-        "Unidades totales: " + this.stock + "\n" +
-        "Precio: " + this.precio + "\n";
+  public String[] mostrarEnInv(){
+	  
+	  String info = "Camiseta" + "Nombre: " + this.nombre  +
+		           "Dorsales:" + this.dorsal +
+		            "Talla: " + this.talla;
+	  String s[] = {this.id,
+	          info,
+	          Integer.toString(this.stock),
+	          Double.toString(this.precio) };
+
     return s;
   }
   

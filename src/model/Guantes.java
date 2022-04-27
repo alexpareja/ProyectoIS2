@@ -46,16 +46,20 @@ public class Guantes extends Producto {
 	  }
   
   @Override
-  public String mostrarEnInv() {
-	String s = "Id:" + this.id + "\n" +
-	        "Marca: " + this.marca + "\n" +
-	        "Modelo: " + this.modelo + "\n" +
-	        "Talla: " + this.talla + "\n" +
-	        "Color: " + this.color + "\n" +
-	        "Adherencia: " + this.adherencia + "\n" +
-	        "Unidades totales: " + this.stock + "\n" +
-	        "Precio: " + this.precio + "\n";
-	return s;
+  public String[] mostrarEnInv() {
+	  String info = 
+			  "Guantes. "+ "Marca:" + this.marca +
+		        "Modelo: " + this.modelo + 
+		        "Talla: " + this.talla + 
+		        "Color: " + this.color +
+		        "Adherencia: " + this.adherencia;
+ String s[] = {this.id,
+         info,
+         Integer.toString(this.stock),
+         Double.toString(this.precio)};
+
+return s;
+	 
   }
 
   @Override

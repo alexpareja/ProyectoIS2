@@ -25,6 +25,10 @@ public abstract class Producto {
   public String getId() {
     return id;
   }
+  
+  public int getUdvendidas() {
+	    return this.udsvendidas;
+	  }
 
   public boolean getActivo() {
     return activo;
@@ -61,7 +65,7 @@ public void setPrecio(double precio) {
   
   public abstract String[] mostrar();
 
-  public abstract String mostrarEnInv();
+  public abstract String[] mostrarEnInv();
 
   public abstract String mostrarEnCarrito();
 

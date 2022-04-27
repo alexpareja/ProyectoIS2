@@ -32,13 +32,16 @@ public abstract class Pantalon extends Producto {
     return s;
   }
 
-    public String mostrarEnInv(){
-    String s = "Id:" + this.id + "\n" +
-        "Dorsales:" + this.dorsal + "\n" +
-        "Talla: " + this.talla + "\n" +
-        "Unidades totales: " + this.stock + "\n" +
-        "Precio: " + this.precio + "\n";
-    return s;
+    public String[] mostrarEnInv(){
+  	  String info = "Pantalón" + 
+	           "Dorsales:" + this.dorsal +
+	            "Talla: " + this.talla;
+ String s[] = {this.id,
+	          info,
+	          Integer.toString(this.stock),
+	          Double.toString(this.precio)};
+
+return s;
   }
     
     protected DTOInventario convierteDTO() {

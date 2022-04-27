@@ -37,15 +37,17 @@ public class Botas extends Producto {
     return s;
   }
 
-  public String mostrarEnInv(){
-    String s = "Id:" + this.id + "\n" +
-        "Marca:" + this.marca + "\n" +
-        "Modelo: " + this.modelo + "\n" +
-        "Talla:" + this.talla + "\n" +
-        "Color: " + this.color + "\n" +
-        "Unidades totales: " + this.stock + "\n" +
-        "Precio: " + this.precio + "\n";
-    return s;
+  public String[] mostrarEnInv(){
+	  
+String info = "Marca:" + this.marca + 
+		        "Modelo: " + this.modelo + 
+		        "Talla:" + this.talla +
+		        "Color: " + this.color;
+ String s[] = {this.id,
+         info,
+         Integer.toString(this.stock),
+         Double.toString(this.precio)};
+ return s;
   }
 
   
