@@ -21,6 +21,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -94,14 +95,30 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				JLabel infoContra = new JLabel("Password: ");
 				
 				JTextField id = new JTextField("");
-				JTextField contra = new JPasswordField("");
+				JPasswordField contra = new JPasswordField("");
+				JCheckBox cbox = new JCheckBox("Mostrar contaseña");
 				
-				JPanel panelDatos = new JPanel(new GridLayout(2,2));
+				cbox.addActionListener(new ActionListener(){  
+					public void actionPerformed(ActionEvent e){
+						if(cbox.isSelected()) {
+							contra.setEchoChar((char)0);
+						}
+						else {
+							contra.setEchoChar('*');
+						}
+						
+					}
+					});
+				
+				JPanel panelDatos = new JPanel(new GridLayout(3,2));
 				
 				panelDatos.add(infoId);
 				panelDatos.add(id);
 				panelDatos.add(infoContra);
 				panelDatos.add(contra);
+				panelDatos.add(cbox);
+				
+				panelDatos.setSize(new Dimension (200,150));
 				
 				
 				panelUsuario.add(panelDatos, BorderLayout.CENTER);

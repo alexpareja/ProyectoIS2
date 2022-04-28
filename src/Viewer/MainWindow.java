@@ -49,6 +49,5 @@ public class MainWindow extends JFrame{
 		this.setPreferredSize(new Dimension(900, 700));
 		this.pack();
 		this.setVisible(true);
-		
 	}
 }

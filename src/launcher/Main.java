@@ -90,7 +90,7 @@ inventario.add(productos);
     
     MainWindow ventana = new MainWindow(ctrl);
 
-tienda.mostrarTienda();
+    tienda.mostrarTienda();
 
     char desp = 'T';
     Scanner lectura = new Scanner(System.in);
