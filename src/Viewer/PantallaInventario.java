@@ -32,6 +32,7 @@ import model.CamisetaLocal;
 import model.CamisetaVisitante;
 import model.ConjuntoLocal;
 import model.ConjuntoVisitante;
+import model.Guantes;
 import model.InventarioObserver;
 import model.PantalonChandal;
 import model.PantalonCorto;
