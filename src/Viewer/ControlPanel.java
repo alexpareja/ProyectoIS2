@@ -142,6 +142,9 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				aceptar.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){		
 						usuario.setVisible(false);
+						_ctrl.getS().iniciaSesion(id.getText(), contra.getPassword().toString());
+						_ctrl.getS().setDueno();
+						
 						//se llama a la funcion que inicie sesion
 					}
 					});
@@ -263,10 +266,15 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 			});
 	
 		
-		//2
+		
 		Binventario.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){ 
-				PantallaInventario inv = new PantallaInventario(_ctrl);
+				
+				PantallaInventario inv = new PantallaInventario(_ctrl);	
+				if(!_ctrl.getS().esDueno()) {
+					JOptionPane.showMessageDialog(null, "No puedes acceder al inventario. Eres cliente",
+						      "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			
 
 		
@@ -282,13 +290,19 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 		
 		JLabel usuario1 = new JLabel("Usuario activo:    ");
 		infoUsu.add(usuario1);
-		JLabel usuario2 = new JLabel("Pepito Flores");
+		JLabel usuario2 = new JLabel(_ctrl.getS().getUsuarioActual().getUsuario());
 		infoUsu.add(usuario2);
 		
 		JLabel rol1 = new JLabel("Rol:    ");
 		infoUsu.add(rol1);
-		JLabel rol2 = new JLabel("Adminstrador");
-		infoUsu.add(rol2);
+		if(_ctrl.getS().esDueno()) {
+			JLabel rol2 = new JLabel("Dueno");
+			infoUsu.add(rol2);
+		}else {
+			JLabel rol2 = new JLabel("Cliente");
+			infoUsu.add(rol2);
+		}
+		
 		
 		JLabel efectivo1 = new JLabel("Dinero disponible:    ");
 		infoUsu.add(efectivo1);

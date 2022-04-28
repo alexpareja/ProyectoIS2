@@ -42,4 +42,11 @@ public class Sesion {
 	public Usuario getUsuarioActual() {
 		return this.userActual;
 	}
+	
+	public boolean esDueno() {
+		return userActual.esDueno();
+	}
+	public void setDueno() {
+		 userActual.setDueno();
+	}
 }
