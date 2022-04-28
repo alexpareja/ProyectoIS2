@@ -57,5 +57,11 @@ public class Controller {
 	public Tienda getT() {
 		return t;
 	}
+
+	public Sesion getS() {
+		return s;
+	}
+	
+	
 	
 }

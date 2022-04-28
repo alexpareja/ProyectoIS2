@@ -50,5 +50,10 @@ public class Usuario {
         return this.carrito.carritoVacio();
     }
 
+	public void setDueno() {
+		// TODO Auto-generated method stub
+		this.dueno = true;
+	}
+
     
 }

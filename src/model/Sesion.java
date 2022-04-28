@@ -13,8 +13,8 @@ public class Sesion {
 	
 	public boolean iniciaSesion(String n, String p) {
 		this.dao=new DAOXMLUsuarios();
-		DTOUsuarios dto=new DTOUsuarios();
-		if(dao.cargarUsuario(n, p, dto))
+		DTOUsuarios dto=dao.cargarUsuario(n, p);
+		if(dto!=null)
 		{
 			
 		this.userActual=new Usuario(dto.getUsuario(),dto.getContrasena(),dto.isDueno(),dto.getCorreo());
@@ -23,6 +23,8 @@ public class Sesion {
 		else {
 			return false;
 		}
+		
+		
 	}
 	
 	public void registrarse(String n, String p, String correo) {
@@ -41,5 +43,12 @@ public class Sesion {
 	
 	public Usuario getUsuarioActual() {
 		return this.userActual;
+	}
+	
+	public boolean esDueno() {
+		return userActual.esDueno();
+	}
+	public void setDueno() {
+		 userActual.setDueno();
 	}
 }

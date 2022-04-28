@@ -685,7 +685,12 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 			inventario.add(panelInventario);
 			//carrito.setResizable(false);
 			inventario.setSize(new Dimension(600, 400));
-			inventario.setVisible(true);}
+			if(_ctrl.getS().esDueno()) {
+				 inventario.setVisible(true);
+			}
+		   
+			
+			}
 		
 		
 
