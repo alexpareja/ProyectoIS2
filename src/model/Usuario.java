@@ -7,20 +7,15 @@ public class Usuario {
     private String correo;
     private Carrito carrito;
 
-    //constructor comprador
-    public Usuario(String usuario, String contrasena, String correo, Carrito carrito){
+   
+    public Usuario(String usuario, String contrasena,boolean d,String correo){
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.dueno = false;
+        this.dueno = d;
         this.correo = correo;
-        this.carrito = carrito;
-    }
-    //constructor vendedor
-    public Usuario(String usuario, String contrasena,String correo){
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.dueno = true;
-        this.correo = correo;
+        if(d) {
+        	this.carrito=new Carrito();
+        }
     }
     
     public String getUsuario() {

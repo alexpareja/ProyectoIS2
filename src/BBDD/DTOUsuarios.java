@@ -6,6 +6,10 @@ public class DTOUsuarios {
     private boolean dueno;
     private String correo;
     
+    public DTOUsuarios() {
+    	
+    }
+    
     public DTOUsuarios(String us,String pass, boolean d, String cor) {
     	this.contrasena=pass;
     	this.usuario=us;

@@ -20,7 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.xml.sax.SAXException;
 
-public class DAOXMLInventario implements IDAOInventario{
+public class DAOXMLInventario{
 
 	private File file;
 	private DocumentBuilder dBuilder;
@@ -39,7 +39,7 @@ public class DAOXMLInventario implements IDAOInventario{
         
 	}
 	
-	@Override
+
 	public void guardarInventario(ArrayList<DTOInventario> inv) {
 		  Document doc = dBuilder.newDocument();
 	      Element raiz = doc.createElement("inventario");
@@ -405,7 +405,7 @@ public class DAOXMLInventario implements IDAOInventario{
 	  
 	}
 
-	@Override
+
 	public ArrayList<DTOInventario> cargarInventario() {
 		
 		ArrayList<DTOInventario> a=new ArrayList<DTOInventario>();

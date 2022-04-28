@@ -78,6 +78,9 @@ public class Inventario{
 	    return a;
 }
   
+  public ArrayList<Producto> getInventario(){
+	    return inventario;
+}
 
   public void mostrarInventario(){
     for(int i = 0; i < inventario.size(); i++)

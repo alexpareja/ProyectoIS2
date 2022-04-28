@@ -138,11 +138,11 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		    
 		  
 		    
-		    for(int i = 0; i < _ctrl.getI().getProductos().size(); i++) {
-		    	String IdInv = _ctrl.getI().getProductos().get(i).mostrarEnInv()[0];
-		    	String DetallesInv = _ctrl.getI().getProductos().get(i).mostrarEnInv()[1];
-		    	String Precioinv = _ctrl.getI().getProductos().get(i).mostrarEnInv()[2];
-		    	String Stockinv = _ctrl.getI().getProductos().get(i).mostrarEnInv()[3];
+		    for(int i = 0; i < _ctrl.getI().getInventario().size(); i++) {
+		    	String IdInv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[0];
+		    	String DetallesInv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[1];
+		    	String Precioinv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[2];
+		    	String Stockinv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[3];
 		    	String fila[] = {IdInv, DetallesInv, Precioinv, Stockinv};
 				modeloInv.addRow(fila);
 		    }
@@ -564,7 +564,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 			
 			BCambiarPrecio.addActionListener(new ActionListener(){  
 				public void actionPerformed(ActionEvent e){
-					for(int i=0;i<_ctrl.getI().getProductos().size(); i++) {
+					for(int i=0;i<_ctrl.getI().getInventario().size(); i++) {
 					_ctrl.getI().setPrecio(i, Double.parseDouble(modeloInv.getValueAt(i, 3).toString()));
 					}
 				}
