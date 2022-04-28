@@ -310,8 +310,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 														0, 0, 
 												tll.getSelectedItem().toString(),cp2.getText(),
 												Integer.parseInt(cp3.getText().toString()));
-										 JOptionPane.showMessageDialog(null, "Producto añadido exitosamente",
-											      "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+										 JOptionPane.showMessageDialog(null, "Producto aï¿½adido exitosamente",
+											      "Confirmaciï¿½n", JOptionPane.INFORMATION_MESSAGE);
 									}
 									 _ctrl.getI().add(a);} catch(Exception eror) {
 										 JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos",
@@ -419,8 +419,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 												Integer.parseInt(cp3.getText().toString()));
 									} 
 									 _ctrl.getI().add(a);
-									 JOptionPane.showMessageDialog(null, "Producto añadido exitosamente",
-										      "Confirmación", JOptionPane.INFORMATION_MESSAGE); 
+									 JOptionPane.showMessageDialog(null, "Producto aï¿½adido exitosamente",
+										      "Confirmaciï¿½n", JOptionPane.INFORMATION_MESSAGE); 
 									} catch(Exception eror) {
 										JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos",
 											      "Error", JOptionPane.ERROR_MESSAGE);
@@ -520,8 +520,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 														Integer.parseInt(tllb.getSelectedItem().toString()),
 												cp3.getText(), cp4.getText(), cp5.getText());
 										        _ctrl.getI().add(a);
-										        JOptionPane.showMessageDialog(null, "Producto añadido exitosamente",
-													      "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+										        JOptionPane.showMessageDialog(null, "Producto aï¿½adido exitosamente",
+													      "Confirmaciï¿½n", JOptionPane.INFORMATION_MESSAGE);
 										       
 										 
 									} catch(Exception eror) {
@@ -548,6 +548,113 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						});
 			
 					panelabastecer.add(bbotas);
+
+					bguantes.addActionListener(new ActionListener(){  
+						public void actionPerformed(ActionEvent e){
+							info.setVisible(false);
+							JDialog guantes = new JDialog();
+							JPanel pguantes = new JPanel();
+							pguantes.setLayout(new BorderLayout());
+							
+							JLabel c2 = new JLabel("Precio: ");
+							JLabel c3 = new JLabel("Talla: ");
+							JLabel c4 = new JLabel("Modelo: ");
+							JLabel c5 = new JLabel("Marca: ");
+							JLabel c6 = new JLabel("Color: ");
+							JLabel c7 = new JLabel("Adherencia: ");
+							JLabel c8 = new JLabel("Publicado: ");
+							JLabel c9 = new JLabel("Stock: ");
+							
+							JTextField cp2 = new JTextField("");
+							JTextField cp3 = new JTextField("");
+							JTextField cp4 = new JTextField("");
+							JTextField cp5 = new JTextField("");
+							JTextField cp6 = new JTextField("");
+							JTextField cp7 = new JTextField("");
+							
+							JPanel pdc = new JPanel(new GridLayout(8,1));
+							
+							pdc.add(c2);
+							pdc.add(cp2);
+							pdc.add(c3);
+							pdc.add(tll);
+							pdc.add(c4);
+							pdc.add(cp3);
+							pdc.add(c5);
+							pdc.add(cp4);
+							pdc.add(c6);
+							pdc.add(cp5);
+							pdc.add(c7);
+							pdc.add(cp6);
+							pdc.add(c8);
+							pdc.add(publ);
+							pdc.add(c9);
+							pdc.add(cp7);
+							
+							
+							pguantes.add(pdc, BorderLayout.CENTER);
+
+							pguantes.add(info, BorderLayout.PAGE_START);
+							
+							JPanel cab = new JPanel();
+							cab.setLayout(new BorderLayout());
+							
+							JButton cancel = new JButton("Salir");
+							
+							cancel.addActionListener(new ActionListener(){  
+								public void actionPerformed(ActionEvent e){
+									guantes.setVisible(false);
+								}
+								});
+							cab.add(cancel, BorderLayout.WEST);
+							
+							JButton caa = new JButton("Aceptar");
+							
+							caa.addActionListener(new ActionListener(){  
+								public void actionPerformed(ActionEvent e){
+									boolean publicado;
+									if(publ.getSelectedItem().equals("SI")) {
+										publicado=true;
+									} else {
+										publicado=false;
+									} 
+									Producto a;
+									
+									try {
+										a = new Guantes( 
+												Double.parseDouble(cp2.getText()),
+												publicado, 
+												Integer.parseInt(cp7.getText()),
+														0, 0, 
+														tll.getSelectedItem().toString(),
+												cp3.getText(), cp4.getText(), cp5.getText(), Integer.parseInt(cp6.getText()));
+										        _ctrl.getI().add(a);
+										        JOptionPane.showMessageDialog(null, "Producto aï¿½adido exitosamente",
+													      "Confirmaciï¿½n", JOptionPane.INFORMATION_MESSAGE);
+										       
+										 
+									} catch(Exception eror) {
+													JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos",
+														      "Error", JOptionPane.ERROR_MESSAGE);
+												}
+									
+									
+						
+									//_ctrl.getI().add();
+									//se llama a la funcion que inicie sesion
+								}
+								});
+							cab.add(caa, BorderLayout.EAST);
+							pguantes.add(cab, BorderLayout.PAGE_END);
+							
+							guantes.add(pguantes);
+							guantes.setResizable(false);
+							guantes.setSize(new Dimension(600, 300));
+							guantes.setVisible(true);
+							
+							
+						}
+						});
 					panelabastecer.add(bguantes);
 					
 					
