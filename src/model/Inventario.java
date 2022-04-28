@@ -45,6 +45,7 @@ public class Inventario{
 
   public void add(Producto prod){
     if (!inventario.contains(prod))inventario.add(prod);
+    this.guardar();
   }
   
   public void add(ArrayList<Producto> prod){
@@ -55,15 +56,15 @@ public class Inventario{
     this.guardar();
   }
   
-  public void setPrecio(double price){
-	    for (Producto p: inventario) 
-	    p.setPrecio(price);
+  public void setPrecio(int i, double price){
+	    
+	    this.buscarProductoPosicion(i).setPrecio(price);
 	    
 	    for(int j = 0; j < observers.size(); j++) {
 			observers.get(j).onActualizaTienda(inventario);
 		}
 	    
-	    this.guardar();
+	   this.guardar();
 	    
 	  }
   

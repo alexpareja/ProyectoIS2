@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -39,34 +40,28 @@ public class PantallaTienda extends JPanel implements InventarioObserver {
 		}
 		
 		private void initGUI() {
-			ArticuloPanel 	p1, p2, p3, p4, p5, p6;
+			ArticuloPanel 	p1;
+			List<ArticuloPanel> paneltienda =new ArrayList<ArticuloPanel>();
 			
 		this.setLayout(new GridLayout(2,3));
 		int i = (_ctrl.getT().getPaginaAct()) * 6;
-		if(i < _ctrl.getT().getProductosTienda().size() - 6) {
-		 	p1 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i));
-			p2 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+1)); 
-			p3 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+2));
-		    p4 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+3)); 
-			p5 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+4));
-			p6 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i+5));
-		}
-		else {
-			p1 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
-			p2 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0)); 
-			p3 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
-		    p4 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0)); 
-			p5 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
-			p6 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(0));
-		}
-		ArticuloPanel[] paneles = {p1,p2,p3,p4,p5,p6};	
+		int cont =i;
+		while(i < _ctrl.getT().getProductosTienda().size()-1&&i<cont+6) {
+		   p1 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i));
+			paneltienda.add(p1);
+			i++;}
 		
-		
-				
-		for(int j = 0; j < paneles.length; j++) {
 			
-			this.add(paneles[j]);
+		
+		
+		
+		for(int j = 0; j < paneltienda.size(); j++) {
+			
+			this.add(paneltienda.get(j));
+
 		}
+		 
+		
 		
 		}
 

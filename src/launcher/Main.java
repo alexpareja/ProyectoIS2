@@ -19,7 +19,7 @@ public class Main {
 
   public static void main(String[] args) {
     Inventario inventario = new Inventario();
-    inventario.cargar();
+  inventario.cargar();
  /*
     Producto p1 = new CamisetaLocal( 59.99, true, 10, 2, 0, "XL", "Mbappe", 7);
     Producto p2 = new CamisetaLocal( 39.99, false, 200, 3, 0, "L", "Benzema", 9);

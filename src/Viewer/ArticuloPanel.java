@@ -38,6 +38,7 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 
 }
 	
+	
 	private void initGUI() {
 
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
