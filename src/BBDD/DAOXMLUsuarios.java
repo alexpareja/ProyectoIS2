@@ -37,10 +37,11 @@ public class DAOXMLUsuarios {
 	}
 	
 	//devuelve false si no encuentra el usuario y devuelve si lo encuentra el usuario y carrito 
-public boolean cargarUsuario(String nombre, String pass,DTOUsuarios user) {
-		boolean encontrado=false;
+public DTOUsuarios cargarUsuario(String nombre, String pass) {
+		
+		DTOUsuarios user=null;
 		try {
-			
+			boolean encontrado=false;
 		 	Document doc = dBuilder.parse(file);
 		 	Element raiz= doc.getDocumentElement();
 	        NodeList nList = raiz.getChildNodes();//lista productos
@@ -81,7 +82,7 @@ public boolean cargarUsuario(String nombre, String pass,DTOUsuarios user) {
 	    	
 	    }
 		
-		return encontrado;
+		return user;
 	}
 	
 	

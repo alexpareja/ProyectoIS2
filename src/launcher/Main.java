@@ -86,7 +86,8 @@ inventario.add(productos);
     inventario.reabastecer(p2, 3);*/
     Tienda tienda =Tienda.crearTienda(6,inventario);
     Controller ctrl=new Controller(inventario, carrito, tienda);
-    ctrl.registrarse("Patrizia","betaCero","patrizia@ucm.es");
+    ctrl.iniciarSesion("Patrizia","betaCero");
+    
     MainWindow ventana = new MainWindow(ctrl);
     
     tienda.mostrarTienda();
