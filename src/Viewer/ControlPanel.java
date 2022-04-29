@@ -49,18 +49,23 @@ import model.PantalonChandal;
 import model.PantalonCorto;
 import model.Producto;
 import model.Usuario;
+import model.UsuariosObserver;
 
-public class ControlPanel extends JPanel implements InventarioObserver {
+public class ControlPanel extends JPanel implements InventarioObserver, UsuariosObserver {
 // ...
 	private Controller _ctrl;
 	private JButton Busuario = new JButton();
 	private JButton Bcarrito = new JButton();
 	private JButton Binventario = new JButton();
+	JLabel usuario2;
+	JLabel rol2;
+	Usuario user;
 	
 	ControlPanel(Controller ctrl) {
 			_ctrl = ctrl;
 			initGUI();
 			_ctrl.addObserver(this);
+			_ctrl.addObserverUsuario(this);
 	}
 	
 	private void initGUI() {
@@ -96,19 +101,21 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				
 				JTextField id = new JTextField("");
 				JPasswordField contra = new JPasswordField("");
-				JCheckBox cbox = new JCheckBox("Mostrar contaseña");
-				
+				JCheckBox cbox = new JCheckBox("Mostrar contasena");
+				contra.setEchoChar('*');
 				cbox.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){
 						if(cbox.isSelected()) {
 							contra.setEchoChar((char)0);
 						}
 						else {
-							contra.setEchoChar('●');
+							contra.setEchoChar('*');
 						}
 						
 					}
+					
 					});
+				
 				
 				JPanel panelDatos = new JPanel(new GridLayout(3,2));
 				
@@ -144,13 +151,121 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 						usuario.setVisible(false);
 						char[] arrayC = contra.getPassword();
 						String pass = new String(arrayC); 
-						_ctrl.getS().iniciaSesion(id.getText(), pass);
-						_ctrl.getS().setDueno();
+						if(!_ctrl.iniciarSesion(id.getText(), pass))
+						{
+							JOptionPane.showMessageDialog(null, "Usuario no encontrado",
+								      "Error", JOptionPane.ERROR_MESSAGE);
+						}
 						
-						//se llama a la funcion que inicie sesion
+				
 					}
 					});
 				abajo.add(aceptar, BorderLayout.EAST);
+				
+				JButton registrarse = new JButton("Registrate");
+				
+				registrarse.addActionListener(new ActionListener(){  
+					public void actionPerformed(ActionEvent e){		
+						usuario.setVisible(false);
+						
+						JDialog usuarioNuevo = new JDialog();
+						JPanel panelUsuario2 = new JPanel();
+						panelUsuario2.setLayout(new BorderLayout());
+						
+						JLabel info2 = new JLabel("Identificate como usuario", SwingConstants.CENTER);
+						
+						
+						JLabel infoId2 = new JLabel("User: ");
+						JLabel infoContra2= new JLabel("Password: ");
+						JLabel infoCorreo= new JLabel("Mail: ");
+						
+						JTextField id2 = new JTextField("");
+						JTextField corr = new JTextField("");
+						JPasswordField contra2 = new JPasswordField("");
+						JCheckBox cbox2 = new JCheckBox("Mostrar contasena");
+						contra2.setEchoChar('*');
+						cbox2.addActionListener(new ActionListener(){  
+							public void actionPerformed(ActionEvent e){
+								if(cbox2.isSelected()) {
+									contra2.setEchoChar((char)0);
+								}
+								else {
+									contra2.setEchoChar('*');
+								}
+								
+							}
+							
+							});
+						
+						
+						JPanel panelDatos2 = new JPanel(new GridLayout(4,2));
+						
+						panelDatos2.add(infoId2);
+						panelDatos2.add(id2);
+						panelDatos2.add(infoCorreo);
+						panelDatos2.add(corr);
+						panelDatos2.add(infoContra2);
+						panelDatos2.add(contra2);
+						panelDatos2.add(cbox2);
+						
+						
+						panelDatos2.setSize(new Dimension (200,150));
+						
+						
+						panelUsuario2.add(panelDatos2, BorderLayout.CENTER);
+
+						panelUsuario2.add(info2, BorderLayout.PAGE_START);
+						
+						JPanel abajo2 = new JPanel();
+						abajo2.setLayout(new BorderLayout());
+						
+						JButton cancel2 = new JButton("Salir");
+						
+						cancel2.addActionListener(new ActionListener(){  
+							public void actionPerformed(ActionEvent e){
+								usuarioNuevo.setVisible(false);
+							}
+							});
+						abajo2.add(cancel2, BorderLayout.WEST);
+						
+						JButton aceptarC = new JButton("Registra cliente");
+						
+						aceptarC.addActionListener(new ActionListener(){  
+							public void actionPerformed(ActionEvent e){		
+								usuarioNuevo.setVisible(false);
+								char[] arrayC = contra2.getPassword();
+								String pass = new String(arrayC); 
+								
+								
+								_ctrl.registrarse(id2.getText(), pass,corr.getText());
+								
+						
+							}
+							});
+						JButton aceptarV = new JButton("Registra vendedor");
+						
+						aceptarV.addActionListener(new ActionListener(){  
+							public void actionPerformed(ActionEvent e){		
+								usuarioNuevo.setVisible(false);
+								char[] arrayC = contra2.getPassword();
+								String pass = new String(arrayC); 
+								
+								_ctrl.registrarseVendedor(id2.getText(), pass,corr.getText());
+							}
+							});
+						
+						
+						abajo2.add(aceptarC, BorderLayout.EAST);
+						abajo2.add(aceptarV,BorderLayout.CENTER);
+						panelUsuario2.add(abajo2, BorderLayout.PAGE_END);
+						usuarioNuevo.add(panelUsuario2);
+						usuarioNuevo.setResizable(false);
+						usuarioNuevo.setSize(new Dimension(350, 250));
+						usuarioNuevo.setVisible(true);
+				
+					}
+					});
+				abajo.add(registrarse,BorderLayout.CENTER);
 				panelUsuario.add(abajo, BorderLayout.PAGE_END);
 				
 				usuario.add(panelUsuario);
@@ -263,7 +378,7 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				//carrito.setResizable(false);
 				carrito.setSize(new Dimension(600, 400));
 				carrito.setVisible(true);
-		
+				
 			}
 			});
 	
@@ -273,7 +388,8 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 			public void actionPerformed(ActionEvent e){ 
 				
 				PantallaInventario inv = new PantallaInventario(_ctrl);	
-				if(!_ctrl.getS().esDueno()) {
+				
+				if(!user.esDueno()) {
 					JOptionPane.showMessageDialog(null, "No puedes acceder al inventario. Eres cliente",
 						      "Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -292,16 +408,16 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 		
 		JLabel usuario1 = new JLabel("Usuario activo:    ");
 		infoUsu.add(usuario1);
-		JLabel usuario2 = new JLabel(_ctrl.getS().getUsuarioActual().getUsuario());
+		usuario2 = new JLabel(_ctrl.getS().getUsuarioActual().getUsuario());
 		infoUsu.add(usuario2);
 		
 		JLabel rol1 = new JLabel("Rol:    ");
 		infoUsu.add(rol1);
 		if(_ctrl.getS().esDueno()) {
-			JLabel rol2 = new JLabel("Dueno");
+			 rol2 = new JLabel("Vendedor");
 			infoUsu.add(rol2);
 		}else {
-			JLabel rol2 = new JLabel("Cliente");
+			 rol2 = new JLabel("Cliente");
 			infoUsu.add(rol2);
 		}
 		
@@ -351,6 +467,16 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 	@Override
 	public void onCambiarPrecio(ArrayList<Producto> inventario) {
 
+	}
+
+	@Override
+	public void iniciaSesion(Usuario userActual) {
+		
+		usuario2.setText(userActual.getUsuario());
+		if(userActual.esDueno())rol2.setText("Vendedor");
+		else rol2.setText("Cliente");
+		this.user=userActual;
+		 
 	}
 
 }
