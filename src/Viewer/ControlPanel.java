@@ -142,7 +142,9 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				aceptar.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){		
 						usuario.setVisible(false);
-						_ctrl.getS().iniciaSesion(id.getText(), contra.getPassword().toString());
+						char[] arrayC = contra.getPassword();
+						String pass = new String(arrayC); 
+						_ctrl.getS().iniciaSesion(id.getText(), pass);
 						_ctrl.getS().setDueno();
 						
 						//se llama a la funcion que inicie sesion
