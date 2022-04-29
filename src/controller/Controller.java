@@ -1,10 +1,12 @@
 package controller;
 
+import Viewer.ControlPanel;
 import model.Carrito;
 import model.Inventario;
 import model.InventarioObserver;
 import model.Sesion;
 import model.Tienda;
+import model.UsuariosObserver;
 
 public class Controller {
 
@@ -64,6 +66,11 @@ public class Controller {
 
 	public Sesion getS() {
 		return s;
+	}
+
+	public void addObserverUsuario(UsuariosObserver o) {
+		s.addObserver(o);
+		
 	}
 	
 	
