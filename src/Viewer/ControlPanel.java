@@ -104,7 +104,7 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 							contra.setEchoChar((char)0);
 						}
 						else {
-							contra.setEchoChar('*');
+							contra.setEchoChar('●');
 						}
 						
 					}
