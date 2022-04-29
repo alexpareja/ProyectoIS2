@@ -21,6 +21,10 @@ public class Controller {
 		this.s=new Sesion();
 	}
 	
+	public boolean comprar(Carrito carrito) {
+		return i.comprar(carrito);
+	}
+	
 	public boolean iniciarSesion(String n, String p) {
 		
 		return s.iniciaSesion(n, p);

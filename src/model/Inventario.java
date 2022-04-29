@@ -194,4 +194,14 @@ public void reservar(Producto prod) {
 		}
   }
 
+  
+  public boolean comprar(Carrito carrito) {
+	  for(Producto p: carrito.getProductos()) {
+		  if (inventario.contains(p))
+			  inventario.get(inventario.indexOf(p)).disminuirStock();
+	  }
+	  return true;
+  }
+  
+
 }

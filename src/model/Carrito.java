@@ -9,6 +9,11 @@ public class Carrito {
     productos = new ArrayList<Producto>();
   }
   
+  //al comprar se limpia el carrito
+  public void reset() {
+	  productos = new ArrayList<Producto>();
+  }
+  
 //anadir producto al carrito
   public void anadirCarrito(Producto p) {
     productos.add(p);
@@ -47,7 +52,7 @@ public boolean carritoVacio(){
     { 
       for(int i = 0; i < productos.size(); i++) {
         int pos=i+1;      
-        System.out.println("Nº"+pos+productos.get(i).mostrarEnCarrito());
+        System.out.println("Nï¿½"+pos+productos.get(i).mostrarEnCarrito());
       }
     }
     else

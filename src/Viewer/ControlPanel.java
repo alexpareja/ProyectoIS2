@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,6 +53,7 @@ import model.PantalonCorto;
 import model.Producto;
 import model.Usuario;
 
+
 public class ControlPanel extends JPanel implements InventarioObserver {
 // ...
 	private Controller _ctrl;
@@ -57,10 +61,76 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 	private JButton Bcarrito = new JButton();
 	private JButton Binventario = new JButton();
 	
+	
 	ControlPanel(Controller ctrl) {
 			_ctrl = ctrl;
 			initGUI();
 			_ctrl.addObserver(this);
+	}
+	
+	private void comprarDialog() {
+		JDialog pago = new JDialog();
+		JPanel mainPanel = new JPanel(new BorderLayout());
+		JTextField _direccion = new JTextField();
+		JTextField _metodoPago = new JTextField();
+		
+		pago.setTitle("Datos de pago");
+		
+		mainPanel.setLayout((LayoutManager) new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); //alinea de arriba a abajo
+		mainPanel.setAlignmentY(CENTER_ALIGNMENT);
+		pago.setContentPane(mainPanel);
+		
+		JLabel helpMsg = new JLabel("Gracias por comprar con nosotros");
+		helpMsg.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(helpMsg);
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+		
+		JPanel viewsPanel = new JPanel();
+		viewsPanel.setAlignmentX(CENTER_ALIGNMENT);
+		viewsPanel.setLayout(new BoxLayout(viewsPanel, BoxLayout.Y_AXIS)); //de arriba a abajo
+		mainPanel.add(viewsPanel);
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+		
+		JPanel buttonsPanel = new JPanel();
+		buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(buttonsPanel);
+		
+		viewsPanel.add(new JLabel("Introduzca su dirección: "));
+		viewsPanel.add(_direccion);
+		
+		viewsPanel.add(new JLabel("Introduzca el número de tarjeta: "));
+		viewsPanel.add(_metodoPago);
+		
+		JButton cancelButton = new JButton("Cancelar");
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//_statusCompra = 0;
+				pago.setVisible(false);
+				JOptionPane.showMessageDialog(null, "La operación se ha cancelado");
+			}
+		});
+		buttonsPanel.add(cancelButton);
+		
+		JButton okButton = new JButton("Pagar");
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//_statusCompra = 1;
+				pago.setVisible(false);
+				_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
+				_ctrl.getC().reset();//se vacia el carrito
+				JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+				
+			}
+		});
+		buttonsPanel.add(okButton);
+		
+		pago.setPreferredSize(new Dimension(500, 200));
+		pago.pack();
+		pago.setResizable(false);
+		pago.setVisible(true);
 	}
 	
 	private void initGUI() {
@@ -252,9 +322,11 @@ public class ControlPanel extends JPanel implements InventarioObserver {
 				
 				aceptar.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){		
-						carrito.setVisible(false);
+						carrito.setVisible(false); 
+						if (_ctrl.getC().carritoVacio()) JOptionPane.showMessageDialog(null, "El carrito está vacío");
+						else comprarDialog();
 					}
-					});
+				});
 				abajo.add(aceptar);
 				
 				panelCarrito.add(abajo, BorderLayout.PAGE_END);

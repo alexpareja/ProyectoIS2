@@ -54,6 +54,10 @@ public abstract class Producto {
     stock = n;
   }
   
+  public void disminuirStock() {
+	  stock--;
+  }
+  
   public ImageIcon getFoto() {
 	return foto;
 }
