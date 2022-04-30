@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.ImageIcon;
+
 import BBDD.DTOInventario;
 
 public class Guantes extends Producto {
@@ -16,6 +18,7 @@ public class Guantes extends Producto {
   	this.marca = marca;
   	this.color = color;
   	this.adherencia = adherencia;
+  	this.foto= new ImageIcon( "resources/icons/guantes.png");
   }
 
   public String getTalla() {
