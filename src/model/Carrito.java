@@ -1,6 +1,5 @@
 package model;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Carrito {
   private ArrayList<Producto> productos;

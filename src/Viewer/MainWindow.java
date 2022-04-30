@@ -3,13 +3,13 @@ package Viewer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import controller.Controller;
 
 public class MainWindow extends JFrame{
+	private static final long serialVersionUID = 1L;
 	Controller _ctrl;
 	public MainWindow(Controller ctrl) {
 		super("");

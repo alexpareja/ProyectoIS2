@@ -8,10 +8,12 @@ public class Inventario{
   protected ArrayList<Producto> inventario;
   protected ArrayList<InventarioObserver> observers;
   protected DAOXMLInventario dao;
+  protected ArrayList<Carrito> compras; //historial de las compras efectuadas
   
   public Inventario(){
     this.inventario = new ArrayList<Producto>();
     this.observers = new ArrayList<InventarioObserver>();
+    this.compras = new ArrayList<Carrito>();
   }
 
   public void eliminar(Producto prod, ArrayList<Producto> productos){
@@ -199,8 +201,14 @@ public void reservar(Producto prod) {
 	  for(Producto p: carrito.getProductos()) {
 		  if (inventario.contains(p))
 			  inventario.get(inventario.indexOf(p)).disminuirStock();
+		  else return false;
 	  }
+	  compras.add(carrito);
 	  return true;
+  }
+  
+  public ArrayList<Carrito> getCompras() {
+	  return compras;
   }
   
 

@@ -1,55 +1,35 @@
 package Viewer;
 
+import java.applet.Applet;
 import java.awt.BorderLayout;
+import java.awt.CheckboxGroup;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JToolTip;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
 import model.InventarioObserver;
-import model.Pantalon;
-import model.PantalonChandal;
-import model.PantalonCorto;
 import model.Producto;
 import model.Usuario;
 import model.UsuariosObserver;
@@ -57,7 +37,7 @@ import model.UsuariosObserver;
 
 
 public class ControlPanel extends JPanel implements InventarioObserver, UsuariosObserver {
-
+	private static final long serialVersionUID = 1L;
 	private Controller _ctrl;
 	private JButton Busuario = new JButton();
 	private JButton Bcarrito = new JButton();
@@ -74,11 +54,92 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			_ctrl.addObserverUsuario(this);
 	}
 	
+	//HU Añadir método de pago
+	private void anadirMetodoPago() {
+		JDialog pago = new JDialog();
+		JPanel mainPanel = new JPanel(new BorderLayout());
+		pago.setTitle("Datos del pago");
+		
+		mainPanel.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.setLayout((LayoutManager) new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); //alinea de arriba a abajo
+		pago.setContentPane(mainPanel);
+		
+		JLabel msg = new JLabel("Elija uno de los métodos de pago");
+		msg.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(msg);
+		mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
+		
+		JPanel buttonsPagoPanel = new JPanel();
+		buttonsPagoPanel.setAlignmentY(CENTER_ALIGNMENT);
+		buttonsPagoPanel.setLayout((LayoutManager) new BoxLayout(buttonsPagoPanel, BoxLayout.X_AXIS)); //alinea de arriba a abajo
+		mainPanel.add(buttonsPagoPanel);
+		
+		JCheckBox tarjeta = new JCheckBox("Tarjeta", true);
+		JCheckBox paypal = new JCheckBox("Paypal", false);
+		JCheckBox efectivo = new JCheckBox("Efectivo", false);
+		buttonsPagoPanel.add(tarjeta);
+		buttonsPagoPanel.add(paypal);
+		buttonsPagoPanel.add(efectivo);
+		JLabel help = new JLabel("*Si elige en efectivo no se podrán realizar devoluciones  ");
+		
+		JTextField _titular = new JTextField();
+		JTextField _cuenta = new JTextField();
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
+		JLabel titular = new JLabel("Titular de la cuenta                      ");
+		titular.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(titular);
+		mainPanel.add(_titular);
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
+		
+		JLabel cuenta = new JLabel("Número de cuenta                       ");
+		cuenta.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(cuenta);
+		mainPanel.add(_cuenta);
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0,30)));
+		mainPanel.add(help);
+		mainPanel.add(Box.createRigidArea(new Dimension(0,30)));
+		
+		JPanel buttonsPanel = new JPanel();
+		buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(buttonsPanel);
+		
+		JButton cancelButton = new JButton("Cancelar");
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pago.setVisible(false);
+				JOptionPane.showMessageDialog(null, "La operación se ha cancelado");
+			}
+		});
+		buttonsPanel.add(cancelButton);
+		
+		JButton okButton = new JButton("Pagar");
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pago.setVisible(false);
+				_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
+				_ctrl.getC().reset();//se vacia el carrito
+				JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+			}
+		});
+		buttonsPanel.add(okButton);
+		
+		pago.setPreferredSize(new Dimension(500, 300));
+		pago.pack();
+		pago.setResizable(false);
+		pago.setVisible(true);
+	}
+	
+	
+	//HU Comprar
 	private void comprarDialog() {
 		JDialog pago = new JDialog();
 		JPanel mainPanel = new JPanel(new BorderLayout());
+		JTextField _nombre = new JTextField();
 		JTextField _direccion = new JTextField();
-		JTextField _metodoPago = new JTextField();
 		
 		pago.setTitle("Datos de pago");
 		
@@ -103,35 +164,30 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(buttonsPanel);
 		
+		viewsPanel.add(new JLabel("Introduzca su nombre: "));
+		viewsPanel.add(_nombre);
+		
 		viewsPanel.add(new JLabel("Introduzca su dirección: "));
 		viewsPanel.add(_direccion);
-		
-		viewsPanel.add(new JLabel("Introduzca el número de tarjeta: "));
-		viewsPanel.add(_metodoPago);
 		
 		JButton cancelButton = new JButton("Cancelar");
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//_statusCompra = 0;
 				pago.setVisible(false);
 				JOptionPane.showMessageDialog(null, "La operación se ha cancelado");
 			}
 		});
 		buttonsPanel.add(cancelButton);
 		
-		JButton okButton = new JButton("Pagar");
-		okButton.addActionListener(new ActionListener() {
+		JButton sigButton = new JButton("Siguiente");
+		sigButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//_statusCompra = 1;
 				pago.setVisible(false);
-				_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
-				_ctrl.getC().reset();//se vacia el carrito
-				JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
-				
+				anadirMetodoPago();
 			}
 		});
-		buttonsPanel.add(okButton);
+		buttonsPanel.add(sigButton);
 		
 		pago.setPreferredSize(new Dimension(500, 200));
 		pago.pack();

@@ -1,24 +1,19 @@
 package Viewer;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 import controller.Controller;
 import model.InventarioObserver;
 import model.Producto;
 
 public class BarraInferior extends JPanel implements InventarioObserver {
+	private static final long serialVersionUID = 1L;
 	private JButton izq = new JButton(); 
 	private JButton dcha  = new JButton(); 
 	private Controller _ctrl;

@@ -1,20 +1,15 @@
 package Viewer;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -24,19 +19,19 @@ import model.InventarioObserver;
 import model.Producto;
 
 public class ArticuloPanel extends JPanel implements InventarioObserver{
-	
+	private static final long serialVersionUID = 1L;
 	private Producto _prod;
 	private Controller _ctrl;
 
 	
 	
-	ArticuloPanel(Controller ctrl, Producto prod) {
+	public ArticuloPanel(Controller ctrl, Producto prod) {
 		_prod = prod;
 		initGUI();
 		_ctrl = ctrl;
 		_ctrl.addObserver(this);
 
-}
+	}
 	
 	
 	private void initGUI() {
