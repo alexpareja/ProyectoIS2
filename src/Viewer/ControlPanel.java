@@ -1,9 +1,9 @@
 package Viewer;
 
-import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.CheckboxGroup;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -22,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -29,6 +32,8 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
+import model.Carrito;
+import model.Compra;
 import model.InventarioObserver;
 import model.Producto;
 import model.Usuario;
@@ -54,8 +59,13 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			_ctrl.addObserverUsuario(this);
 	}
 	
+	//HU Resumen de compras
+	private void resumenCompras() {
+		String[] _colNames = {"Compras", "Método pago", "Detalles"};
+	}
+	
 	//HU Añadir método de pago
-	private void anadirMetodoPago() {
+	private void anadirMetodoPago(String nombre, String direccion) {
 		JDialog pago = new JDialog();
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		pago.setTitle("Datos del pago");
@@ -74,9 +84,19 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		buttonsPagoPanel.setLayout((LayoutManager) new BoxLayout(buttonsPagoPanel, BoxLayout.X_AXIS)); //alinea de arriba a abajo
 		mainPanel.add(buttonsPagoPanel);
 		
-		JCheckBox tarjeta = new JCheckBox("Tarjeta", true);
+		ButtonGroup s = new ButtonGroup();
+		JRadioButton tarjeta = new JRadioButton("Tarjeta");
+		JRadioButton paypal = new JRadioButton("Paypal");
+		JRadioButton efectivo = new JRadioButton("Efectivo");
+		s.add(tarjeta);
+		s.add(paypal);
+		s.add(efectivo);
+		s.clearSelection();
+		
+		
+		/*JCheckBox tarjeta = new JCheckBox("Tarjeta", false);
 		JCheckBox paypal = new JCheckBox("Paypal", false);
-		JCheckBox efectivo = new JCheckBox("Efectivo", false);
+		JCheckBox efectivo = new JCheckBox("Efectivo", false);*/
 		buttonsPagoPanel.add(tarjeta);
 		buttonsPagoPanel.add(paypal);
 		buttonsPagoPanel.add(efectivo);
@@ -119,13 +139,37 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		JButton okButton = new JButton("Pagar");
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pago.setVisible(false);
-				_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
-				_ctrl.getC().reset();//se vacia el carrito
-				JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+				
+				if (efectivo.isSelected()) {
+					pago.setVisible(false);
+					_ctrl.getI().getCompras().add(new Compra("efectivo", _ctrl.getC(), _ctrl.getI().getCompras().size(), nombre, direccion));
+					_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
+					_ctrl.getC().reset();//se vacia el carrito
+					JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+				}
+				else if (tarjeta.isSelected() || paypal.isSelected()) {
+					String p;
+					if (tarjeta.isSelected()) p = "tarjeta";
+					else p = "paypal";
+					
+					if (!_cuenta.getText().equals("") && !_titular.getText().equals("")) {
+						pago.setVisible(false);
+						_ctrl.getI().getCompras().add(new Compra(p, _ctrl.getC(), _ctrl.getI().getCompras().size(), nombre, direccion));
+						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
+						_ctrl.getC().reset();//se vacia el carrito
+						JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Elija una de las opciones");
+				}
 			}
 		});
 		buttonsPanel.add(okButton);
+		
 		
 		pago.setPreferredSize(new Dimension(500, 300));
 		pago.pack();
@@ -164,8 +208,15 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(buttonsPanel);
 		
+		
 		viewsPanel.add(new JLabel("Introduzca su nombre: "));
-		viewsPanel.add(_nombre);
+		if (usuario2.getText() == "invitado") {
+			viewsPanel.add(_nombre);
+		}
+		else viewsPanel.add(usuario2);
+		
+		
+		
 		
 		viewsPanel.add(new JLabel("Introduzca su dirección: "));
 		viewsPanel.add(_direccion);
@@ -183,8 +234,16 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		JButton sigButton = new JButton("Siguiente");
 		sigButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pago.setVisible(false);
-				anadirMetodoPago();
+				if (usuario2.getText().equals("invitado") && !_nombre.getText().equals("") && !_direccion.getText().equals("")) {
+					pago.setVisible(false);
+					anadirMetodoPago(_nombre.getText(), _direccion.getText());
+				}
+				else if (!usuario2.getText().equals("invitado") && !_direccion.getText().equals("")){
+					pago.setVisible(false);
+					anadirMetodoPago(usuario2.getText(), _direccion.getText());
+				}
+				else 
+					JOptionPane.showMessageDialog(null, "Rellene todos los campos");
 			}
 		});
 		buttonsPanel.add(sigButton);

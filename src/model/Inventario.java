@@ -1,5 +1,6 @@
 package model;
 import java.util.ArrayList;
+import java.util.List;
 
 import BBDD.DAOXMLInventario;
 import BBDD.DTOInventario;
@@ -8,12 +9,16 @@ public class Inventario{
   protected ArrayList<Producto> inventario;
   protected ArrayList<InventarioObserver> observers;
   protected DAOXMLInventario dao;
-  protected ArrayList<Carrito> compras; //historial de las compras efectuadas
+  private List<Compra> compras;
   
   public Inventario(){
     this.inventario = new ArrayList<Producto>();
     this.observers = new ArrayList<InventarioObserver>();
-    this.compras = new ArrayList<Carrito>();
+    compras = new ArrayList<Compra>();
+  }
+  
+  public List<Compra> getCompras(){
+	  return compras;
   }
 
   public void eliminar(Producto prod, ArrayList<Producto> productos){
@@ -203,12 +208,7 @@ public void reservar(Producto prod) {
 			  inventario.get(inventario.indexOf(p)).disminuirStock();
 		  else return false;
 	  }
-	  compras.add(carrito);
 	  return true;
-  }
-  
-  public ArrayList<Carrito> getCompras() {
-	  return compras;
   }
   
 

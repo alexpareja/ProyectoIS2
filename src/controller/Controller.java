@@ -1,8 +1,10 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Carrito;
+import model.Compra;
 import model.Inventario;
 import model.InventarioObserver;
 import model.Sesion;
@@ -26,10 +28,6 @@ public class Controller {
 	
 	public boolean comprar(Carrito carrito) {
 		return i.comprar(carrito);
-	}
-	
-	public ArrayList<Carrito> getCompras(){
-		return i.getCompras();
 	}
 	
 	public boolean iniciarSesion(String n, String p) {
