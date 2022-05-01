@@ -1,10 +1,13 @@
 package model;
 
+import javax.swing.ImageIcon;
+
 public class PantalonCorto extends Pantalon {
-  public static final String id="PantCorto";
+  public static final String id="Pantalon Corto";
 
   public PantalonCorto(double precio, boolean activo, int stock, int udsvendidas, int reservados, String talla, int dorsal){
     super(id, precio, activo, stock, udsvendidas, reservados, talla, dorsal);
+    this.foto= new ImageIcon( "resources/icons/pantaloncorto.png");
     
     if (talla == "" || talla == null) throw new IllegalArgumentException("[ERROR] Pantalon: talla no puede ser vacio");
     else 
