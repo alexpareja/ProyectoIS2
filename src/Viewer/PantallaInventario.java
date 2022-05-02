@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -45,6 +46,63 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 			_ctrl.addObserver(this);
 	}
 	
+	private void resumenCompras() {
+		JDialog resumenCompras = new JDialog();
+		JPanel panelCompras = new JPanel(new BorderLayout());
+		resumenCompras.setTitle("Resumen de compras");
+		
+		JLabel infoc = new JLabel("Compras: ", SwingConstants.CENTER);
+		panelCompras.add(infoc, BorderLayout.PAGE_START);
+	
+		JPanel panelDatosCompras = new JPanel();
+		
+		BoxLayout datosCompras= new BoxLayout(panelDatosCompras, BoxLayout.PAGE_AXIS);
+		panelDatosCompras.setLayout(datosCompras);
+		
+		JScrollPane panelScrollCompras = new JScrollPane(panelDatosCompras, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
+		String titColumnaCompras[]  = {"Id", "Método pago", "Cliente", "Unidades vendidas"};
+		
+		DefaultTableModel modeloCompras = new DefaultTableModel();
+		modeloCompras.setColumnIdentifiers(titColumnaCompras);
+		
+		JTable tablaCompras = new JTable(modeloCompras);
+		
+		tablaCompras.setShowHorizontalLines( false );
+	    tablaCompras.setRowSelectionAllowed( false );
+	    tablaCompras.setColumnSelectionAllowed( false );
+	    
+	    tablaCompras.setSelectionForeground( Color.white );
+	    tablaCompras.setSelectionBackground( Color.red );
+	    
+	    for(int j = 0; j < modeloCompras.getRowCount(); j++) {
+			modeloCompras.removeRow(j);
+		}
+	    
+	    for(int i = 0; i < _ctrl.getI().getCompras().size(); i++) {
+	    	String IdCompras = _ctrl.getI().getCompras().get(i).getId();
+	    	String MetodoPago = _ctrl.getI().getCompras().get(i).getPago();
+	    	String Cliente = _ctrl.getI().getCompras().get(i).getCliente();
+	    	String UnidadesVendidas = Integer.toString(_ctrl.getI().getCompras().get(i).getCarrito());
+	    	
+	    	String fila[] = {IdCompras, MetodoPago, Cliente, UnidadesVendidas};
+	    	modeloCompras.addRow(fila);
+	    }
+	    
+	    panelDatosCompras.add(new JScrollPane(tablaCompras, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
+	    panelCompras.add(panelScrollCompras, BorderLayout.CENTER);
+	    
+	    //panelCompras.add(tablaCompras);
+	    resumenCompras.add(panelCompras);
+	    resumenCompras.setPreferredSize(new Dimension(500, 300));
+	    resumenCompras.pack();
+	    resumenCompras.setResizable(false);
+	    resumenCompras.setVisible(true);
+	    
+	}
+	
 	private void initGUI() {
 		
 		
@@ -83,54 +141,76 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		JPanel panelInventario = new JPanel();
 		panelInventario.setLayout(new BorderLayout());
 		
+		//boton resumen compras
+		//JDialog resumenCompras = new JDialog();
+		//JPanel panelCompras = new JPanel(new BorderLayout());
+		//resumenCompras.setTitle("Resumen de compras");
+		
 		JLabel infoi = new JLabel("Inventario: ", SwingConstants.CENTER);
 		panelInventario.add(infoi, BorderLayout.PAGE_START);
 		
 		JPanel panelDatosInventario = new JPanel(); 
 		
+		//boton resumen compras
+		//JPanel panelDatosCompras = new JPanel();
+		
+		
 		BoxLayout datosInventario= new BoxLayout(panelDatosInventario, BoxLayout.PAGE_AXIS);
 		panelDatosInventario.setLayout(datosInventario);
+		
+		//panel resumen compras
+		//BoxLayout datosCompras= new BoxLayout(panelDatosCompras, BoxLayout.PAGE_AXIS);
+		//panelDatosCompras.setLayout(datosCompras);
+		
 		
 		JScrollPane panelScrollDatos = new JScrollPane(panelDatosInventario, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
+		//boton resumen compras
+		//JScrollPane panelScrollCompras = new JScrollPane(panelDatosCompras, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				//JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
 		
 		
 		String titColumnaInv[]  = {"Id", "Detalles","Stock","Precio"};
-		//String titColumnaCompras[]  = {"Id", "Unidades Vendidas"};
+		//boton resumen compras
+		//String titColumnaCompras[]  = {"Id", "Método pago", "Unidades vendidas"};
 		
 		
 		DefaultTableModel modeloInv = new DefaultTableModel();
 		modeloInv.setColumnIdentifiers(titColumnaInv);
+		//boton resumen compras
 		//DefaultTableModel modeloCompras = new DefaultTableModel();
-		//modeloInv.setColumnIdentifiers(titColumnaCompras);
+		//modeloCompras.setColumnIdentifiers(titColumnaCompras);
 		
 		JTable tablaInv = new JTable(modeloInv);
+		//boton resumen compras
 		//JTable tablaCompras = new JTable(modeloCompras); 
 		
 		tablaInv.setShowHorizontalLines( false );
 	    tablaInv.setRowSelectionAllowed( false );
 	    tablaInv.setColumnSelectionAllowed( false );
 	    
-//		    tablaCompras.setShowHorizontalLines( false );
-//		    tablaCompras.setRowSelectionAllowed( false );
-//		    tablaCompras.setColumnSelectionAllowed( false );
+	    //boton resumen compras
+	    //tablaCompras.setShowHorizontalLines( false );
+	    //tablaCompras.setRowSelectionAllowed( false );
+	    //tablaCompras.setColumnSelectionAllowed( false );
 		
 	    tablaInv.setSelectionForeground( Color.white );
 	    tablaInv.setSelectionBackground( Color.red );
-//		    
-//		    tablaCompras.setSelectionForeground( Color.white );
-//		    tablaCompras.setSelectionBackground( Color.red );
+		
+	    //boton resumen compras
+		//tablaCompras.setSelectionForeground( Color.white );
+	    //tablaCompras.setSelectionBackground( Color.red );
 	    
 	    for(int j = 0; j < modeloInv.getRowCount(); j++) {
 			modeloInv.removeRow(j);
-			
 		}
 	    
-//		    for(int j = 0; j < modeloInv.getRowCount(); j++) {
-//				modeloCompras.removeRow(j);
-//				
-//			}
+	    //boton resumen compras
+	    //for(int j = 0; j < modeloInv.getRowCount(); j++) {
+			//modeloCompras.removeRow(j);
+		//}
 	    
 	  
 	    
@@ -143,16 +223,26 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 			modeloInv.addRow(fila);
 	    }
 	    
+	    //boton resumen compras
+	    //for(int i = 0; i < _ctrl.getI().getCompras().size(); i++) {
+	    	//String IdCompras = _ctrl.getI().getCompras().get(i).getId();
+	    	//String MetodoPago = _ctrl.getI().getCompras().get(i).getPago();
+	    	//String UnidadesVendidas = Integer.toString(_ctrl.getI().getCompras().get(i).getCarrito().getProductos().size());
+	    	//String fila[] = {IdCompras, MetodoPago, UnidadesVendidas};
+	    	//modeloCompras.addRow(fila);
+	    //}
+	    
 	   
-	    
-	 
-	    
 		
 	    panelDatosInventario.add(tablaInv);
+	    //boton resumen compras
+	    //panelDatosCompras.add(tablaCompras);
 		
 		
 		
 		panelInventario.add(panelScrollDatos, BorderLayout.CENTER);
+		//boton resumen compras
+		//panelCompras.add(panelScrollCompras, BorderLayout.CENTER);
 
 	
 		JPanel barraInv = new JPanel();
@@ -169,15 +259,20 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		
 		barraInv.add(cancel);
 		
+		
+		//HU Resumen de compras
 		JButton Bcompras = new JButton("Resumen Compras");
 		
 		Bcompras.addActionListener(new ActionListener(){  
-			public void actionPerformed(ActionEvent e){		
-				JDialog compras = new JDialog();
-				compras.setVisible(true);
-				JPanel panelcompras= new JPanel();
-				//panelcompras.add(tablaCompras);
-				compras.add(panelcompras);
+			public void actionPerformed(ActionEvent e){	
+				inventario.setVisible(false);
+				resumenCompras();
+				//panelCompras.add(tablaCompras);
+				
+				//compras.setPreferredSize(new Dimension(500, 300));
+				//compras.pack();
+				//compras.setResizable(false);
+				//compras.setVisible(true);
 			}
 			});
 		

@@ -59,10 +59,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			_ctrl.addObserverUsuario(this);
 	}
 	
-	//HU Resumen de compras
-	private void resumenCompras() {
-		String[] _colNames = {"Compras", "Método pago", "Detalles"};
-	}
 	
 	//HU Añadir método de pago
 	private void anadirMetodoPago(String nombre, String direccion) {
@@ -93,10 +89,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		s.add(efectivo);
 		s.clearSelection();
 		
-		
-		/*JCheckBox tarjeta = new JCheckBox("Tarjeta", false);
-		JCheckBox paypal = new JCheckBox("Paypal", false);
-		JCheckBox efectivo = new JCheckBox("Efectivo", false);*/
 		buttonsPagoPanel.add(tarjeta);
 		buttonsPagoPanel.add(paypal);
 		buttonsPagoPanel.add(efectivo);
@@ -142,19 +134,27 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				
 				if (efectivo.isSelected()) {
 					pago.setVisible(false);
-					_ctrl.getI().getCompras().add(new Compra("efectivo", _ctrl.getC(), _ctrl.getI().getCompras().size(), nombre, direccion));
+					_ctrl.getI().getCompras().add(new Compra("efectivo",_ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
 					_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
 					_ctrl.getC().reset();//se vacia el carrito
 					JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
 				}
-				else if (tarjeta.isSelected() || paypal.isSelected()) {
-					String p;
-					if (tarjeta.isSelected()) p = "tarjeta";
-					else p = "paypal";
-					
+				else if (paypal.isSelected()) {
 					if (!_cuenta.getText().equals("") && !_titular.getText().equals("")) {
 						pago.setVisible(false);
-						_ctrl.getI().getCompras().add(new Compra(p, _ctrl.getC(), _ctrl.getI().getCompras().size(), nombre, direccion));
+						_ctrl.getI().getCompras().add(new Compra("paypal", _ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
+						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
+						_ctrl.getC().reset();//se vacia el carrito
+						JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+					}
+				}
+				else if (tarjeta.isSelected()) {
+					if (!_cuenta.getText().equals("") && !_titular.getText().equals("")) {
+						pago.setVisible(false);
+						_ctrl.getI().getCompras().add(new Compra("tarjeta",_ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
 						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
 						_ctrl.getC().reset();//se vacia el carrito
 						JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
@@ -216,8 +216,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		else viewsPanel.add(usuario2);
 		
 		
-		
-		
 		viewsPanel.add(new JLabel("Introduzca su dirección: "));
 		viewsPanel.add(_direccion);
 		
@@ -255,9 +253,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 	}
 	
 	private void initGUI() {
-        
-		
-		
 		ImageIcon iUsuario = new ImageIcon("resources/icons/user.png");
 		ImageIcon iCarrito = new ImageIcon("resources/icons/carro.png");
 		ImageIcon iInventario = new ImageIcon("resources/icons/inventario.png");
