@@ -128,7 +128,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			public void actionPerformed(ActionEvent e) {
 				if (efectivo.isSelected()) {
 					pago.setVisible(false);
-					_ctrl.getI().getCompras().add(new Compra("efectivo",_ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
+					_ctrl.getI().getCompras().add(new Compra("efectivo", _ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
 					_ctrl.comprar(_ctrl.getC());
 					_ctrl.getC().reset();
 					JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
@@ -155,7 +155,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		pago.setResizable(false);
 		pago.setVisible(true);
 	}
-	
 	
 	//HU Comprar
 	private void comprarDialog() {
@@ -243,7 +242,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		Busuario.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){
 				
-			
 				JDialog usuario = new JDialog();
 				JPanel panelUsuario = new JPanel(new BorderLayout());
 				
@@ -449,16 +447,12 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			    panelDatos. add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
 				
-				
 			/*	
-				
 				for(int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
 					JLabel l = new JLabel(_ctrl.getC().getProductos().get(i).mostrarEnCarrito());
 					panelDatos.add(l);
 					
 				}
-				
-				
 				*/
 				
 				panelCarrito.add(panelScrollDatos, BorderLayout.CENTER);
@@ -512,10 +506,12 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			}
 		});
 		
-		
-		this.add(Bcarrito);	
-		this.add(Busuario);
-		this.add(Binventario);
+		Bcarrito.setFocusable(false);	
+		Busuario.setFocusable(false);	
+		Binventario.setFocusable(false);	
+		add(Bcarrito);	
+		add(Busuario);
+		add(Binventario);
 		
 		JPanel infoUsu = new JPanel(new GridLayout(3,2));
 		
@@ -535,7 +531,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			infoUsu.add(rol2);
 		}
 		
-		this.add(infoUsu);
+		add(infoUsu);
 	}
 
 	/*private void run_sim(int n) {
@@ -560,29 +556,20 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 	}*/
 
 	@Override
-	public void onRegistroTienda(ArrayList<Producto> inventario) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onRegistroTienda(ArrayList<Producto> inventario) {}
 
 	@Override
-	public void onActualizaTienda(ArrayList<Producto> inventario) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onActualizaTienda(ArrayList<Producto> inventario) {}
 
 	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {
-
-	}
+	public void onCambiarPrecio(ArrayList<Producto> inventario) {}
 
 	@Override
 	public void iniciaSesion(Usuario userActual) {
 		usuario2.setText(userActual.getUsuario());
-		if(userActual.esDueno())rol2.setText("Vendedor");
+		if(userActual.esDueno()) rol2.setText("Vendedor");
 		else rol2.setText("Cliente");
-		this.user=userActual;
-		 
+		user = userActual;	 
 	}
 
 }
