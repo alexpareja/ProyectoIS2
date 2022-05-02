@@ -11,14 +11,14 @@ import model.InventarioObserver;
 import model.Producto;
 
 public class PantallaTienda extends JPanel implements InventarioObserver {
+	
 	private static final long serialVersionUID = 1L;
 	private Controller _ctrl;
 	
-	
 	PantallaTienda(Controller ctrl) {
-			_ctrl = ctrl;
-			initGUI();
-			_ctrl.addObserver(this);
+		_ctrl = ctrl;
+		initGUI();
+		_ctrl.addObserver(this);
 	}
 	
 	private void initGUI() {
@@ -34,31 +34,27 @@ public class PantallaTienda extends JPanel implements InventarioObserver {
 			i++;
 		}
 		
-		for(int j = 0; j < paneltienda.size(); j++) this.add(paneltienda.get(j));
-		 
+		for(int j = 0; j < paneltienda.size(); j++) 
+			add(paneltienda.get(j));
 	}
 
 
 	@Override
 	public void onRegistroTienda(ArrayList<Producto> inventario) {
 		_ctrl.getT().actualizaTienda(inventario);
-		this.removeAll();
-		this.updateUI();
+		removeAll();
+		updateUI();
 		initGUI();	
-		
 	}
 
 	@Override
 	public void onActualizaTienda(ArrayList<Producto> inventario) {
-		this.removeAll();
-		this.updateUI();
+		removeAll();
+		updateUI();
 		initGUI();	
 	}
 
 	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onCambiarPrecio(ArrayList<Producto> inventario) {}
 
 }

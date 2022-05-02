@@ -20,12 +20,11 @@ import model.InventarioObserver;
 import model.Producto;
 
 public class ArticuloPanel extends JPanel implements InventarioObserver{
+	
 	private static final long serialVersionUID = 1L;
 	private Producto _prod;
 	private Controller _ctrl;
 
-	
-	
 	public ArticuloPanel(Controller ctrl, Producto prod) {
 		_prod = prod;
 		initGUI();
@@ -33,15 +32,12 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		_ctrl.addObserver(this);
 	}
 	
-	
 	private void initGUI() {
-
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 		String precio = Double.toString(_prod.getPrecio());
 		JLabel titulo = new JLabel(_prod.getId());
 		JLabel precioL = new JLabel(precio + " euros");
-		
 	
 		JLabel imagen = new JLabel(" ");
 		imagen.setIcon(_prod.getFoto());
@@ -51,8 +47,8 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		precioL.setAlignmentX(CENTER_ALIGNMENT);
 		imagen.setAlignmentX(CENTER_ALIGNMENT);
 		
-		this.add(titulo);
-		this.add(imagen);
+		add(titulo);
+		add(imagen);
 		
 		String[] info = _prod.mostrar();
 		JPanel panelInfo = new JPanel(new GridLayout(0,2));
@@ -61,7 +57,7 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 				a.setHorizontalAlignment(JLabel.CENTER);
 				panelInfo.add(a);	
 		}
-		this.add(panelInfo);
+		add(panelInfo);
 		
 		/*
 		JComboBox<String> tll = new JComboBox<String>();
@@ -102,6 +98,7 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		});
 		comprar.setAlignmentX(LEFT_ALIGNMENT);
 		comprar.setBorder(raisedBorder);
+		comprar.setFocusable(false);
 		options.add(comprar);
 		
 		JButton reservar = new JButton("Reservar");
@@ -115,6 +112,7 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		});
 		reservar.setAlignmentX(RIGHT_ALIGNMENT);
 		reservar.setBorder(raisedBorder);
+		reservar.setFocusable(false);
 		options.add(reservar);
 		
 		add(options);

@@ -1,6 +1,7 @@
 package Viewer;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -20,11 +22,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
@@ -55,7 +57,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 	}
 	
 	
-	//HU Añadir método de pago
+	//HU Anadir metodo de pago
 	private void anadirMetodoPago(String nombre, String direccion) {
 		JDialog pago = new JDialog();
 		JPanel mainPanel = new JPanel(new BorderLayout());
@@ -76,9 +78,12 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		mainPanel.add(buttonsPagoPanel);
 		
 		ButtonGroup s = new ButtonGroup();
-		JRadioButton tarjeta = new JRadioButton("Tarjeta");
-		JRadioButton paypal = new JRadioButton("Paypal");
-		JRadioButton efectivo = new JRadioButton("Efectivo");
+		JButton tarjeta = new JButton("Tarjeta");
+		JButton paypal = new JButton("Paypal");
+		JButton efectivo = new JButton("Efectivo");
+		configButton(tarjeta);
+		configButton(paypal);
+		configButton(efectivo);
 		s.add(tarjeta);
 		s.add(paypal);
 		s.add(efectivo);
@@ -114,6 +119,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		mainPanel.add(buttonsPanel);
 		
 		JButton cancelButton = new JButton("Cancelar");
+		configButton(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -124,6 +130,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		buttonsPanel.add(cancelButton);
 		
 		JButton okButton = new JButton("Pagar");
+		configButton(okButton);
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (efectivo.isSelected()) {
@@ -194,6 +201,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		viewsPanel.add(_direccion);
 		
 		JButton cancelButton = new JButton("Cancelar");
+		configButton(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -204,6 +212,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		buttonsPanel.add(cancelButton);
 		
 		JButton sigButton = new JButton("Siguiente");
+		configButton(sigButton);
 		sigButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (usuario2.getText().equals("invitado") && !_nombre.getText().equals("") && !_direccion.getText().equals("")) {
@@ -278,6 +287,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				JPanel abajo = new JPanel(new BorderLayout());
 				
 				JButton cancel = new JButton("Salir");
+				configButton(cancel);
 				
 				cancel.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){
@@ -287,6 +297,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				abajo.add(cancel, BorderLayout.WEST);
 				
 				JButton aceptar = new JButton("Aceptar");
+				configButton(aceptar);
 				
 				aceptar.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){		
@@ -300,7 +311,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				abajo.add(aceptar, BorderLayout.EAST);
 				
 				JButton registrarse = new JButton("Registrate");
-				
+				configButton(registrarse);
 				registrarse.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){		
 						usuario.setVisible(false);
@@ -345,6 +356,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						JPanel abajo2 = new JPanel(new BorderLayout());
 						
 						JButton cancel2 = new JButton("Salir");
+						configButton(cancel2);
 						
 						cancel2.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){
@@ -354,6 +366,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						abajo2.add(cancel2, BorderLayout.WEST);
 						
 						JButton aceptarC = new JButton("Registra cliente");
+						configButton(aceptarC);
 						
 						aceptarC.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){		
@@ -365,6 +378,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 							}
 						});
 						JButton aceptarV = new JButton("Registra vendedor");
+						configButton(aceptarV);
 						
 						aceptarV.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){		
@@ -466,6 +480,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				abajo.add(numtotal);
 				
 				JButton cancel = new JButton("Salir");
+				configButton(cancel);
 				
 				cancel.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){
@@ -476,11 +491,12 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				abajo.add(cancel);
 				
 				JButton aceptar = new JButton("Comprar");
+				configButton(aceptar);
 				
 				aceptar.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){		
 						carrito.setVisible(false); 
-						if (_ctrl.getC().carritoVacio()) JOptionPane.showMessageDialog(null, "El carrito está vacío");
+						if (_ctrl.getC().carritoVacio()) JOptionPane.showMessageDialog(null, "El carrito esta vacio");
 						else comprarDialog();
 					}
 				});
@@ -534,6 +550,12 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		add(infoUsu);
 	}
 
+	private void configButton(JButton b) {
+		b.setFocusable(false);
+		//Border raisedBorder = BorderFactory.createRaisedBevelBorder();
+		//b.setBorder(raisedBorder);
+	}
+	
 	/*private void run_sim(int n) {
 		if (n > 0) {
 			try {

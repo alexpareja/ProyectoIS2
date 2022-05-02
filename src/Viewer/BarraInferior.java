@@ -25,8 +25,10 @@ public class BarraInferior extends JPanel implements InventarioObserver {
 	}
 	private void initGUI() {
 		this.setLayout( new BorderLayout());
-		izq.setText("<-");
-		dcha.setText("->");
+		izq.setText("<=");
+		dcha.setText("=>");
+		izq.setFocusable(false);
+		dcha.setFocusable(false);
 		izq.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){		
 				_ctrl.getT().desplazaIzq();
