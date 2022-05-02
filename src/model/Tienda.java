@@ -38,6 +38,11 @@ public class Tienda {
   //actualiza los cambios realizados en el inventario
   public void actualizaTienda(ArrayList<Producto> inventario) {
 	  this.productosTienda=inventario;
+	  for(int i=0;i<productosTienda.size();i++) {
+		  if(!productosTienda.get(i).getActivo()) {
+			  productosTienda.remove(i);
+		  }
+	  }
 	  
   }
   
