@@ -1,43 +1,43 @@
 package model;
 
-
 import BBDD.DAOXMLUsuarios;
 import BBDD.DTOUsuarios;
 
-public class Sesion {
+public class Sesion { 
+	
 	private DAOXMLUsuarios dao;
 	private Usuario userActual;
 	protected UsuariosObserver observer;
 	
 	public Sesion() {
-		userActual= new Usuario("invitado","",false,"invitado@ucm.es");
+		userActual = new Usuario("invitado","",false,"invitado@ucm.es");
 	}
 	
 	public boolean iniciaSesion(String n, String p) {
-		this.dao=new DAOXMLUsuarios();
+		dao = new DAOXMLUsuarios();
 		DTOUsuarios dto=dao.cargarUsuario(n, p);
-		if(dto!=null) {	
-			this.userActual=new Usuario(dto.getUsuario(),dto.getContrasena(),dto.isDueno(),dto.getCorreo());
-			this.observer.iniciaSesion(userActual);
+		if(dto != null) {	
+			userActual = new Usuario(dto.getUsuario(),dto.getContrasena(),dto.isDueno(),dto.getCorreo());
+			observer.iniciaSesion(userActual);
 			return true;
 		}
 		else return false;
 	}
 	
 	public void registrarse(String n, String p, String correo) {
-		this.dao=new DAOXMLUsuarios();
-		DTOUsuarios dto=new DTOUsuarios(n,p,false,correo);
-		this.userActual=new Usuario(n,p,false,correo);
+		dao = new DAOXMLUsuarios();
+		DTOUsuarios dto = new DTOUsuarios(n,p,false,correo);
+		userActual = new Usuario(n,p,false,correo);
 		dao.guardarUsuarios(dto);
-		this.observer.iniciaSesion(userActual);
+		observer.iniciaSesion(userActual);
 	}
 	
 	public void registrarseVendedor(String n, String p, String correo) {
-		this.dao=new DAOXMLUsuarios();
-		DTOUsuarios dto=new DTOUsuarios(n,p,true,correo);
-		this.userActual=new Usuario(n,p,true,correo);
+		dao = new DAOXMLUsuarios();
+		DTOUsuarios dto = new DTOUsuarios(n,p,true,correo);
+		userActual = new Usuario(n,p,true,correo);
 		dao.guardarUsuarios(dto);
-		this.observer.iniciaSesion(userActual);
+		observer.iniciaSesion(userActual);
 	}
 	
 	public boolean esDueno() {
@@ -45,10 +45,10 @@ public class Sesion {
 	}
 	
 	public void addObserver(UsuariosObserver o) {
-		this.observer=o;
+		observer = o;
 		o.iniciaSesion(userActual);
 	}
 	
-	public Usuario getUsuarioActual() {return this.userActual;}
+	public Usuario getUsuarioActual() {return userActual;}
 	
 }

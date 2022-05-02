@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import controller.Controller;
@@ -86,26 +87,42 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		*/
 		
 	
+		JPanel options = new JPanel();
+		options.setLayout(new BoxLayout(options, BoxLayout.LINE_AXIS));
+		Border raisedBorder = BorderFactory.createRaisedBevelBorder();
 		
-		JButton comprar = new JButton("Anadir a carrito");
-		
+		JButton comprar = new JButton("Anadir al carrito");
 		comprar.setMinimumSize(new Dimension(150,20));
 		comprar.setMaximumSize(new Dimension(150,20));
 		comprar.setPreferredSize(new Dimension(150,20));
-		
 		comprar.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){
 				_ctrl.getC().anadirCarrito(_prod);
 			}
 		});
-		comprar.setAlignmentX(CENTER_ALIGNMENT);
-		this.add(comprar);
+		comprar.setAlignmentX(LEFT_ALIGNMENT);
+		comprar.setBorder(raisedBorder);
+		options.add(comprar);
 		
+		JButton reservar = new JButton("Reservar");
+		reservar.setMinimumSize(new Dimension(100,20));
+		reservar.setMaximumSize(new Dimension(100,20));
+		reservar.setPreferredSize(new Dimension(100,20));
+		reservar.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e){
+				_ctrl.getI().reservar(_prod);
+			}
+		});
+		reservar.setAlignmentX(RIGHT_ALIGNMENT);
+		reservar.setBorder(raisedBorder);
+		options.add(reservar);
 		
-		this.setMinimumSize(new Dimension(100,200));
-		this.setMaximumSize(new Dimension(200,200));
-		this.setPreferredSize(new Dimension(150,200));
-		this.setBorder(BorderFactory.createTitledBorder(
+		add(options);
+		
+		setMinimumSize(new Dimension(100,200));
+		setMaximumSize(new Dimension(200,200));
+		setPreferredSize(new Dimension(150,200));
+		setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Color.black, 2),null ,TitledBorder.LEFT, TitledBorder.TOP));
 	
 	}
