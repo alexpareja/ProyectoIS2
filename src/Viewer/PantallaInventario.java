@@ -122,14 +122,14 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		}
 		
 		JComboBox<String> pant = new JComboBox<String>();
-		String[] pop= {"PantChandal" ,"PantCorto"}; //Hacer tallas disponibles en cada articulo
+		String[] pop= {"Pantalon Chandal" ,"Pantalon Corto"}; //Hacer tallas disponibles en cada articulo
 		for(int i = 0; i < pop.length; i++) {
 			pant.addItem(pop[i]);
 		}
 		
 
 		JComboBox<String> cyc = new JComboBox<String>();
-		String[] camcon= {"CamLocal" ,"CamVisitante","ConLocal", "ConVisitante"}; //Hacer tallas disponibles en cada articulo
+		String[] camcon= {"Camiseta Local" ,"Camiseta Visitante","Conjunto Local", "Conjunto Visitante"}; //Hacer tallas disponibles en cada articulo
 		for(int i = 0; i < camcon.length; i++) {
 			cyc.addItem(camcon[i]);
 		}

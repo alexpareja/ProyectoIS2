@@ -42,21 +42,6 @@ public class Tienda {
   }
   
   
-//mostrar página de productos de la tienda
-  public void mostrarTienda() {
-	  for (int i = this.paginaAct * this.productosPorPagina; i < this.paginaAct * this.productosPorPagina
-		        + this.productosPorPagina; i++) {
-		      if (i < productosTienda.size()) {
-		      int pos = i + 1;
-		      System.out.println("N"+pos+productosTienda.get(i).mostrar());
-		      }
-		    }
-	  
-	  /*  for(int j = 0; j < this.listaObserver.size(); j++) {
-		this.listaObserver.get(j).onDesplazaDer();
-	}*/
-  }
-  
 //desplaza página a la izquierda
   public void desplazaIzq() {
 
@@ -66,11 +51,6 @@ public class Tienda {
     for(int j = 0; j < io.size(); j++) {
 		io.get(j).onActualizaTienda(productosTienda);
 	}
-    this.mostrarTienda();
-    
-    /*  for(int j = 0; j < this.listaObserver.size(); j++) {
-	this.listaObserver.get(j).onDesplazaDer();
-	}*/
   }
   
 //desplaza página a la derecha
@@ -82,12 +62,6 @@ public class Tienda {
     for(int j = 0; j < io.size(); j++) {
 		io.get(j).onActualizaTienda(productosTienda);
 	}
-  
-    this.mostrarTienda();
-    //notifica a los observadores que se desplaza
-  /*  for(int j = 0; j < this.listaObserver.size(); j++) {
-		this.listaObserver.get(j).onDesplazaDer();
-	}*/
   }
   
   public void addObserver(InventarioObserver o) {

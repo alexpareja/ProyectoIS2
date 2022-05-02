@@ -41,7 +41,10 @@ public class PantallaTienda extends JPanel implements InventarioObserver {
 
 	@Override
 	public void onRegistroTienda(ArrayList<Producto> inventario) {
-		
+		_ctrl.getT().actualizaTienda(inventario);
+		this.removeAll();
+		this.updateUI();
+		initGUI();	
 		
 	}
 

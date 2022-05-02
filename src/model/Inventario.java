@@ -52,6 +52,11 @@ public class Inventario{
 
   public void add(Producto prod){
     if (!inventario.contains(prod))inventario.add(prod);
+    
+    for(int j = 0; j < observers.size(); j++) {
+    	observers.get(j).onRegistroTienda(inventario);
+	}
+    
     this.guardar();
   }
   
@@ -59,6 +64,7 @@ public class Inventario{
     for (Producto p: prod) 
       if (!inventario.contains(p))
         inventario.add(p);
+    
     
     this.guardar();
   }

@@ -18,8 +18,6 @@ public class Main {
     Controller ctrl=new Controller(inventario, carrito, tienda);
   
     MainWindow ventana = new MainWindow(ctrl);
-    
-    tienda.mostrarTienda();
 
     inventario.guardar(); //hacer el guardado cuando se salga de la app
  }
