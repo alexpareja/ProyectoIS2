@@ -290,7 +290,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 								
 								Producto a;
 								try {
-									if(cyc.getSelectedItem().equals("CamLocal")) {
+									if(cyc.getSelectedItem().equals("Camiseta Local")) {
 										 a = new CamisetaLocal( 
 												Double.parseDouble(cp4.getText()),
 												publicado, 
@@ -299,7 +299,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 												tll.getSelectedItem().toString(),cp2.getText(),
 												Integer.parseInt(cp3.getText().toString()));
 									} 
-									else if(cyc.getSelectedItem().equals("CamVisitante")) {
+									else if(cyc.getSelectedItem().equals("Camiseta Visitante")) {
 										a = new CamisetaVisitante( 
 												Double.parseDouble(cp4.getText()),
 												publicado, 
@@ -308,7 +308,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 												tll.getSelectedItem().toString(),cp2.getText(),
 												Integer.parseInt(cp3.getText().toString()));
 									} 
-									else if(cyc.getSelectedItem().equals("ConLocal")) {
+									else if(cyc.getSelectedItem().equals("Conjunto Local")) {
 										a = new ConjuntoLocal( 
 												Double.parseDouble(cp4.getText()),
 												publicado, 
@@ -408,7 +408,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 								Producto a;
 								try {
 								
-								if(pant.getSelectedItem().equals("PantCorto")) {
+								if(pant.getSelectedItem().equals("Pantalon Corto")) {
 									 a = new PantalonCorto( 
 											Double.parseDouble(cp4.getText()),
 											publicado, 
@@ -527,7 +527,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 											cp3.getText(), cp4.getText(), cp5.getText());
 									        _ctrl.getI().add(a);
 									        JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
-												      "Confirmaci�n", JOptionPane.INFORMATION_MESSAGE);
+												      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
 									       
 									 
 								} catch(Exception eror) {

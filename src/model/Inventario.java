@@ -113,37 +113,37 @@ public class Inventario{
 		 
 		 switch(a.get(i).getId()) {
 		 
-		 case "CamLocal":
+		 case "Camiseta Local":
 		 inventario.add(new CamisetaLocal(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
 		 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
 		 
 		 break;
 		 
-		 case "CamVisitante":
+		 case "Camiseta Visitante":
 			 inventario.add(new CamisetaVisitante(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
 			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
 		 
 		 break;
 		 
-		 case "ConVisitante":
+		 case "Conjunto Visitante":
 			 inventario.add(new ConjuntoVisitante(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
 			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
 		 
 		 break;
 		 
-		 case "ConLocal":
+		 case "Conjunto Local":
 			 inventario.add(new ConjuntoLocal(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
 			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getNombre(),a.get(i).getDorsal()));
 		 
 		 break;
 		 
-		 case "PantChandal":
+		 case "Pantalon Chandal":
 			 inventario.add(new PantalonChandal(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
 			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getDorsal()));
 		 
 		 break;
 		 
-		 case "PantCorto":
+		 case "Pantalon Corto":
 			 inventario.add(new PantalonCorto(a.get(i).getPrecio(),a.get(i).isActivo(),a.get(i).getStock(),
 			 a.get(i).getUdsvendidas(),a.get(i).getReservados(),a.get(i).getTalla(),a.get(i).getDorsal()));
 		 

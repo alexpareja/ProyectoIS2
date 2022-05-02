@@ -43,7 +43,7 @@ public class DAOXMLInventario{
 	      for(int i = 0; i < inv.size(); i++) {
 	    	  Element e = null;
 	    	  switch(inv.get(i).getId()) {
-	    	  case "CamLocal":
+	    	  case "Camiseta Local":
 	    		   	 e = doc.createElement("camiseta");
 	    			 
 	    			 Element nom=doc.createElement("nombre");
@@ -83,7 +83,7 @@ public class DAOXMLInventario{
 	    			 udsRes.setTextContent(String.valueOf(inv.get(i).getReservados()));
 	    			 e.appendChild(udsRes);
 	    		 break;
-	    	  case "CamVisitante":
+	    	  case "Camiseta Visitante":
 	    		  	 e = doc.createElement("camiseta");
 	    		   	 e.setAttribute("id", inv.get(i).getId());
 	    			 nom = doc.createElement("nombre");
@@ -121,7 +121,7 @@ public class DAOXMLInventario{
 	    			 udsRes.setTextContent(String.valueOf(inv.get(i).getReservados()));
 	    			 e.appendChild(udsRes);
 	    		 break;
-	    	  case "ConVisitante":
+	    	  case "Conjunto Visitante":
 	    		  	 e = doc.createElement("conjunto");
 	    		   	 e.setAttribute("id", inv.get(i).getId());
 	    			 nom = doc.createElement("nombre");
@@ -159,7 +159,7 @@ public class DAOXMLInventario{
 	    			 udsRes.setTextContent(String.valueOf(inv.get(i).getReservados()));
 	    			 e.appendChild(udsRes);
 	    		 break;
-	    	  case "ConLocal":
+	    	  case "Conjunto Local":
 	    		  	 e = doc.createElement("conjunto");
 	    		   	 e.setAttribute("id", inv.get(i).getId());
 	    			 nom=doc.createElement("nombre");
@@ -196,7 +196,7 @@ public class DAOXMLInventario{
 	    			 udsRes = doc.createElement("udsReservadas");
 	    			 udsRes.setTextContent(String.valueOf(inv.get(i).getReservados()));
 	    		 break;
-	    	  case "PantChandal":
+	    	  case "Pantalon Chandal":
 	    		  	 e = doc.createElement("pantalon");
 	    		   	 e.setAttribute("id", inv.get(i).getId());
 	    			 
@@ -231,7 +231,7 @@ public class DAOXMLInventario{
 	    			 udsRes.setTextContent(String.valueOf(inv.get(i).getReservados()));
 	    			 e.appendChild(udsRes);
 	    		 break;
-	    	  case "PantCorto":
+	    	  case "Pantalon Corto":
 	    		  	 e = doc.createElement("pantalon");
 	    		   	 e.setAttribute("id",inv.get(i).getId());
 	    			 
