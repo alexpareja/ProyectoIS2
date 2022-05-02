@@ -1,6 +1,7 @@
 package BBDD;
 
 public class DTOUsuarios {
+	
 	private String usuario;
     private String contrasena;
     private boolean dueno;
@@ -17,17 +18,15 @@ public class DTOUsuarios {
     	this.correo=cor;
     }
     
-	public String getUsuario() {
-		return usuario;
-	}
-	public String getContrasena() {
-		return contrasena;
-	}
-
 	public boolean isDueno() {
 		return dueno;
 	}
+	
 	public String getCorreo() {
 		return correo;
 	}
+	
+	public String getUsuario() {return usuario;}
+	public String getContrasena() {return contrasena;}
+	
 }

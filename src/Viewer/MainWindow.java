@@ -29,7 +29,6 @@ public class MainWindow extends JFrame{
 		
 		PantallaTienda tienda = new PantallaTienda(_ctrl);
 		
-		
 		//tienda.setLayout(new BoxLayout(tienda, BoxLayout.LINE_AXIS));	
 		
 		mainPanel.add(tienda, BorderLayout.CENTER);

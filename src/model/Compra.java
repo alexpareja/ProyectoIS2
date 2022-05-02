@@ -1,6 +1,7 @@
 package model;
 
 public class Compra {
+	
 	private String pago;
 	private int carrito;
 	private String id;

@@ -16,20 +16,12 @@ public class Sesion {
 	public boolean iniciaSesion(String n, String p) {
 		this.dao=new DAOXMLUsuarios();
 		DTOUsuarios dto=dao.cargarUsuario(n, p);
-		if(dto!=null)
-		{
-			
-		this.userActual=new Usuario(dto.getUsuario(),dto.getContrasena(),dto.isDueno(),dto.getCorreo());
-		this.observer.iniciaSesion(userActual);
-		
-		return true;
-		
+		if(dto!=null) {	
+			this.userActual=new Usuario(dto.getUsuario(),dto.getContrasena(),dto.isDueno(),dto.getCorreo());
+			this.observer.iniciaSesion(userActual);
+			return true;
 		}
-		else {
-			return false;
-		}
-		
-		
+		else return false;
 	}
 	
 	public void registrarse(String n, String p, String correo) {
@@ -48,18 +40,15 @@ public class Sesion {
 		this.observer.iniciaSesion(userActual);
 	}
 	
-	public Usuario getUsuarioActual() {
-		return this.userActual;
-	}
-	
 	public boolean esDueno() {
 		return userActual.esDueno();
 	}
 	
-	
 	public void addObserver(UsuariosObserver o) {
-		  this.observer=o;
-		   o.iniciaSesion(userActual);
-			
-	  }
+		this.observer=o;
+		o.iniciaSesion(userActual);
+	}
+	
+	public Usuario getUsuarioActual() {return this.userActual;}
+	
 }
