@@ -332,7 +332,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						usuario.setVisible(false);
 						char[] arrayC = contra.getPassword();
 						String pass = new String(arrayC); 
-						if(!_ctrl.iniciarSesion(id.getText(), pass))
+						if(!_ctrl.getS().iniciaSesion(id.getText(), pass))
 						{
 							JOptionPane.showMessageDialog(null, "Usuario no encontrado",
 								      "Error", JOptionPane.ERROR_MESSAGE);
@@ -418,7 +418,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 								String pass = new String(arrayC); 
 								
 								
-								_ctrl.registrarse(id2.getText(), pass,corr.getText());
+								_ctrl.getS().registrarse(id2.getText(), pass,corr.getText());
 								
 						
 							}
@@ -431,7 +431,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 								char[] arrayC = contra2.getPassword();
 								String pass = new String(arrayC); 
 								
-								_ctrl.registrarseVendedor(id2.getText(), pass,corr.getText());
+								_ctrl.getS().registrarseVendedor(id2.getText(), pass,corr.getText());
 							}
 							});
 						

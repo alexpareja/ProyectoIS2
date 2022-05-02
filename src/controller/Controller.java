@@ -30,20 +30,6 @@ public class Controller {
 		return i.comprar(carrito);
 	}
 	
-	public boolean iniciarSesion(String n, String p) {
-		
-		return s.iniciaSesion(n, p);
-	}
-	
-	public void registrarse(String n, String p,String correo) {
-		
-		this.s.registrarse(n, p,correo);
-	}
-	
-	public void registrarseVendedor(String n, String p,String correo) {
-		
-		this.s.registrarseVendedor(n, p, correo);
-	}
 	public void addObserver(InventarioObserver o) {
 		i.addObserver(o);
 		t.addObserver(o);
@@ -74,8 +60,6 @@ public class Controller {
 	public void addObserverUsuario(UsuariosObserver o) {
 		s.addObserver(o);
 		
-	}
-	
-	
+	}	
 	
 }
