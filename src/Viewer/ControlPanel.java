@@ -604,13 +604,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			infoUsu.add(rol2);
 		}
 		
-		
-		JLabel efectivo1 = new JLabel("Dinero disponible:    ");
-		infoUsu.add(efectivo1);
-		JLabel efectivo2 = new JLabel("30 pavos");
-		infoUsu.add(efectivo2);
-		
-		
 		this.add(infoUsu);
 	}
 

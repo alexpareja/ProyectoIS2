@@ -46,7 +46,7 @@ public class MainWindow extends JFrame{
 		*/
 
 		this.setTitle("Tienda de articulos de futbol");
-		this.setPreferredSize(new Dimension(900, 700));
+		this.setPreferredSize(new Dimension(950, 750));
 		this.pack();
 		this.setVisible(true);
 	}
