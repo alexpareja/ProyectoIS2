@@ -122,14 +122,14 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		}
 		
 		JComboBox<String> pant = new JComboBox<String>();
-		String[] pop= {"Pantalon Chandal" ,"Pantalon Corto"}; //Hacer tallas disponibles en cada articulo
+		String[] pop= {"PantChandal" ,"PantCorto"}; //Hacer tallas disponibles en cada articulo
 		for(int i = 0; i < pop.length; i++) {
 			pant.addItem(pop[i]);
 		}
 		
 
 		JComboBox<String> cyc = new JComboBox<String>();
-		String[] camcon= {"Camiseta Local" ,"Camiseta Visitante","Conjunto Local", "Conjunto Visitante"}; //Hacer tallas disponibles en cada articulo
+		String[] camcon= {"CamLocal" ,"CamVisitante","ConLocal", "ConVisitante"}; //Hacer tallas disponibles en cada articulo
 		for(int i = 0; i < camcon.length; i++) {
 			cyc.addItem(camcon[i]);
 		}
@@ -296,7 +296,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 								
 								Producto a;
 								try {
-									if(cyc.getSelectedItem().equals("Camiseta Local")) {
+									if(cyc.getSelectedItem().equals("CamLocal")) {
 										 a = new CamisetaLocal( 
 												Double.parseDouble(cp4.getText()),
 												publicado, 
@@ -305,7 +305,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 												tll.getSelectedItem().toString(),cp2.getText(),
 												Integer.parseInt(cp3.getText().toString()));
 									} 
-									else if(cyc.getSelectedItem().equals("Camiseta Visitante")) {
+									else if(cyc.getSelectedItem().equals("CamVisitante")) {
 										a = new CamisetaVisitante( 
 												Double.parseDouble(cp4.getText()),
 												publicado, 
@@ -314,7 +314,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 												tll.getSelectedItem().toString(),cp2.getText(),
 												Integer.parseInt(cp3.getText().toString()));
 									} 
-									else if(cyc.getSelectedItem().equals("Conjunto Local")) {
+									else if(cyc.getSelectedItem().equals("ConLocal")) {
 										a = new ConjuntoLocal( 
 												Double.parseDouble(cp4.getText()),
 												publicado, 
@@ -421,7 +421,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 								Producto a;
 								try {
 								
-								if(pant.getSelectedItem().equals("Pantalon Corto")) {
+								if(pant.getSelectedItem().equals("PantCorto")) {
 									 a = new PantalonCorto( 
 											Double.parseDouble(cp4.getText()),
 											publicado, 

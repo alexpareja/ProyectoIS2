@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class ConjuntoVisitante extends Conjunto {
 	
-	public static final String id = "Conjunto Visitante";
+	public static final String id = "ConVisit";
 
 	public ConjuntoVisitante(double precio, boolean activo, int stock, int udsvendidas, int reservados, String talla, String nombre, int dorsal) {
 		super(id,precio, activo, stock, udsvendidas, reservados);

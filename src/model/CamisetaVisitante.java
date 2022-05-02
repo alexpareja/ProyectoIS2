@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class CamisetaVisitante extends Camiseta {
 	
-	public static final String id = "Camiseta Visitante";
+	public static final String id = "CamVisitante";
 
 	public CamisetaVisitante(double precio, boolean activo, int stock, int udsvendidas, int reservados, String talla, String nombre, int dorsal) {
 		super(id,precio, activo, stock, udsvendidas, reservados);

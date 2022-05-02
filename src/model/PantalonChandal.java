@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class PantalonChandal extends Pantalon {
 	
-	public static final String id = "Pantalon de Chandal";
+	public static final String id = "PantChandal";
 
 	public PantalonChandal(double precio, boolean activo, int stock, int udsvendidas, int reservados, String talla, int dorsal){
 		super(id, precio, activo, stock, udsvendidas, reservados, talla, dorsal);
