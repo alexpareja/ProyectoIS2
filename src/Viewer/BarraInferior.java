@@ -19,7 +19,6 @@ public class BarraInferior extends JPanel implements InventarioObserver {
 	private Controller _ctrl;
 	
 	BarraInferior(Controller ctrl) {
-		
 		initGUI();
 		ctrl.addObserver(this);
 		_ctrl = ctrl;
@@ -33,22 +32,17 @@ public class BarraInferior extends JPanel implements InventarioObserver {
 				_ctrl.getT().desplazaIzq();
 				
 			}
-			});
+		});
 		
 		dcha.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){		
 				_ctrl.getT().desplazaDer();
 			}
-			});
+		});
 		
 		this.add(izq, BorderLayout.WEST);
 		this.add(dcha, BorderLayout.EAST);
-		// TODO complete the code to build the tool bar
 	}
-	// other private/protected methods
-	// ...
-	// SimulatorObserver methods
-	// ...
 	
 	@Override
 	public void onRegistroTienda(ArrayList<Producto> inventario) {

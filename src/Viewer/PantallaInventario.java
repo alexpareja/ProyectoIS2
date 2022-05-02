@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -94,13 +93,11 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
 	    panelCompras.add(panelScrollCompras, BorderLayout.CENTER);
 	    
-	    //panelCompras.add(tablaCompras);
 	    resumenCompras.add(panelCompras);
 	    resumenCompras.setPreferredSize(new Dimension(500, 300));
 	    resumenCompras.pack();
 	    resumenCompras.setResizable(false);
 	    resumenCompras.setVisible(true);
-	    
 	}
 	
 	private void initGUI() {
@@ -141,78 +138,33 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		JPanel panelInventario = new JPanel();
 		panelInventario.setLayout(new BorderLayout());
 		
-		//boton resumen compras
-		//JDialog resumenCompras = new JDialog();
-		//JPanel panelCompras = new JPanel(new BorderLayout());
-		//resumenCompras.setTitle("Resumen de compras");
-		
 		JLabel infoi = new JLabel("Inventario: ", SwingConstants.CENTER);
 		panelInventario.add(infoi, BorderLayout.PAGE_START);
 		
 		JPanel panelDatosInventario = new JPanel(); 
 		
-		//boton resumen compras
-		//JPanel panelDatosCompras = new JPanel();
-		
-		
 		BoxLayout datosInventario= new BoxLayout(panelDatosInventario, BoxLayout.PAGE_AXIS);
 		panelDatosInventario.setLayout(datosInventario);
-		
-		//panel resumen compras
-		//BoxLayout datosCompras= new BoxLayout(panelDatosCompras, BoxLayout.PAGE_AXIS);
-		//panelDatosCompras.setLayout(datosCompras);
-		
 		
 		JScrollPane panelScrollDatos = new JScrollPane(panelDatosInventario, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		//boton resumen compras
-		//JScrollPane panelScrollCompras = new JScrollPane(panelDatosCompras, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				//JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
-		
-		
 		String titColumnaInv[]  = {"Id", "Detalles","Stock","Precio"};
-		//boton resumen compras
-		//String titColumnaCompras[]  = {"Id", "Método pago", "Unidades vendidas"};
 		
 		
 		DefaultTableModel modeloInv = new DefaultTableModel();
 		modeloInv.setColumnIdentifiers(titColumnaInv);
-		//boton resumen compras
-		//DefaultTableModel modeloCompras = new DefaultTableModel();
-		//modeloCompras.setColumnIdentifiers(titColumnaCompras);
 		
 		JTable tablaInv = new JTable(modeloInv);
-		//boton resumen compras
-		//JTable tablaCompras = new JTable(modeloCompras); 
 		
 		tablaInv.setShowHorizontalLines( false );
 	    tablaInv.setRowSelectionAllowed( false );
 	    tablaInv.setColumnSelectionAllowed( false );
-	    
-	    //boton resumen compras
-	    //tablaCompras.setShowHorizontalLines( false );
-	    //tablaCompras.setRowSelectionAllowed( false );
-	    //tablaCompras.setColumnSelectionAllowed( false );
 		
 	    tablaInv.setSelectionForeground( Color.white );
 	    tablaInv.setSelectionBackground( Color.red );
-		
-	    //boton resumen compras
-		//tablaCompras.setSelectionForeground( Color.white );
-	    //tablaCompras.setSelectionBackground( Color.red );
 	    
-	    for(int j = 0; j < modeloInv.getRowCount(); j++) {
-			modeloInv.removeRow(j);
-		}
-	    
-	    //boton resumen compras
-	    //for(int j = 0; j < modeloInv.getRowCount(); j++) {
-			//modeloCompras.removeRow(j);
-		//}
-	    
-	  
+	    for(int j = 0; j < modeloInv.getRowCount(); j++) modeloInv.removeRow(j);
 	    
 	    for(int i = 0; i < _ctrl.getI().getInventario().size(); i++) {
 	    	String IdInv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[0];
@@ -222,28 +174,10 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 	    	String fila[] = {IdInv, DetallesInv, Precioinv, Stockinv};
 			modeloInv.addRow(fila);
 	    }
-	    
-	    //boton resumen compras
-	    //for(int i = 0; i < _ctrl.getI().getCompras().size(); i++) {
-	    	//String IdCompras = _ctrl.getI().getCompras().get(i).getId();
-	    	//String MetodoPago = _ctrl.getI().getCompras().get(i).getPago();
-	    	//String UnidadesVendidas = Integer.toString(_ctrl.getI().getCompras().get(i).getCarrito().getProductos().size());
-	    	//String fila[] = {IdCompras, MetodoPago, UnidadesVendidas};
-	    	//modeloCompras.addRow(fila);
-	    //}
-	    
-	   
 		
 	    panelDatosInventario.add(tablaInv);
-	    //boton resumen compras
-	    //panelDatosCompras.add(tablaCompras);
-		
-		
 		
 		panelInventario.add(panelScrollDatos, BorderLayout.CENTER);
-		//boton resumen compras
-		//panelCompras.add(panelScrollCompras, BorderLayout.CENTER);
-
 	
 		JPanel barraInv = new JPanel();
 		barraInv.setLayout(new GridLayout(1, 3));
@@ -267,14 +201,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 			public void actionPerformed(ActionEvent e){	
 				inventario.setVisible(false);
 				resumenCompras();
-				//panelCompras.add(tablaCompras);
-				
-				//compras.setPreferredSize(new Dimension(500, 300));
-				//compras.pack();
-				//compras.setResizable(false);
-				//compras.setVisible(true);
 			}
-			});
+		});
 		
 		barraInv.add(Bcompras);
 		
@@ -302,8 +230,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 					public void actionPerformed(ActionEvent e){
 						info.setVisible(false);
 						JDialog camiseta = new JDialog();
-						JPanel pcami = new JPanel();
-						pcami.setLayout(new BorderLayout());
+						JPanel pcami = new JPanel(new BorderLayout());
 						
 						JLabel c1 = new JLabel("Id: ");
 						JLabel c2 = new JLabel("Nombre: ");
@@ -342,8 +269,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 						pcami.add(info, BorderLayout.PAGE_START);
 						
-						JPanel cab = new JPanel();
-						cab.setLayout(new BorderLayout());
+						JPanel cab = new JPanel(new BorderLayout());
 						
 						JButton cancel = new JButton("Salir");
 						
@@ -351,7 +277,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 							public void actionPerformed(ActionEvent e){
 								camiseta.setVisible(false);
 							}
-							});
+						});
 						cab.add(cancel, BorderLayout.WEST);
 						
 						JButton caa = new JButton("Aceptar");
@@ -359,67 +285,64 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						caa.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){		
 								boolean publicado;
-								if(publ.getSelectedItem().equals("SI")) {
-									publicado=true;
-								} else {
-									publicado=false;
-								} 
+								if(publ.getSelectedItem().equals("SI")) publicado=true;
+								else publicado=false;
+								
 								Producto a;
-								
 								try {
-								
-								if(cyc.getSelectedItem().equals("CamLocal")) {
-									 a = new CamisetaLocal( 
-											Double.parseDouble(cp4.getText()),
-											publicado, 
-											Integer.parseInt(cp5.getText()),
-													0, 0, 
-											tll.getSelectedItem().toString(),cp2.getText(),
-											Integer.parseInt(cp3.getText().toString()));
-								} else if(cyc.getSelectedItem().equals("CamVisitante")) {
-									a = new CamisetaVisitante( 
-											Double.parseDouble(cp4.getText()),
-											publicado, 
-											Integer. parseInt(cp5.getText()),
-													0, 0, 
-											tll.getSelectedItem().toString(),cp2.getText(),
-											Integer.parseInt(cp3.getText().toString()));
-								} else if(cyc.getSelectedItem().equals("ConLocal")) {
-									a = new ConjuntoLocal( 
-											Double.parseDouble(cp4.getText()),
-											publicado, 
-											Integer.parseInt(cp5.getText()),
-													0, 0, 
-											tll.getSelectedItem().toString(),cp2.getText(),
-											Integer.parseInt(cp3.getText().toString()));
-								} else {
-									a = new ConjuntoVisitante( 
-											Double.parseDouble(cp4.getText()),
-											publicado, 
-											Integer.parseInt(cp5.getText()),
-													0, 0, 
-											tll.getSelectedItem().toString(),cp2.getText(),
-											Integer.parseInt(cp3.getText().toString()));
-									
+									if(cyc.getSelectedItem().equals("CamLocal")) {
+										 a = new CamisetaLocal( 
+												Double.parseDouble(cp4.getText()),
+												publicado, 
+												Integer.parseInt(cp5.getText()),
+														0, 0, 
+												tll.getSelectedItem().toString(),cp2.getText(),
+												Integer.parseInt(cp3.getText().toString()));
+									} 
+									else if(cyc.getSelectedItem().equals("CamVisitante")) {
+										a = new CamisetaVisitante( 
+												Double.parseDouble(cp4.getText()),
+												publicado, 
+												Integer. parseInt(cp5.getText()),
+														0, 0, 
+												tll.getSelectedItem().toString(),cp2.getText(),
+												Integer.parseInt(cp3.getText().toString()));
+									} 
+									else if(cyc.getSelectedItem().equals("ConLocal")) {
+										a = new ConjuntoLocal( 
+												Double.parseDouble(cp4.getText()),
+												publicado, 
+												Integer.parseInt(cp5.getText()),
+														0, 0, 
+												tll.getSelectedItem().toString(),cp2.getText(),
+												Integer.parseInt(cp3.getText().toString()));
+									} 
+									else {
+										a = new ConjuntoVisitante( 
+												Double.parseDouble(cp4.getText()),
+												publicado, 
+												Integer.parseInt(cp5.getText()),
+														0, 0, 
+												tll.getSelectedItem().toString(),cp2.getText(),
+												Integer.parseInt(cp3.getText().toString()));
+										
+									}
+									JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
+										      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+									_ctrl.getI().add(a);} catch(Exception eror) {
+										 JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos", 
+												 "Error", JOptionPane.ERROR_MESSAGE);
+									 }
 								}
-								 JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
-									      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-								 _ctrl.getI().add(a);} catch(Exception eror) {
-									 JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos",
-										      "Error", JOptionPane.ERROR_MESSAGE);
-								 }
-							}
 							});
-						cab.add(caa, BorderLayout.EAST);
-						pcami.add(cab, BorderLayout.PAGE_END);
-						
-						camiseta.add(pcami);
-						camiseta.setResizable(false);
-						camiseta.setSize(new Dimension(600, 300));
-						camiseta.setVisible(true);
-						
-						
-					}
+							cab.add(caa, BorderLayout.EAST);
+							pcami.add(cab, BorderLayout.PAGE_END);
+							
+							camiseta.add(pcami);
+							camiseta.setResizable(false);
+							camiseta.setSize(new Dimension(600, 300));
+							camiseta.setVisible(true);
+						}
 					});
 				
 				panelabastecer.add(bcami);
@@ -428,8 +351,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 					public void actionPerformed(ActionEvent e){
 						info.setVisible(false);
 						JDialog pantalones = new JDialog();
-						JPanel ppant = new JPanel();
-						ppant.setLayout(new BorderLayout());
+						JPanel ppant = new JPanel(new BorderLayout());
 						
 						JLabel c1 = new JLabel("Id: ");
 						JLabel c3 = new JLabel("Dorsal: ");
@@ -473,7 +395,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 							public void actionPerformed(ActionEvent e){
 								pantalones.setVisible(false);
 							}
-							});
+						});
 						cab.add(cancel, BorderLayout.WEST);
 						
 						JButton caa = new JButton("Aceptar");
@@ -481,11 +403,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						caa.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){
 								boolean publicado;
-								if(publ.getSelectedItem().equals("SI")) {
-									publicado=true;
-								} else {
-									publicado=false;
-								} 
+								if(publ.getSelectedItem().equals("SI")) publicado=true;
+								else publicado=false;
 								Producto a;
 								try {
 								
@@ -531,7 +450,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						
 						
 					}
-					});
+				});
 			
 				panelabastecer.add(bpant);
 				
@@ -539,8 +458,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 					public void actionPerformed(ActionEvent e){
 						info.setVisible(false);
 						JDialog botas = new JDialog();
-						JPanel pbotas = new JPanel();
-						pbotas.setLayout(new BorderLayout());
+						JPanel pbotas = new JPanel(new BorderLayout());
 						
 						JLabel c2 = new JLabel("Precio: ");
 						JLabel c3 = new JLabel("Talla: ");
@@ -595,11 +513,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						caa.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){
 								boolean publicado;
-								if(publ.getSelectedItem().equals("SI")) {
-									publicado=true;
-								} else {
-									publicado=false;
-								} 
+								if(publ.getSelectedItem().equals("SI")) publicado=true;
+								else publicado=false;
 								Producto a;
 								
 								try {
@@ -625,7 +540,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 								//_ctrl.getI().add();
 								//se llama a la funcion que inicie sesion
 							}
-							});
+						});
 						cab.add(caa, BorderLayout.EAST);
 						pbotas.add(cab, BorderLayout.PAGE_END);
 						
@@ -644,8 +559,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 					public void actionPerformed(ActionEvent e){
 						info.setVisible(false);
 						JDialog guantes = new JDialog();
-						JPanel pguantes = new JPanel();
-						pguantes.setLayout(new BorderLayout());
+						JPanel pguantes = new JPanel(new BorderLayout());
 						
 						JLabel c2 = new JLabel("Precio: ");
 						JLabel c3 = new JLabel("Talla: ");
@@ -687,8 +601,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 						pguantes.add(info, BorderLayout.PAGE_START);
 						
-						JPanel cab = new JPanel();
-						cab.setLayout(new BorderLayout());
+						JPanel cab = new JPanel(new BorderLayout());
 						
 						JButton cancel = new JButton("Salir");
 						
@@ -696,7 +609,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 							public void actionPerformed(ActionEvent e){
 								guantes.setVisible(false);
 							}
-							});
+						});
 						cab.add(cancel, BorderLayout.WEST);
 						
 						JButton caa = new JButton("Aceptar");
@@ -704,11 +617,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						caa.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){
 								boolean publicado;
-								if(publ.getSelectedItem().equals("SI")) {
-									publicado=true;
-								} else {
-									publicado=false;
-								} 
+								if(publ.getSelectedItem().equals("SI")) publicado=true;
+								else publicado=false;
 								Producto a;
 								
 								try {
@@ -734,7 +644,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 								//_ctrl.getI().add();
 								//se llama a la funcion que inicie sesion
 							}
-							});
+						});
 						cab.add(caa, BorderLayout.EAST);
 						pguantes.add(cab, BorderLayout.PAGE_END);
 						
@@ -742,19 +652,13 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						guantes.setResizable(false);
 						guantes.setSize(new Dimension(600, 300));
 						guantes.setVisible(true);
-						
-						
 					}
-					});
+				});
 				panelabastecer.add(bguantes);
-				
-				
-				
-				
-				//panelcompras.add(tablaCompras);
+
 				abastecer.add(panelabastecer);
 			}
-			});
+		});
 		
 		barraInv.add(BAbastecer);
 		
@@ -766,7 +670,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 				_ctrl.getI().setPrecio(i, Double.parseDouble(modeloInv.getValueAt(i, 3).toString()));
 				}
 			}
-			});
+		});
 		
 		barraInv.add(BCambiarPrecio);
 		
@@ -774,14 +678,9 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		panelInventario.add(barraInv, BorderLayout.PAGE_START);
 		
 		inventario.add(panelInventario);
-		//carrito.setResizable(false);
 		inventario.setSize(new Dimension(600, 400));
-		if(_ctrl.getS().esDueno()) {
-			 inventario.setVisible(true);
-		}
-	   
-		
-		}
+		if(_ctrl.getS().esDueno()) inventario.setVisible(true);
+	}
 	
 	
 
@@ -799,7 +698,6 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 	@Override
 	public void onCambiarPrecio(ArrayList<Producto> inventario) {
-		// TODO Auto-generated method stub
 		this.removeAll();
 		this.updateUI();
 		initGUI();	

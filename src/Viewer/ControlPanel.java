@@ -1,21 +1,17 @@
 package Viewer;
 
 import java.awt.BorderLayout;
-import java.awt.CheckboxGroup;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -32,7 +28,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
-import model.Carrito;
 import model.Compra;
 import model.InventarioObserver;
 import model.Producto;
@@ -67,7 +62,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		pago.setTitle("Datos del pago");
 		
 		mainPanel.setAlignmentX(CENTER_ALIGNMENT);
-		mainPanel.setLayout((LayoutManager) new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); //alinea de arriba a abajo
+		mainPanel.setLayout((LayoutManager) new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		pago.setContentPane(mainPanel);
 		
 		JLabel msg = new JLabel("Elija uno de los metodos de pago");
@@ -77,7 +72,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		
 		JPanel buttonsPagoPanel = new JPanel();
 		buttonsPagoPanel.setAlignmentY(CENTER_ALIGNMENT);
-		buttonsPagoPanel.setLayout((LayoutManager) new BoxLayout(buttonsPagoPanel, BoxLayout.X_AXIS)); //alinea de arriba a abajo
+		buttonsPagoPanel.setLayout((LayoutManager) new BoxLayout(buttonsPagoPanel, BoxLayout.X_AXIS));
 		mainPanel.add(buttonsPagoPanel);
 		
 		ButtonGroup s = new ButtonGroup();
@@ -131,45 +126,29 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		JButton okButton = new JButton("Pagar");
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				if (efectivo.isSelected()) {
 					pago.setVisible(false);
 					_ctrl.getI().getCompras().add(new Compra("efectivo",_ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
-					_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
-					_ctrl.getC().reset();//se vacia el carrito
+					_ctrl.comprar(_ctrl.getC());
+					_ctrl.getC().reset();
 					JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
 				}
-				else if (paypal.isSelected()) {
+				else if (paypal.isSelected() || tarjeta.isSelected()) {
+					String p = "tarjeta"; 
+					if (paypal.isSelected()) p = "paypal";
 					if (!_cuenta.getText().equals("") && !_titular.getText().equals("")) {
 						pago.setVisible(false);
-						_ctrl.getI().getCompras().add(new Compra("paypal", _ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
+						_ctrl.getI().getCompras().add(new Compra(p, _ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
 						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
 						_ctrl.getC().reset();//se vacia el carrito
 						JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
 					}
-					else {
-						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
-					}
-				}
-				else if (tarjeta.isSelected()) {
-					if (!_cuenta.getText().equals("") && !_titular.getText().equals("")) {
-						pago.setVisible(false);
-						_ctrl.getI().getCompras().add(new Compra("tarjeta",_ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
-						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
-						_ctrl.getC().reset();//se vacia el carrito
-						JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
-					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Elija una de las opciones");
-				}
+					else JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+				}	
+				else JOptionPane.showMessageDialog(null, "Elija una de las opciones");
 			}
 		});
 		buttonsPanel.add(okButton);
-		
 		
 		pago.setPreferredSize(new Dimension(500, 300));
 		pago.pack();
@@ -187,7 +166,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		
 		pago.setTitle("Datos de pago");
 		
-		mainPanel.setLayout((LayoutManager) new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); //alinea de arriba a abajo
+		mainPanel.setLayout((LayoutManager) new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setAlignmentY(CENTER_ALIGNMENT);
 		pago.setContentPane(mainPanel);
 		
@@ -199,7 +178,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		
 		JPanel viewsPanel = new JPanel();
 		viewsPanel.setAlignmentX(CENTER_ALIGNMENT);
-		viewsPanel.setLayout(new BoxLayout(viewsPanel, BoxLayout.Y_AXIS)); //de arriba a abajo
+		viewsPanel.setLayout(new BoxLayout(viewsPanel, BoxLayout.Y_AXIS));
 		mainPanel.add(viewsPanel);
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
@@ -208,13 +187,9 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		buttonsPanel.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(buttonsPanel);
 		
-		
 		viewsPanel.add(new JLabel("Introduzca su nombre: "));
-		if (usuario2.getText() == "invitado") {
-			viewsPanel.add(_nombre);
-		}
+		if (usuario2.getText() == "invitado") viewsPanel.add(_nombre);
 		else viewsPanel.add(usuario2);
-		
 		
 		viewsPanel.add(new JLabel("Introduzca su direccion: "));
 		viewsPanel.add(_direccion);
@@ -236,12 +211,11 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 					pago.setVisible(false);
 					anadirMetodoPago(_nombre.getText(), _direccion.getText());
 				}
-				else if (!usuario2.getText().equals("invitado") && !_direccion.getText().equals("")){
+				else if (!usuario2.getText().equals("invitado") && !_direccion.getText().equals("")) {
 					pago.setVisible(false);
 					anadirMetodoPago(usuario2.getText(), _direccion.getText());
 				}
-				else 
-					JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+				else JOptionPane.showMessageDialog(null, "Rellene todos los campos");
 			}
 		});
 		buttonsPanel.add(sigButton);
@@ -271,11 +245,9 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				
 			
 				JDialog usuario = new JDialog();
-				JPanel panelUsuario = new JPanel();
-				panelUsuario.setLayout(new BorderLayout());
+				JPanel panelUsuario = new JPanel(new BorderLayout());
 				
 				JLabel info = new JLabel("Identificate como usuario", SwingConstants.CENTER);
-				
 				
 				JLabel infoId = new JLabel("User: ");
 				JLabel infoContra = new JLabel("Password: ");
@@ -286,18 +258,11 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				contra.setEchoChar('*');
 				cbox.addActionListener(new ActionListener(){  
 					public void actionPerformed(ActionEvent e){
-						if(cbox.isSelected()) {
-							contra.setEchoChar((char)0);
-						}
-						else {
-							contra.setEchoChar('*');
-						}
-						
+						if(cbox.isSelected()) contra.setEchoChar((char)0);
+						else contra.setEchoChar('*');
 					}
-					
-					});
-				
-				
+				});
+			
 				JPanel panelDatos = new JPanel(new GridLayout(3,2));
 				
 				panelDatos.add(infoId);
@@ -308,13 +273,11 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				
 				panelDatos.setSize(new Dimension (200,150));
 				
-				
 				panelUsuario.add(panelDatos, BorderLayout.CENTER);
 
 				panelUsuario.add(info, BorderLayout.PAGE_START);
 				
-				JPanel abajo = new JPanel();
-				abajo.setLayout(new BorderLayout());
+				JPanel abajo = new JPanel(new BorderLayout());
 				
 				JButton cancel = new JButton("Salir");
 				
@@ -322,7 +285,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 					public void actionPerformed(ActionEvent e){
 						usuario.setVisible(false);
 					}
-					});
+				});
 				abajo.add(cancel, BorderLayout.WEST);
 				
 				JButton aceptar = new JButton("Aceptar");
@@ -333,14 +296,9 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						char[] arrayC = contra.getPassword();
 						String pass = new String(arrayC); 
 						if(!_ctrl.getS().iniciaSesion(id.getText(), pass))
-						{
-							JOptionPane.showMessageDialog(null, "Usuario no encontrado",
-								      "Error", JOptionPane.ERROR_MESSAGE);
-						}
-						
-				
+							JOptionPane.showMessageDialog(null, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
 					}
-					});
+				});
 				abajo.add(aceptar, BorderLayout.EAST);
 				
 				JButton registrarse = new JButton("Registrate");
@@ -350,11 +308,9 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						usuario.setVisible(false);
 						
 						JDialog usuarioNuevo = new JDialog();
-						JPanel panelUsuario2 = new JPanel();
-						panelUsuario2.setLayout(new BorderLayout());
+						JPanel panelUsuario2 = new JPanel(new BorderLayout());
 						
 						JLabel info2 = new JLabel("Identificate como usuario", SwingConstants.CENTER);
-						
 						
 						JLabel infoId2 = new JLabel("User: ");
 						JLabel infoContra2= new JLabel("Password: ");
@@ -367,17 +323,10 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						contra2.setEchoChar('*');
 						cbox2.addActionListener(new ActionListener(){  
 							public void actionPerformed(ActionEvent e){
-								if(cbox2.isSelected()) {
-									contra2.setEchoChar((char)0);
-								}
-								else {
-									contra2.setEchoChar('*');
-								}
-								
+								if(cbox2.isSelected()) contra2.setEchoChar((char)0);
+								else contra2.setEchoChar('*');	
 							}
-							
-							});
-						
+						});
 						
 						JPanel panelDatos2 = new JPanel(new GridLayout(4,2));
 						
@@ -389,16 +338,13 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						panelDatos2.add(contra2);
 						panelDatos2.add(cbox2);
 						
-						
 						panelDatos2.setSize(new Dimension (200,150));
-						
 						
 						panelUsuario2.add(panelDatos2, BorderLayout.CENTER);
 
 						panelUsuario2.add(info2, BorderLayout.PAGE_START);
 						
-						JPanel abajo2 = new JPanel();
-						abajo2.setLayout(new BorderLayout());
+						JPanel abajo2 = new JPanel(new BorderLayout());
 						
 						JButton cancel2 = new JButton("Salir");
 						
@@ -406,7 +352,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 							public void actionPerformed(ActionEvent e){
 								usuarioNuevo.setVisible(false);
 							}
-							});
+						});
 						abajo2.add(cancel2, BorderLayout.WEST);
 						
 						JButton aceptarC = new JButton("Registra cliente");
@@ -417,12 +363,9 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 								char[] arrayC = contra2.getPassword();
 								String pass = new String(arrayC); 
 								
-								
-								_ctrl.getS().registrarse(id2.getText(), pass,corr.getText());
-								
-						
+								_ctrl.getS().registrarse(id2.getText(), pass, corr.getText());
 							}
-							});
+						});
 						JButton aceptarV = new JButton("Registra vendedor");
 						
 						aceptarV.addActionListener(new ActionListener(){  
@@ -433,7 +376,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 								
 								_ctrl.getS().registrarseVendedor(id2.getText(), pass,corr.getText());
 							}
-							});
+						});
 						
 						
 						abajo2.add(aceptarC, BorderLayout.EAST);
@@ -445,7 +388,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						usuarioNuevo.setVisible(true);
 				
 					}
-					});
+				});
 				abajo.add(registrarse,BorderLayout.CENTER);
 				panelUsuario.add(abajo, BorderLayout.PAGE_END);
 				
@@ -455,15 +398,14 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				usuario.setVisible(true);
 				
 			}
-			});
+		});
 		
 		
 		//2
 		Bcarrito.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){ 
 				JDialog carrito = new JDialog();
-				JPanel panelCarrito = new JPanel();
-				panelCarrito.setLayout(new BorderLayout());
+				JPanel panelCarrito = new JPanel(new BorderLayout());
 				
 				JLabel info = new JLabel("Este es su carrito: ", SwingConstants.CENTER);
 				panelCarrito.add(info, BorderLayout.PAGE_START);
@@ -485,17 +427,14 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				
 				JTable tabla = new JTable(modelo); 
 				
-				tabla.setShowHorizontalLines( false );
-			    tabla.setRowSelectionAllowed( false );
-			    tabla.setColumnSelectionAllowed( false );
+				tabla.setShowHorizontalLines(false);
+			    tabla.setRowSelectionAllowed(false);
+			    tabla.setColumnSelectionAllowed(false);
 				
-			    tabla.setSelectionForeground( Color.white );
-			    tabla.setSelectionBackground( Color.red );
+			    tabla.setSelectionForeground(Color.white);
+			    tabla.setSelectionBackground(Color.red);
 			    
-			    for(int j = 0; j < modelo.getRowCount(); j++) {
-					modelo.removeRow(j);
-					
-				}
+			    for(int j = 0; j < modelo.getRowCount(); j++) modelo.removeRow(j);
 			    
 			    for(int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
 			    	String nombre = _ctrl.getC().getProductos().get(i).getId();
@@ -505,7 +444,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 					String fila[] = {nombre, detalles, Double.toString(precio), "Borrar"};
 					modelo.addRow(fila);
 					suma = suma + _ctrl.getC().getProductos().get(i).getPrecio();
-					
 				}
 				
 			    panelDatos. add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -524,7 +462,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				*/
 				
 				panelCarrito.add(panelScrollDatos, BorderLayout.CENTER);
-
 			
 				JPanel abajo = new JPanel();
 				abajo.setLayout(new GridLayout(2,2));
@@ -540,7 +477,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 					public void actionPerformed(ActionEvent e){
 						carrito.setVisible(false);
 					}
-					});
+				});
 				
 				abajo.add(cancel);
 				
@@ -558,29 +495,22 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				panelCarrito.add(abajo, BorderLayout.PAGE_END);
 				
 				carrito.add(panelCarrito);
-				//carrito.setResizable(false);
 				carrito.setSize(new Dimension(600, 400));
 				carrito.setVisible(true);
 				
 			}
-			});
+		});
 	
 		
 		
 		Binventario.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){ 
-				
 				PantallaInventario inv = new PantallaInventario(_ctrl);	
 				
-				if(!user.esDueno()) {
-					JOptionPane.showMessageDialog(null, "No puedes acceder al inventario. Eres cliente",
-						      "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			
-
-		
+				if(!user.esDueno())
+					JOptionPane.showMessageDialog(null, "No puedes acceder al inventario. Eres cliente", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-			});
+		});
 		
 		
 		this.add(Bcarrito);	
@@ -597,10 +527,11 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		JLabel rol1 = new JLabel("Rol:    ");
 		infoUsu.add(rol1);
 		if(_ctrl.getS().esDueno()) {
-			 rol2 = new JLabel("Vendedor");
+			rol2 = new JLabel("Vendedor");
 			infoUsu.add(rol2);
-		}else {
-			 rol2 = new JLabel("Cliente");
+		}
+		else {
+			rol2 = new JLabel("Cliente");
 			infoUsu.add(rol2);
 		}
 		
@@ -647,7 +578,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 	@Override
 	public void iniciaSesion(Usuario userActual) {
-		
 		usuario2.setText(userActual.getUsuario());
 		if(userActual.esDueno())rol2.setText("Vendedor");
 		else rol2.setText("Cliente");

@@ -25,26 +25,17 @@ public class PantallaTienda extends JPanel implements InventarioObserver {
 		ArticuloPanel 	p1;
 		List<ArticuloPanel> paneltienda =new ArrayList<ArticuloPanel>();
 		
-	this.setLayout(new GridLayout(2,3));
-	int i = (_ctrl.getT().getPaginaAct()) * 6;
-	int cont =i;
-	while(i < _ctrl.getT().getProductosTienda().size()&&i<cont+6) {
-	   p1 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i));
-		paneltienda.add(p1);
-		i++;}
-	
+		this.setLayout(new GridLayout(2,3));
+		int i = (_ctrl.getT().getPaginaAct()) * 6;
+		int cont = i;
+		while(i < _ctrl.getT().getProductosTienda().size()&&i<cont+6) {
+			p1 = new ArticuloPanel(_ctrl,  _ctrl.getT().getProductosTienda().get(i));
+			paneltienda.add(p1);
+			i++;
+		}
 		
-	
-	
-	
-	for(int j = 0; j < paneltienda.size(); j++) {
-		
-		this.add(paneltienda.get(j));
-
-	}
-	 
-	
-	
+		for(int j = 0; j < paneltienda.size(); j++) this.add(paneltienda.get(j));
+		 
 	}
 
 

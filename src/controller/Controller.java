@@ -1,10 +1,6 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Carrito;
-import model.Compra;
 import model.Inventario;
 import model.InventarioObserver;
 import model.Sesion;

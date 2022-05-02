@@ -30,7 +30,6 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		initGUI();
 		_ctrl = ctrl;
 		_ctrl.addObserver(this);
-
 	}
 	
 	
@@ -95,11 +94,10 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		comprar.setPreferredSize(new Dimension(150,20));
 		
 		comprar.addActionListener(new ActionListener(){  
-			public void actionPerformed(ActionEvent e){		
-				
+			public void actionPerformed(ActionEvent e){
 				_ctrl.getC().anadirCarrito(_prod);
 			}
-			});
+		});
 		comprar.setAlignmentX(CENTER_ALIGNMENT);
 		this.add(comprar);
 		
