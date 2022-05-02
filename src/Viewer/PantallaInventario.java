@@ -62,7 +62,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		JScrollPane panelScrollCompras = new JScrollPane(panelDatosCompras, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		String titColumnaCompras[]  = {"Id", "Método pago", "Cliente", "Unidades vendidas"};
+		String titColumnaCompras[]  = {"Id", "Metodo pago", "Cliente", "Unidades vendidas"};
 		
 		DefaultTableModel modeloCompras = new DefaultTableModel();
 		modeloCompras.setColumnIdentifiers(titColumnaCompras);
@@ -278,7 +278,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		
 		barraInv.add(Bcompras);
 		
-       JButton BAbastecer = new JButton("A�adir producto");
+       JButton BAbastecer = new JButton("Anadir producto");
 		
 		BAbastecer.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e){		
@@ -289,7 +289,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 				
 				panelabastecer.setLayout(new GridLayout(6,1));
 				
-				JLabel info = new JLabel("Seleccione el producto que desee a�adir", SwingConstants.CENTER);
+				JLabel info = new JLabel("Seleccione el producto que desee anadir", SwingConstants.CENTER);
 				
 				JButton bcami = new JButton ("Camiseta o Conjunto");
 				JButton bpant = new JButton ("Patalon");
@@ -402,8 +402,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 											Integer.parseInt(cp3.getText().toString()));
 									
 								}
-								 JOptionPane.showMessageDialog(null, "Producto a�adido exitosamente",
-									      "Confirmaci�n", JOptionPane.INFORMATION_MESSAGE);
+								 JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
+									      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
 								 _ctrl.getI().add(a);} catch(Exception eror) {
 									 JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos",
 										      "Error", JOptionPane.ERROR_MESSAGE);
@@ -510,8 +510,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 											Integer.parseInt(cp3.getText().toString()));
 								} 
 								 _ctrl.getI().add(a);
-								 JOptionPane.showMessageDialog(null, "Producto a�adido exitosamente",
-									      "Confirmaci�n", JOptionPane.INFORMATION_MESSAGE); 
+								 JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
+									      "Confirmacion", JOptionPane.INFORMATION_MESSAGE); 
 								} catch(Exception eror) {
 									JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos",
 										      "Error", JOptionPane.ERROR_MESSAGE);
@@ -611,7 +611,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 													Integer.parseInt(tllb.getSelectedItem().toString()),
 											cp3.getText(), cp4.getText(), cp5.getText());
 									        _ctrl.getI().add(a);
-									        JOptionPane.showMessageDialog(null, "Producto a�adido exitosamente",
+									        JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
 												      "Confirmaci�n", JOptionPane.INFORMATION_MESSAGE);
 									       
 									 
@@ -720,8 +720,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 													tll.getSelectedItem().toString(),
 											cp3.getText(), cp4.getText(), cp5.getText(), Integer.parseInt(cp6.getText()));
 									        _ctrl.getI().add(a);
-									        JOptionPane.showMessageDialog(null, "Producto a�adido exitosamente",
-												      "Confirmaci�n", JOptionPane.INFORMATION_MESSAGE);
+									        JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
+												      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
 									       
 									 
 								} catch(Exception eror) {

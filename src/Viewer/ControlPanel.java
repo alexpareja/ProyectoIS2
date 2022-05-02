@@ -70,7 +70,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		mainPanel.setLayout((LayoutManager) new BoxLayout(mainPanel, BoxLayout.Y_AXIS)); //alinea de arriba a abajo
 		pago.setContentPane(mainPanel);
 		
-		JLabel msg = new JLabel("Elija uno de los métodos de pago");
+		JLabel msg = new JLabel("Elija uno de los metodos de pago");
 		msg.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msg);
 		mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
@@ -92,7 +92,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		buttonsPagoPanel.add(tarjeta);
 		buttonsPagoPanel.add(paypal);
 		buttonsPagoPanel.add(efectivo);
-		JLabel help = new JLabel("*Si elige en efectivo no se podrán realizar devoluciones  ");
+		JLabel help = new JLabel("*Si elige en efectivo no se podran realizar devoluciones  ");
 		
 		JTextField _titular = new JTextField();
 		JTextField _cuenta = new JTextField();
@@ -105,7 +105,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
 		
-		JLabel cuenta = new JLabel("Número de cuenta                       ");
+		JLabel cuenta = new JLabel("Numero de cuenta                       ");
 		cuenta.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(cuenta);
 		mainPanel.add(_cuenta);
@@ -123,7 +123,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				pago.setVisible(false);
-				JOptionPane.showMessageDialog(null, "La operación se ha cancelado");
+				JOptionPane.showMessageDialog(null, "La operacion se ha cancelado");
 			}
 		});
 		buttonsPanel.add(cancelButton);
@@ -137,7 +137,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 					_ctrl.getI().getCompras().add(new Compra("efectivo",_ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
 					_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
 					_ctrl.getC().reset();//se vacia el carrito
-					JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+					JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
 				}
 				else if (paypal.isSelected()) {
 					if (!_cuenta.getText().equals("") && !_titular.getText().equals("")) {
@@ -145,7 +145,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						_ctrl.getI().getCompras().add(new Compra("paypal", _ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
 						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
 						_ctrl.getC().reset();//se vacia el carrito
-						JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+						JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
@@ -157,7 +157,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						_ctrl.getI().getCompras().add(new Compra("tarjeta",_ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
 						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
 						_ctrl.getC().reset();//se vacia el carrito
-						JOptionPane.showMessageDialog(null, "La compra se ha realizado con éxito");
+						JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Rellene todos los campos");
@@ -216,7 +216,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		else viewsPanel.add(usuario2);
 		
 		
-		viewsPanel.add(new JLabel("Introduzca su dirección: "));
+		viewsPanel.add(new JLabel("Introduzca su direccion: "));
 		viewsPanel.add(_direccion);
 		
 		JButton cancelButton = new JButton("Cancelar");
@@ -224,7 +224,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				pago.setVisible(false);
-				JOptionPane.showMessageDialog(null, "La operación se ha cancelado");
+				JOptionPane.showMessageDialog(null, "La operacion se ha cancelado");
 			}
 		});
 		buttonsPanel.add(cancelButton);
