@@ -195,6 +195,7 @@ public class DAOXMLInventario{
 	    			 
 	    			 udsRes = doc.createElement("udsReservadas");
 	    			 udsRes.setTextContent(String.valueOf(inv.get(i).getReservados()));
+	    			 e.appendChild(udsRes);
 	    		 break;
 	    	  case "PantChandal":
 	    		  	 e = doc.createElement("pantalon");
