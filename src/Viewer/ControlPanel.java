@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -78,12 +79,10 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		mainPanel.add(buttonsPagoPanel);
 		
 		ButtonGroup s = new ButtonGroup();
-		JButton tarjeta = new JButton("Tarjeta");
-		JButton paypal = new JButton("Paypal");
-		JButton efectivo = new JButton("Efectivo");
-		configButton(tarjeta);
-		configButton(paypal);
-		configButton(efectivo);
+		JRadioButton tarjeta = new JRadioButton("Tarjeta");
+		JRadioButton paypal = new JRadioButton("Paypal");
+		JRadioButton efectivo = new JRadioButton("Efectivo");
+
 		s.add(tarjeta);
 		s.add(paypal);
 		s.add(efectivo);
