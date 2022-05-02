@@ -149,6 +149,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		JScrollPane panelScrollDatos = new JScrollPane(panelDatosInventario, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
+		
+		
 		String titColumnaInv[]  = {"Id", "Detalles","Stock","Precio"};
 		
 		
@@ -164,6 +166,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 	    tablaInv.setSelectionForeground( Color.white );
 	    tablaInv.setSelectionBackground( Color.red );
 	    
+	   
+	    
 	    for(int j = 0; j < modeloInv.getRowCount(); j++) modeloInv.removeRow(j);
 	    
 	    for(int i = 0; i < _ctrl.getI().getInventario().size(); i++) {
@@ -172,10 +176,12 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 	    	String Precioinv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[2];
 	    	String Stockinv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[3];
 	    	String fila[] = {IdInv, DetallesInv, Precioinv, Stockinv};
-			modeloInv.addRow(fila);
-	    }
+			modeloInv.addRow(fila);}
+	    
+	    
 		
-	    panelDatosInventario.add(tablaInv);
+	    panelDatosInventario.add(new JScrollPane(tablaInv, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
 		
 		panelInventario.add(panelScrollDatos, BorderLayout.CENTER);
 	
@@ -327,9 +333,16 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 												Integer.parseInt(cp3.getText().toString()));
 										
 									}
+									 inventario.setVisible(false);
+								        pcami.setVisible(false);
+								        camiseta.setVisible(false);
+								        panelabastecer.setVisible(false);
+								        abastecer.setVisible(false);
 									JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
 										      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
-									_ctrl.getI().add(a);} catch(Exception eror) {
+									_ctrl.getI().add(a);
+									
+									} catch(Exception eror) {
 										 JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos", 
 												 "Error", JOptionPane.ERROR_MESSAGE);
 									 }
@@ -428,6 +441,11 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 											tll.getSelectedItem().toString(),
 											Integer.parseInt(cp3.getText().toString()));
 								} 
+								 inventario.setVisible(false);
+							        cab.setVisible(false);
+							        pantalones.setVisible(false);
+							        ppant.setVisible(false);
+							        abastecer.setVisible(false);
 								 _ctrl.getI().add(a);
 								 JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
 									      "Confirmacion", JOptionPane.INFORMATION_MESSAGE); 
@@ -526,6 +544,11 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 													Integer.parseInt(tllb.getSelectedItem().toString()),
 											cp3.getText(), cp4.getText(), cp5.getText());
 									        _ctrl.getI().add(a);
+									        inventario.setVisible(false);
+									        botas.setVisible(false);
+									        pbotas.setVisible(false);
+									        panelabastecer.setVisible(false);
+									        abastecer.setVisible(false);
 									        JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
 												      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
 									       
@@ -630,6 +653,12 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 													tll.getSelectedItem().toString(),
 											cp3.getText(), cp4.getText(), cp5.getText(), Integer.parseInt(cp6.getText()));
 									        _ctrl.getI().add(a);
+									        
+									        inventario.setVisible(false);
+									        guantes.setVisible(false);
+									        pguantes.setVisible(false);
+									        panelabastecer.setVisible(false);
+									        abastecer.setVisible(false);
 									        JOptionPane.showMessageDialog(null, "Producto anadido exitosamente",
 												      "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
 									       
@@ -652,7 +681,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 						guantes.setResizable(false);
 						guantes.setSize(new Dimension(600, 300));
 						guantes.setVisible(true);
-					}
+											}
 				});
 				panelabastecer.add(bguantes);
 
@@ -687,7 +716,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 	@Override
 	public void onRegistroTienda(ArrayList<Producto> inventario) {
-		
+		this.removeAll();
+		this.updateUI();
 		
 	}
 
