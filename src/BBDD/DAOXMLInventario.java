@@ -39,7 +39,7 @@ public class DAOXMLInventario {
 		Element raiz = doc.createElement("inventario");
 		doc.appendChild(raiz);
 
-		// ArrayList<Producto> array=inv.getInventario();
+
 		for (int i = 0; i < inv.size(); i++) {
 			Element e = null;
 			switch (inv.get(i).getId()) {

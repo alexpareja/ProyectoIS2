@@ -193,7 +193,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 		Bcompras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//inventario.setVisible(false);
+				// inventario.setVisible(false);
 				resumenCompras();
 			}
 		});
@@ -661,7 +661,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 	@Override
 	public void onCambiarPrecio(ArrayList<Producto> inventario) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
