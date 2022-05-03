@@ -393,7 +393,6 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 												Integer.parseInt(cp5.getText()), 0, 0, tll.getSelectedItem().toString(),
 												Integer.parseInt(cp3.getText().toString()));
 
-										System.out.print(publicado);
 										publ.getAccessibleContext().toString();
 									} else {
 										a = new PantalonChandal(Double.parseDouble(cp4.getText()), publicado,
