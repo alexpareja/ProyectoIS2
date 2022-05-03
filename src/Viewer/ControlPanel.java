@@ -192,7 +192,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		mainPanel.add(buttonsPanel);
 
 		viewsPanel.add(new JLabel("Introduzca su nombre: "));
-		if (usuario2.getText() == "invitado")
+		if (usuario2.getText() == "Invitado")
 			viewsPanel.add(_nombre);
 		else
 			viewsPanel.add(usuario2);
@@ -217,11 +217,11 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		// Si los datos son correctos se procede al pago, sino se pide que se rellenen
 		sigButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (usuario2.getText().equals("invitado") && !_nombre.getText().equals("")
+				if (usuario2.getText().equals("Invitado") && !_nombre.getText().equals("")
 						&& !_direccion.getText().equals("")) {
 					pago.setVisible(false);
 					anadirMetodoPago(_nombre.getText(), _direccion.getText());
-				} else if (!usuario2.getText().equals("invitado") && !_direccion.getText().equals("")) {
+				} else if (!usuario2.getText().equals("Invitado") && !_direccion.getText().equals("")) {
 					pago.setVisible(false);
 					anadirMetodoPago(usuario2.getText(), _direccion.getText());
 				} else
@@ -255,7 +255,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		// Si se pulsa el boton de usuario
 		Busuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Se pide el usuario y la contraseña
+				// Se pide el usuario y la contraseï¿½a
 				JDialog usuario = new JDialog();
 				JPanel panelUsuario = new JPanel(new BorderLayout());
 
@@ -461,7 +461,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 				for (int j = 0; j < modelo.getRowCount(); j++)
 					modelo.removeRow(j);
-				// Se muestran los acticulos del array del carrito con su inforacioón y el total
+				// Se muestran los acticulos del array del carrito con su inforacioï¿½n y el total
 				// de la compra
 				for (int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
 					String nombre = _ctrl.getC().getProductos().get(i).getId();
@@ -539,7 +539,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		add(Binventario);
 
 		JPanel infoUsu = new JPanel(new GridLayout(2, 2));
-		// Se muestra la información del usuario actual
+		// Se muestra la informaciï¿½n del usuario actual
 		JLabel usuario1 = new JLabel("Usuario activo:    ");
 		infoUsu.add(usuario1);
 		usuario2 = new JLabel(_ctrl.getS().getUsuarioActual().getUsuario());
