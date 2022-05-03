@@ -24,9 +24,9 @@ public class DAOXMLUsuarios {
 	private DocumentBuilder dBuilder;
 
 	public DAOXMLUsuarios() {
+		//fichero xml
 		try {
 			file = new File("BaseDatos/usuarios.xml");
-
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			dBuilder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
@@ -35,16 +35,20 @@ public class DAOXMLUsuarios {
 	}
 
 	// devuelve false si no encuentra el usuario y devuelve si lo encuentra el
-	// usuario y carrito
+	// usuario 
+	//funcion para buscar usuarios en la bbdd
 	public DTOUsuarios cargarUsuario(String nombre, String pass) {
 
 		DTOUsuarios user = null;
 		try {
 			boolean encontrado = false;
+			//crea documento con el archivo xml y coge la lista de usuarios
 			Document doc = dBuilder.parse(file);
 			Element raiz = doc.getDocumentElement();
-			NodeList nList = raiz.getChildNodes(); // lista productos
+			NodeList nList = raiz.getChildNodes(); // lista usuarios
 			int j = 0;
+			
+			//recorre la lista de usuarios hasra que encuentre el usuario o se terminen los usuarios
 			while (j < nList.getLength() && !encontrado) {
 				Node nodo = nList.item(j); // producto
 				Element us = (Element) nodo;
@@ -52,6 +56,8 @@ public class DAOXMLUsuarios {
 						&& us.getElementsByTagName("contrasena").item(0).getTextContent().equals(pass);
 				j++;
 			}
+			
+			//si se encuentra el usaurio se crea el DTOUsuarios con la informacion correspondiente
 			if (encontrado) {
 				j--;
 				Node nodo = nList.item(j); // producto
@@ -74,12 +80,15 @@ public class DAOXMLUsuarios {
 		return user;
 	}
 
+	//funcion para guardar los usuarios en la bbdd
 	public void guardarUsuarios(DTOUsuarios user) {
 		try {
+			//crea documento a partir del archivo xml
 			Document doc = dBuilder.parse(file);
 			Element raiz = doc.getDocumentElement();
 			Element u = null;
 
+			//crea nuevos elementos en el documento  diferenciando entre vendedor y cliente
 			if (user.isDueno()) {
 				u = doc.createElement("vendedor");
 				Element nom = doc.createElement("nombre");
@@ -105,7 +114,8 @@ public class DAOXMLUsuarios {
 			}
 
 			raiz.appendChild(u);
-
+			
+			//Guardamos el documento creado en el archivo xml
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);

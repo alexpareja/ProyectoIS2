@@ -26,6 +26,7 @@ public class DAOXMLInventario {
 	private DocumentBuilder dBuilder;
 
 	public DAOXMLInventario() {
+		//fichero xml
 		try {
 			file = new File("BaseDatos/inventario.xml");
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -34,12 +35,15 @@ public class DAOXMLInventario {
 		}
 	}
 
+	//funcion para guardar en bbdd
 	public void guardarInventario(ArrayList<DTOInventario> inv) {
+		//Se crea el documento
 		Document doc = dBuilder.newDocument();
 		Element raiz = doc.createElement("inventario");
 		doc.appendChild(raiz);
 
-
+		// ArrayList<Producto> array=inv.getInventario();
+		//Se recorre el inventario y se crea el tipo de producto con sus atributos segun el id
 		for (int i = 0; i < inv.size(); i++) {
 			Element e = null;
 			switch (inv.get(i).getId()) {
@@ -377,6 +381,7 @@ public class DAOXMLInventario {
 			raiz.appendChild(e);
 		}
 		try {
+			//Guardamos el documento creado en el archivo xml
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
@@ -387,13 +392,17 @@ public class DAOXMLInventario {
 		}
 	}
 
+	//funcion para cargar productos del inventario de la bbdd
 	public ArrayList<DTOInventario> cargarInventario() {
 		ArrayList<DTOInventario> a = new ArrayList<DTOInventario>();
 		try {
+			//crea documento con el archivo xml y coge la lista de productos
 			Document doc = dBuilder.parse(file);
 			Element raiz = doc.getDocumentElement();
 			NodeList nList = raiz.getChildNodes(); // lista productos
 
+			//recorremos la lista de productos creando el DTOInventario correspondiente 
+			//dependiendo del tipo de producto
 			for (int i = 0; i < nList.getLength(); i++) {
 				Node nodo = nList.item(i); // producto
 				Element e = (Element) nodo;

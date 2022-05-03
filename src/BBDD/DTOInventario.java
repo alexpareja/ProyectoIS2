@@ -4,6 +4,10 @@ public class DTOInventario {
 
 	// dao debe devolver array de dtos, y en inventario creacion de clases con
 	// switch y el array de dtos
+	
+	//en esta clase tenemos todos los atributos de los diferentes productos
+	// así como diferentes contructores dependiendo del tipo de producto
+	
 	protected String id;
 	protected double precio;
 	protected boolean activo;

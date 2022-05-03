@@ -2,6 +2,8 @@ package BBDD;
 
 public class DTOUsuarios {
 
+	//en esta clase tenemos todos los atributos de los usuarios
+	
 	private String usuario;
 	private String contrasena;
 	private boolean dueno;
