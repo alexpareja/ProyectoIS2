@@ -22,10 +22,6 @@ public class Controller {
 		this.s=new Sesion();
 	}
 	
-	public boolean comprar(Carrito carrito) {
-		return i.comprar(carrito);
-	}
-	
 	public void addObserver(InventarioObserver o) {
 		i.addObserver(o);
 		t.addObserver(o);

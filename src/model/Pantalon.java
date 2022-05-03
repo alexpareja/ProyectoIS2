@@ -25,7 +25,7 @@ public abstract class Pantalon extends Producto {
 	}
 
 	public String[] mostrarEnInv(){
-		String info = "Pantalón" + 
+		String info = "Pantalon" + 
 	           "Dorsales:" + this.dorsal +
 	           "Talla: " + this.talla;
 		String s[] = {this.id,

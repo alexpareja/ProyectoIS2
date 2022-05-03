@@ -1,7 +1,6 @@
 package Viewer;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -10,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -27,7 +25,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
@@ -135,7 +132,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				if (efectivo.isSelected()) {
 					pago.setVisible(false);
 					_ctrl.getI().getCompras().add(new Compra("efectivo", _ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
-					_ctrl.comprar(_ctrl.getC());
+					_ctrl.getI().comprar(_ctrl.getC());
 					_ctrl.getC().reset();
 					JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
 				}
@@ -145,7 +142,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 					if (!_cuenta.getText().equals("") && !_titular.getText().equals("")) {
 						pago.setVisible(false);
 						_ctrl.getI().getCompras().add(new Compra(p, _ctrl.getC().getProductos().size(), _ctrl.getI().getCompras().size(), nombre, direccion));
-						_ctrl.comprar(_ctrl.getC());//se disminuyen los elementos
+						_ctrl.getI().comprar(_ctrl.getC());//se disminuyen los elementos
 						_ctrl.getC().reset();//se vacia el carrito
 						JOptionPane.showMessageDialog(null, "La compra se ha realizado con exito");
 					}
