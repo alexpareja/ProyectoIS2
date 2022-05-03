@@ -4,3 +4,5 @@ Para ejecutar el proyecto hay que ejecutar el main que se encuentra dentro del p
 -Añadir productos al carrito, ver el carrito (botón carrito) y posteriormente comprar siguiendo los pasos que hay en las diferentes ventanas.
 -Te puedes mover a través de la interfaz usando una serie de botones con flechas que se encuentran en la parte de abajo que permiten desplazarte por las diferentes páginas de la tienda.
 -Dentro del botón de inventario, se puede ver una lista con todos los productos que hay en el inventario y haciendo uso de los botones se puede ver un resumen de las ventas que has realizado así como poder añadir un nuevo producto al inventario o a la tienda o ambos.
+
+Para ejecutar los test de JUnit hay que ejecutar cada test desde el paquete src/tests
