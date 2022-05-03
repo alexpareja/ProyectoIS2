@@ -92,7 +92,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		panelCompras.add(panelScrollCompras, BorderLayout.CENTER);
 
 		resumenCompras.add(panelCompras);
-		resumenCompras.setPreferredSize(new Dimension(500, 300));
+		resumenCompras.setPreferredSize(new Dimension(600, 400));
 		resumenCompras.pack();
 		resumenCompras.setResizable(false);
 		resumenCompras.setVisible(true);
@@ -193,7 +193,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 		Bcompras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inventario.setVisible(false);
+				//inventario.setVisible(false);
 				resumenCompras();
 			}
 		});
@@ -656,6 +656,12 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 	@Override
 	public void onActualizaTienda(ArrayList<Producto> inventario) {
 
+	}
+
+	@Override
+	public void onCambiarPrecio(ArrayList<Producto> inventario) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
