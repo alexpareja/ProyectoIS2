@@ -138,10 +138,4 @@ public class ArticuloPanel extends JPanel implements InventarioObserver{
 		
 	}
 
-	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

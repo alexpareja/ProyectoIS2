@@ -165,7 +165,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		
 	    tablaInv.setSelectionForeground( Color.white );
 	    tablaInv.setSelectionBackground( Color.red );
-	    
+	    tablaInv.getColumnModel().getColumn(1).setPreferredWidth(350);
+
 	   
 	    
 	    for(int j = 0; j < modeloInv.getRowCount(); j++) modeloInv.removeRow(j);
@@ -716,8 +717,6 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 	@Override
 	public void onRegistroTienda(ArrayList<Producto> inventario) {
-		this.removeAll();
-		this.updateUI();
 		
 	}
 
@@ -726,11 +725,5 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		
 	}
 
-	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {
-		this.removeAll();
-		this.updateUI();
-		initGUI();	
-	}
 
 }

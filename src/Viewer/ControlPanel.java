@@ -431,10 +431,11 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				
 				double suma = 0;
 				
-				String titColumna[]  = {"Producto", "Detalles", "Precio", "Cancelar"};
+				String titColumna[]  = {"Producto", "Detalles", "Precio"};
 				
 				DefaultTableModel modelo = new DefaultTableModel();
 				modelo.setColumnIdentifiers(titColumna);
+				
 				
 				JTable tabla = new JTable(modelo); 
 				
@@ -444,15 +445,16 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				
 			    tabla.setSelectionForeground(Color.white);
 			    tabla.setSelectionBackground(Color.red);
+			    tabla.getColumnModel().getColumn(1).setPreferredWidth(350);
 			    
 			    for(int j = 0; j < modelo.getRowCount(); j++) modelo.removeRow(j);
 			    
 			    for(int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
 			    	String nombre = _ctrl.getC().getProductos().get(i).getId();
-			    	String detalles = "1234";
+			    	String detalles = _ctrl.getC().getProductos().get(i).mostrarEnCarrito();
 			    	double precio = Math.round((_ctrl.getC().getProductos().get(i).getPrecio())*100.0)/100.0;
 			
-					String fila[] = {nombre, detalles, Double.toString(precio), "Borrar"};
+					String fila[] = {nombre, detalles, Double.toString(precio)};
 					modelo.addRow(fila);
 					suma = suma + _ctrl.getC().getProductos().get(i).getPrecio();
 				}
@@ -581,9 +583,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 	@Override
 	public void onActualizaTienda(ArrayList<Producto> inventario) {}
-
-	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {}
 
 	@Override
 	public void iniciaSesion(Usuario userActual) {
