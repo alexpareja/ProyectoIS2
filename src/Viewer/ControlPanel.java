@@ -53,7 +53,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 	// Funcion Anadir metodo de pago
 	private void anadirMetodoPago(String nombre, String direccion) {
-		//Se abre un JDialog y se pide introducir los datos del pago y el metodo
+		// Se abre un JDialog y se pide introducir los datos del pago y el metodo
 		JDialog pago = new JDialog();
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		pago.setTitle("Datos del pago");
@@ -113,7 +113,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 		JButton cancelButton = new JButton("Cancelar");
 		configButton(cancelButton);
-		//Si se pulsa cancelar se cancela la operacion y se informa al usuario
+		// Si se pulsa cancelar se cancela la operacion y se informa al usuario
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -125,7 +125,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 		JButton okButton = new JButton("Pagar");
 		configButton(okButton);
-		//Si se pulsa pagar se crea una Compra y se llama al metodo comprar
+		// Si se pulsa pagar se crea una Compra y se llama al metodo comprar
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (efectivo.isSelected()) {
@@ -160,9 +160,9 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		pago.setVisible(true);
 	}
 
-	//Fucion Comprar
+	// Fucion Comprar
 	private void comprarDialog() {
-		//Se pide introducir los datos necesarios para la compra
+		// Se pide introducir los datos necesarios para la compra
 		JDialog pago = new JDialog();
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		JTextField _nombre = new JTextField();
@@ -202,7 +202,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 		JButton cancelButton = new JButton("Cancelar");
 		configButton(cancelButton);
-		//Si se pulsa el boton de cancelar se cancela la operacion
+		// Si se pulsa el boton de cancelar se cancela la operacion
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -211,10 +211,10 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 			}
 		});
 		buttonsPanel.add(cancelButton);
-    
+
 		JButton sigButton = new JButton("Siguiente");
 		configButton(sigButton);
-		//Si los datos son correctos se procede al pago, sino se pide que se rellenen
+		// Si los datos son correctos se procede al pago, sino se pide que se rellenen
 		sigButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (usuario2.getText().equals("invitado") && !_nombre.getText().equals("")
@@ -236,9 +236,10 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		pago.setVisible(true);
 	}
 
-	//Se incializa la interfaz
+	// Se incializa la interfaz
 	private void initGUI() {
-		//Se crean los botones principales para acceder al invenatario, al carrito y al usuario
+		// Se crean los botones principales para acceder al invenatario, al carrito y al
+		// usuario
 		ImageIcon iUsuario = new ImageIcon("resources/icons/user.png");
 		ImageIcon iCarrito = new ImageIcon("resources/icons/carro.png");
 		ImageIcon iInventario = new ImageIcon("resources/icons/inventario.png");
@@ -254,7 +255,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		// Si se pulsa el boton de usuario
 		Busuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Se pide el usuario y la contraseña
+				// Se pide el usuario y la contraseña
 				JDialog usuario = new JDialog();
 				JPanel panelUsuario = new JPanel(new BorderLayout());
 
@@ -294,14 +295,14 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 				JButton cancel = new JButton("Salir");
 				configButton(cancel);
-				//Si se pulsa cancelar se cierra la ventana
+				// Si se pulsa cancelar se cierra la ventana
 				cancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						usuario.setVisible(false);
 					}
 				});
 				abajo.add(cancel, BorderLayout.WEST);
-				//Si se pulsa aceptar se inicia sesion, si no encuentra el usuario se informa
+				// Si se pulsa aceptar se inicia sesion, si no encuentra el usuario se informa
 				JButton aceptar = new JButton("Aceptar");
 				configButton(aceptar);
 
@@ -319,7 +320,8 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 				JButton registrarse = new JButton("Registrate");
 				configButton(registrarse);
-				//Si se pulsa el boton de registrarse se muestra el formulario con los datos necesarios
+				// Si se pulsa el boton de registrarse se muestra el formulario con los datos
+				// necesarios
 				registrarse.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						usuario.setVisible(false);
@@ -367,7 +369,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 						JButton cancel2 = new JButton("Salir");
 						configButton(cancel2);
-						//Si se pulsa cancelar se cierra la ventana
+						// Si se pulsa cancelar se cierra la ventana
 						cancel2.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								usuarioNuevo.setVisible(false);
@@ -377,7 +379,8 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 						JButton aceptarC = new JButton("Registra cliente");
 						configButton(aceptarC);
-						//Si se pulsa crear cliente o vendedor se crea  el usuario con los datos introducidos
+						// Si se pulsa crear cliente o vendedor se crea el usuario con los datos
+						// introducidos
 						aceptarC.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								usuarioNuevo.setVisible(false);
@@ -424,7 +427,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		// Si se pulsa el boton del carrito
 		Bcarrito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Se muestra el carrito
+				// Se muestra el carrito
 				JDialog carrito = new JDialog();
 				JPanel panelCarrito = new JPanel(new BorderLayout());
 
@@ -440,8 +443,8 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 				double suma = 0;
-				//Se crea la tabla para mostrar el carrito
-				String titColumna[] = { "Producto", "Detalles", "Precio", "Cancelar" };
+				// Se crea la tabla para mostrar el carrito
+				String titColumna[] = { "Producto", "Detalles", "Precio" };
 
 				DefaultTableModel modelo = new DefaultTableModel();
 				modelo.setColumnIdentifiers(titColumna);
@@ -452,25 +455,26 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 				tabla.setRowSelectionAllowed(false);
 				tabla.setColumnSelectionAllowed(false);
 
+				tabla.getColumnModel().getColumn(1).setPreferredWidth(400);
 				tabla.setSelectionForeground(Color.white);
 				tabla.setSelectionBackground(Color.red);
 
 				for (int j = 0; j < modelo.getRowCount(); j++)
 					modelo.removeRow(j);
-				//Se muestran los acticulos del array del carrito con su inforacioón y el total de la compra
+				// Se muestran los acticulos del array del carrito con su inforacioón y el total
+				// de la compra
 				for (int i = 0; i < _ctrl.getC().getProductos().size(); i++) {
 					String nombre = _ctrl.getC().getProductos().get(i).getId();
-					String detalles = "1234";
+					String detalles = _ctrl.getC().getProductos().get(i).mostrarEnCarrito();
 					double precio = Math.round((_ctrl.getC().getProductos().get(i).getPrecio()) * 100.0) / 100.0;
 
-					String fila[] = { nombre, detalles, Double.toString(precio), "Borrar" };
+					String fila[] = { nombre, detalles, Double.toString(precio) };
 					modelo.addRow(fila);
-					suma = suma + _ctrl.getC().getProductos().get(i).getPrecio();
+					suma = Math.round((suma + _ctrl.getC().getProductos().get(i).getPrecio()) * 100.0) / 100.0;
 				}
 
 				panelDatos.add(new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
-
 
 				panelCarrito.add(panelScrollDatos, BorderLayout.CENTER);
 
@@ -484,7 +488,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 				JButton cancel = new JButton("Salir");
 				configButton(cancel);
-				//Si se pulsa cancelar se cierra la ventana del carrito
+				// Si se pulsa cancelar se cierra la ventana del carrito
 				cancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						carrito.setVisible(false);
@@ -495,7 +499,7 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 				JButton aceptar = new JButton("Comprar");
 				configButton(aceptar);
-				//Si se pulsa comprar se llama a la funcion que realiza la compra
+				// Si se pulsa comprar se llama a la funcion que realiza la compra
 				aceptar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						carrito.setVisible(false);
@@ -515,12 +519,12 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 			}
 		});
-		//Boton del inventario
+		// Boton del inventario
 		Binventario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Se crea el inventario
+				// Se crea el inventario
 				PantallaInventario inv = new PantallaInventario(_ctrl);
-				//Solo se accede si el usuario es un vendedor
+				// Solo se accede si el usuario es un vendedor
 				if (!user.esDueno())
 					JOptionPane.showMessageDialog(null, "No puedes acceder al inventario. Eres cliente", "Error",
 							JOptionPane.ERROR_MESSAGE);
@@ -534,8 +538,8 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 		add(Busuario);
 		add(Binventario);
 
-		JPanel infoUsu = new JPanel(new GridLayout(3, 2));
-		//Se muestra la información del usuario actual
+		JPanel infoUsu = new JPanel(new GridLayout(2, 2));
+		// Se muestra la información del usuario actual
 		JLabel usuario1 = new JLabel("Usuario activo:    ");
 		infoUsu.add(usuario1);
 		usuario2 = new JLabel(_ctrl.getS().getUsuarioActual().getUsuario());
@@ -564,10 +568,6 @@ public class ControlPanel extends JPanel implements InventarioObserver, Usuarios
 
 	@Override
 	public void onActualizaTienda(ArrayList<Producto> inventario) {
-	}
-
-	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {
 	}
 
 	@Override
