@@ -21,37 +21,26 @@ public class Guantes extends Producto {
 		this.adherencia = adherencia;
 		this.foto = new ImageIcon( "resources/icons/guantes.png");
 	}
-
+	//Se pasan los datos necesarios para mostrar Guantes en la tienda
 	public String[] mostrar() {
 		String s[] = { "Talla: " + this.talla, "Modelo: " + this.modelo, "Marca: " + this.marca,
 					"Color: " + this.color, "Adherencia: " + this.adherencia, "Precio: " + this.precio};
 	    return s;
 	}
   
-	@Override
+	//Se pasan los datos necesarios para mostrar Guantes en el inventario
   	public String[] mostrarEnInv() {
-		String info = 
-				"Guantes. "+ "Marca:" + this.marca +
-		        "Modelo: " + this.modelo + 
-		        "Talla: " + this.talla + 
-		        "Color: " + this.color +
-		        "Adherencia: " + this.adherencia;
-		String s[] = {this.id,
-				info,
-				Integer.toString(this.stock),
-				Double.toString(this.precio)};
+  		String info = "Marca:" + this.marca + "Modelo: " + this.modelo + "Talla: " + this.talla + "Color: " + this.color
+				+ "Adherencia: " + this.adherencia;
+		String s[] = { this.id, info, Integer.toString(this.stock), Double.toString(this.precio) };
 		return s;
 	}
 
-	@Override
+	//Se pasan los datos necesarios para mostrar Guantes en el carrito
 	public String mostrarEnCarrito() {
-		String s = "\nProducto: Guantes\n" +
-				"Marca: " + this.marca + "\n" +
-				"Modelo: " + this.modelo + "\n" +
-				"Talla: " + this.talla + "\n" +
-				"Color: " + this.color + "\n" +
-				"Adherencia: " + this.adherencia + "\n" +
-				"Precio: " + this.precio + "\n";
+		String s = "Marca: " + this.marca + "\n" + " Modelo: " + this.modelo + "\n" + " Talla: " + this.talla + "\n"
+				+ " Color: " + this.color + "\n" + " Adherencia: " + this.adherencia + "\n";
+
 		return s;
 	}
 	
