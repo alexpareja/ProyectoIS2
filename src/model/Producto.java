@@ -22,58 +22,26 @@ public abstract class Producto {
 		this.reservados = reservados;
 	}
 
-	public void disminuirStock() {
-		stock--;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public int getUdvendidas() {
-		return this.udsvendidas;
-	}
-
-	public boolean getActivo() {
-		return activo;
-	}
-
-	public double getPrecio() {
-		return precio;
-	}
-
-	public int getStock() {
-		return stock;
-	}
-
-	public int getReservados() {
-		return reservados;
-	}
-
-	public ImageIcon getFoto() {
-		return foto;
-	}
-
-	public void setReservados(int n) {
-		reservados = n;
-	}
-
-	public void setStock(int n) {
-		stock = n;
-	}
-
+	public void disminuirStock() {stock--;}
+	
+	public String getId() {return id;}
+	public int getUdvendidas() {return this.udsvendidas;}
+	public boolean getActivo() {return activo;}
+	public double getPrecio() {return precio;}
+	public int getStock() {return stock;}
+	public int getReservados() {return reservados;}
+	public ImageIcon getFoto() {return foto;}
+	
+	public void setReservados(int n){reservados = n;}
+	public void setStock(int n){	stock = n;}
 	public void setPrecio(double precio) {
-		if (precio < 0)
-			throw new IllegalArgumentException("Precio negativo");
+		if (precio < 0) throw new IllegalArgumentException("Precio negativo");
 		this.precio = precio;
 	}
-
+  
 	public abstract String[] mostrar();
-
 	public abstract String[] mostrarEnInv();
-
 	public abstract String mostrarEnCarrito();
-
 	protected abstract DTOInventario convierteDTO();
-
+  
 }
