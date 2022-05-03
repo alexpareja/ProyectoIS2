@@ -43,6 +43,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		_ctrl.addObserver(this);
 	}
 
+	//Funcion de resumen compras
 	private void resumenCompras() {
 		JDialog resumenCompras = new JDialog();
 		JPanel panelCompras = new JPanel(new BorderLayout());
@@ -55,7 +56,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 		BoxLayout datosCompras = new BoxLayout(panelDatosCompras, BoxLayout.PAGE_AXIS);
 		panelDatosCompras.setLayout(datosCompras);
-
+		//Se crea una tabla con los datos de las compras
 		JScrollPane panelScrollCompras = new JScrollPane(panelDatosCompras, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -76,7 +77,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		for (int j = 0; j < modeloCompras.getRowCount(); j++) {
 			modeloCompras.removeRow(j);
 		}
-
+		//Se añade la informacion del array compras a la tabla
 		for (int i = 0; i < _ctrl.getI().getCompras().size(); i++) {
 			String IdCompras = _ctrl.getI().getCompras().get(i).getId();
 			String MetodoPago = _ctrl.getI().getCompras().get(i).getPago();
@@ -97,36 +98,36 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		resumenCompras.setResizable(false);
 		resumenCompras.setVisible(true);
 	}
-
+	//Se inicializa la interfaz
 	private void initGUI() {
-
+		//ComboBox para las tallas
 		JComboBox<String> tll = new JComboBox<String>();
-		String[] tallas = { "XS", "S", "M", "L", "XL" }; // Hacer tallas disponibles en cada articulo
+		String[] tallas = { "XS", "S", "M", "L", "XL" }; 
 		for (int i = 0; i < tallas.length; i++) {
 			tll.addItem(tallas[i]);
 		}
-
+		//ComboBox para las tallas de las botas
 		JComboBox<String> tllb = new JComboBox<String>();
-		String[] tallasb = { "38", "39", "40", "41", "42" }; // Hacer tallas disponibles en cada articulo
+		String[] tallasb = { "38", "39", "40", "41", "42" };
 		for (int i = 0; i < tallasb.length; i++) {
 			tllb.addItem(tallasb[i]);
 		}
-
+		//ComboBox para decir si se publica en tienda o no
 		JComboBox<String> publ = new JComboBox<String>();
-		String[] publi = { "SI", "NO" }; // Hacer tallas disponibles en cada articulo
+		String[] publi = { "SI", "NO" }; 
 		for (int i = 0; i < publi.length; i++) {
 			publ.addItem(publi[i]);
 		}
-
+		//ComboBox para elegir tipo de pantalon
 		JComboBox<String> pant = new JComboBox<String>();
-		String[] pop = { "PantChandal", "PantCorto" }; // Hacer tallas disponibles en cada articulo
+		String[] pop = { "PantChandal", "PantCorto" }; 
 		for (int i = 0; i < pop.length; i++) {
 			pant.addItem(pop[i]);
 		}
-
+		//ComboBox para elegir tipo de camiseta o conjunto
 		JComboBox<String> cyc = new JComboBox<String>();
-		String[] camcon = { "CamLocal", "CamVisitante", "ConLocal", "ConVisitante" }; // Hacer tallas disponibles en
-																						// cada articulo
+		String[] camcon = { "CamLocal", "CamVisitante", "ConLocal", "ConVisitante" }; 
+																						
 		for (int i = 0; i < camcon.length; i++) {
 			cyc.addItem(camcon[i]);
 		}
@@ -142,7 +143,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 		BoxLayout datosInventario = new BoxLayout(panelDatosInventario, BoxLayout.PAGE_AXIS);
 		panelDatosInventario.setLayout(datosInventario);
-
+		//Se crea una tabla para el inventario
 		String titColumnaInv[] = { "Id", "Detalles", "Stock", "Precio" };
 
 		DefaultTableModel modeloInv = new DefaultTableModel();
@@ -157,10 +158,11 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		tablaInv.setSelectionForeground(Color.white);
 		tablaInv.setSelectionBackground(Color.red);
 		tablaInv.getColumnModel().getColumn(1).setPreferredWidth(350);
-
+		tablaInv.getColumnModel().getColumn(0).setPreferredWidth(100);
+		
 		for (int j = 0; j < modeloInv.getRowCount(); j++)
 			modeloInv.removeRow(j);
-
+		//Se cogen los datos para mostrar en la tabla del array del inventario de todos los prouctos
 		for (int i = 0; i < _ctrl.getI().getInventario().size(); i++) {
 			String IdInv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[0];
 			String DetallesInv = _ctrl.getI().getInventario().get(i).mostrarEnInv()[1];
@@ -179,7 +181,7 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		barraInv.setLayout(new GridLayout(1, 3));
 
 		JButton cancel = new JButton("Salir");
-
+		//Si se pulsa el boton salir se cierra la ventana
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				inventario.setVisible(false);
@@ -188,20 +190,19 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 		barraInv.add(cancel);
 
-		// HU Resumen de compras
+		// Boton que llama al resumen de compras y los muestra
 		JButton Bcompras = new JButton("Resumen Compras");
 
 		Bcompras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// inventario.setVisible(false);
 				resumenCompras();
 			}
 		});
 
 		barraInv.add(Bcompras);
-
+		//Boton para añadir productos
 		JButton BAbastecer = new JButton("Anadir producto");
-
+		//si se pulsa se muestran los tipos de productos que se pueden añadir
 		BAbastecer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog abastecer = new JDialog();
@@ -219,7 +220,9 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 				JButton bguantes = new JButton("Guantes");
 
 				panelabastecer.add(info);
-
+				// Segun el boton quese pulsa se abre un formulario con los atributos ha rellenar. 
+				//Se recogen los datos introducidos y se crea el producto segun el id y el boton pulsado
+				//Se comunica si se añade o no y se cierran las ventanas
 				bcami.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						info.setVisible(false);
@@ -627,7 +630,8 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 		});
 
 		barraInv.add(BAbastecer);
-
+		//Se añade el boton cambiar precio, que recoge los datos de la tabla, por lo que si se modifica
+		//se cambiara el precio en el inventario(y posteriormente en la tienda)
 		JButton BCambiarPrecio = new JButton("Cambiar Precio");
 
 		BCambiarPrecio.addActionListener(new ActionListener() {
@@ -658,10 +662,5 @@ public class PantallaInventario extends JPanel implements InventarioObserver {
 
 	}
 
-	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

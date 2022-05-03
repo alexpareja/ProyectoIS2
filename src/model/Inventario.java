@@ -8,6 +8,7 @@ import BBDD.DTOInventario;
 
 public class Inventario {
 	protected ArrayList<Producto> inventario;
+	protected ArrayList<Producto> tienda;
 	protected ArrayList<InventarioObserver> observers;
 	protected DAOXMLInventario dao;
 	private List<Compra> compras;
@@ -53,9 +54,14 @@ public class Inventario {
 	public void add(Producto prod) {
 		if (!inventario.contains(prod))
 			inventario.add(prod);
-
+		this.tienda = new ArrayList<Producto>();
+		for(int i=0; i<inventario.size();i++) {
+			if(inventario.get(i).getActivo()) {
+				tienda.add(inventario.get(i));
+			}
+		}
 		for (int j = 0; j < observers.size(); j++) {
-			observers.get(j).onRegistroTienda(inventario);
+			observers.get(j).onRegistroTienda(tienda);
 		}
 
 		this.guardar();

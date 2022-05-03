@@ -55,8 +55,4 @@ public class PantallaTienda extends JPanel implements InventarioObserver {
 		initGUI();
 	}
 
-	@Override
-	public void onCambiarPrecio(ArrayList<Producto> inventario) {
-	}
-
 }
